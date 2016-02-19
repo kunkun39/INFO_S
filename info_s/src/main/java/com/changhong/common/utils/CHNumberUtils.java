@@ -7,7 +7,7 @@ import java.util.Random;
  * Date: 14-4-15
  * Time: 下午5:05
  */
-public class NumberUtils {
+public class CHNumberUtils {
 
     public static int generateRandomNumber(int range) {
         Random rand = new Random();
@@ -24,11 +24,11 @@ public class NumberUtils {
     }
 
     public static void main(String[] arges) {
-        int i = NumberUtils.hexStr2Number("12dfdfdf");
+        int i = CHNumberUtils.hexStr2Number("12dfdfdf");
         System.out.println(i);
 
         i = i + 1;
-        String str = NumberUtils.numberToHexStr(i);
+        String str = CHNumberUtils.numberToHexStr(i);
         System.out.println(str);
     }
 }

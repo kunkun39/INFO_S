@@ -12,7 +12,7 @@ import java.util.Date;
  * Date: 14-4-9
  * Time: 上午10:18
  */
-public class JodaUtils {
+public class CHJodaUtils {
     public static final String DEFAUT_DATE_FORMAT = "yyyy-MM-dd";
     public static final String YEAR_MONTH_FORMAT = "yyyy-MM";
     public static final String DMYHMS = "yyyy-MM-dd HH:mm:ss";
@@ -222,6 +222,24 @@ public class JodaUtils {
      */
     public static String toYearString(DateTime dateTime) {
         return dateTime.toString("yyyy");
+    }
+
+    /**
+     * MM
+     * @param dateTime
+     * @return
+     */
+    public static String toMonthString(DateTime dateTime) {
+        return dateTime.toString("MM");
+    }
+
+    /**
+     * dd
+     * @param dateTime
+     * @return
+     */
+    public static String toDayString(DateTime dateTime) {
+        return dateTime.toString("dd");
     }
 
     /**

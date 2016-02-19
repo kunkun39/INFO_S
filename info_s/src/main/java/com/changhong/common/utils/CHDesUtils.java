@@ -21,7 +21,7 @@ import java.security.Security;
 /**
  * @author Jack Wang
  */
-public class DesUtils {
+public class CHDesUtils {
     private static String DEFAULT_ALGORITHM_NAME = "DES";
     private static String DEFAULT_KEY_NAME = "CH";
     private static Cipher encryptCipher;

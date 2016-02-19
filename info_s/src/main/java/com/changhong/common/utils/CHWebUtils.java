@@ -14,7 +14,7 @@ import java.io.InputStream;
  * Date: 14-11-19
  * Time: 下午5:52
  */
-public class WebUtils {
+public class CHWebUtils {
 
     private static MultiThreadedHttpConnectionManager connectionManager;
 
