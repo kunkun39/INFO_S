@@ -24,15 +24,14 @@
             <!-- END RESPONSIVE QUICK SEARCH FORM -->
         </li>
 
-        <li class="start active ">
-            <a href="index.html">
-            <i class="icon-home"></i>
-            <span class="title">首页</span>
-            <span class="selected"></span>
+        <li class="start">
+            <a class="ajaxify start" href="javascript:;">
+                <i class="icon-home"></i>
+                <span class="title">首页</span>
             </a>
         </li>
 
-        <li class="">
+        <li <c:if test="${MENU_KEY=='SYS_SETTING'}">class="active"</c:if>>
             <a href="javascript:;">
                 <i class="icon-cogs"></i>
                 <span class="title">系统设置</span>
@@ -40,7 +39,7 @@
             </a>
 
             <ul class="sub-menu">
-                <li >
+                <li <c:if test="${SUB_MENU_KEY=='SETTING_USER'}">class="active"</c:if>>
                     <a href="${pageContext.request.contextPath}/system/usermanagement.html">系统用户管理</a>
                 </li>
             </ul>
