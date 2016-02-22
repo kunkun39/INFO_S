@@ -5,7 +5,6 @@
     <title>URL</title>
 </head>
 <body>
-这是index.jsp
-<c:redirect url="/backend/index.html"/>
+<c:redirect url="/system/login.html"/>
 </body>
 </html>

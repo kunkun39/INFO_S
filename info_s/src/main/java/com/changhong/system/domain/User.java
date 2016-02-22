@@ -27,12 +27,13 @@ public class User extends EntityBase implements UserDetails {
     public User() {
     }
 
-    public User(String name, String contactWay, String username, String password) {
+    public User(int id, String name, String contactWay, String username, String password, boolean enabled) {
+        setId(id);
         this.name = name;
         this.contactWay = contactWay;
         this.username = username;
         this.password = password;
-        this.enabled = true;
+        this.enabled = enabled;
     }
 
     public void grantRole(String role) {

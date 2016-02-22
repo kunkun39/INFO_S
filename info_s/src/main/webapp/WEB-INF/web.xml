@@ -9,6 +9,7 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/architecture/core.xml
+            /WEB-INF/architecture/security.xml
             /WEB-INF/gh-servlet.xml
         </param-value>
     </context-param>
@@ -66,20 +67,6 @@
         <servlet-name>gh</servlet-name>
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
-
-     <filter>
-        <filter-name>sitemesh</filter-name>
-        <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>sitemesh</filter-name>
-        <url-pattern>*.html</url-pattern>
-    </filter-mapping>
 
     <servlet>
         <servlet-name>dwr-invoker</servlet-name>

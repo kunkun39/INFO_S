@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="User">
+
+    <select id="selectUserByUsername" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+        select * from system_user where username = #username# limit 1
+    </select>
+
+    <select id="selectUserRoleByUserId" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+        select role_type from system_role where user_id = #userId#
+    </select>
+
+</sqlMap>
