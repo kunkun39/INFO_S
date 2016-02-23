@@ -35,7 +35,7 @@
 								<a href="index.html">Home</a>
 								<i class="icon-angle-right"></i>
 							</li>
-							<li><a href="#">Managed Tables</a></li>
+							<li><a href="usermanagement.jsp#">Managed Tables</a></li>
 						</ul>
 					</div>
 				</div>

@@ -12,10 +12,7 @@ public class EntityBase implements Serializable {
 
     private int id;
 
-    private Date timestamp;
-
     protected EntityBase() {
-        this.timestamp = new Date();
     }
 
     /**
@@ -26,15 +23,8 @@ public class EntityBase implements Serializable {
         return id;
     }
 
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
-    }
 }

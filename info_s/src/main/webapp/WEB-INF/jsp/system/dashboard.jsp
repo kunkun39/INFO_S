@@ -2543,6 +2543,30 @@
 	<!-- END CONTAINER -->
 
     <c:import url="../common/jspart.jsp"/>
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+
+	<script src="${pageContext.request.contextPath}/media/js/jquery.vmap.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/media/js/jquery.vmap.russia.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/media/js/jquery.vmap.world.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/media/js/jquery.vmap.europe.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/media/js/jquery.vmap.germany.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/media/js/jquery.vmap.usa.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/media/js/jquery.vmap.sampledata.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/media/js/jquery.flot.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/media/js/jquery.flot.resize.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/media/js/jquery.pulsate.min.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/media/js/date.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/media/js/daterangepicker.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/media/js/jquery.gritter.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/media/js/fullcalendar.min.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/media/js/jquery.easy-pie-chart.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/media/js/jquery.sparkline.min.js" type="text/javascript"></script>
+	<!-- END PAGE LEVEL PLUGINS -->
+
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+	<script src="${pageContext.request.contextPath}/media/js/app.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/media/js/index.js" type="text/javascript"></script>
+	<!-- END PAGE LEVEL SCRIPTS -->
 
     <script>
 		jQuery(document).ready(function() {

@@ -14,10 +14,10 @@ Reset and overrides
 /* general body settings */
 body { 
   color: #000; 
-  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial;
+  font-family: "\5FAE\8F6F\96C5\9ED1", "\5B8B\4F53", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial;
   padding: 0px !important;
   margin: 0px !important;
-  font-size:13px; 
+  font-size:12px;
   direction: ltr;
 }
 
@@ -4530,6 +4530,7 @@ jQuery UI Dialogs(new in v1.2.4)
   z-index: 10011 !important;
   background: none !important;
   background-color: #eee !important;
+  text-align: center;
 }
 
 .ui-dialog .ui-dialog-titlebar {

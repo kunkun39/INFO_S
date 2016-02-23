@@ -35,7 +35,7 @@
 								<a href="index.html">Home</a>
 								<i class="icon-angle-right"></i>
 							</li>
-							<li><a href="#">Managed Tables</a></li>
+							<li><a href="userform.jsp#">Managed Tables</a></li>
 						</ul>
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 								<div class="caption"><i class="icon-reorder"></i>Advance Validation</div>
 								<div class="tools">
 									<a href="javascript:;" class="collapse"></a>
-									<a href="#portlet-config" data-toggle="modal" class="config"></a>
+									<a href="userform.jsp#portlet-config" data-toggle="modal" class="config"></a>
 									<a href="javascript:;" class="reload"></a>
 									<a href="javascript:;" class="remove"></a>
 								</div>
@@ -60,7 +60,7 @@
 
 							<div class="portlet-body form">
 								<!-- BEGIN FORM-->
-								<form action="#" id="form_sample_2" class="form-horizontal">
+								<form action="userform.jsp#" id="form_sample_2" class="form-horizontal">
 									<div class="alert alert-error hide">
 										<button class="close" data-dismiss="alert"></button>
 										You have some form errors. Please check below.

@@ -1,4 +1,4 @@
-package com.changhong.system.web.controller.user;
+package com.changhong.system.web.controller.setting;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,14 +20,14 @@ public class SystemUserController {
     public String sendToUserManagement(HttpServletRequest request) {
         setMenuKey(request);
 
-        return "system/user/usermanagement";
+        return "system/setting/usermanagement";
     }
 
     @RequestMapping("/system/userform.html")
     public String sendToUserFrom(HttpServletRequest request) {
         setMenuKey(request);
 
-        return "system/user/userform";
+        return "system/setting/userform";
     }
 
     private void setMenuKey(HttpServletRequest request) {

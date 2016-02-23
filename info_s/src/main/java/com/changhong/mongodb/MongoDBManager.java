@@ -16,11 +16,7 @@ public interface MongoDBManager {
 
     /*************************************************数据插入部分******************************************************/
 
-    void insert(String projectKey, Document document);
-
     void insert(String projectKey, Document document, boolean addMonthColumn, boolean addDayColumn, boolean addHourColumn);
-
-    void insert(String projectKey, List<? extends Document> documents);
 
     void insert(String projectKey, List<? extends Document> documents, boolean addMonthColumn, boolean addDayColumn, boolean addHourColumn);
 
