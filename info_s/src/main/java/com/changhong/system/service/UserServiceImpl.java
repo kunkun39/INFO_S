@@ -34,4 +34,12 @@ public class UserServiceImpl implements UserService {
         UserWebAssember.addUserRoleDomain(userDetails, roles);
         return userDetails;
     }
+
+    public User obtainUserById(int userId) {
+        return null;
+    }
+
+    public void saveUser(User user) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

@@ -49,7 +49,7 @@
 							<div class="portlet-title">
 								<div class="caption"><i class="icon-user"></i>Table</div>
 								<div class="actions">
-									<a href="${pageContext.request.contextPath}/system/userform.html" class="btn blue"><i class="icon-pencil"></i> Add</a>
+									<a href="${pageContext.request.contextPath}/system/userform.html" class="btn blue"><i class="icon-pencil"></i> 新加</a>
 								</div>
 							</div>
 

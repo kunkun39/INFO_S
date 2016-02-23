@@ -1,6 +1,11 @@
 package com.changhong.system.web.controller.setting;
 
+import com.changhong.system.domain.User;
+import com.changhong.system.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,21 +18,17 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class SystemUserController {
 
-    private final static String MENU_KEY = "SYS_SETTING";
-    private final static String SUB_MENU_KEY = "SETTING_USER";
+    public final static String MENU_KEY = "SYS_SETTING";
+    public final static String SUB_MENU_KEY = "SETTING_USER";
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/system/usermanagement.html")
     public String sendToUserManagement(HttpServletRequest request) {
         setMenuKey(request);
 
         return "system/setting/usermanagement";
-    }
-
-    @RequestMapping("/system/userform.html")
-    public String sendToUserFrom(HttpServletRequest request) {
-        setMenuKey(request);
-
-        return "system/setting/userform";
     }
 
     private void setMenuKey(HttpServletRequest request) {

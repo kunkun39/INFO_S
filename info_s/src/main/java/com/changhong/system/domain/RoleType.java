@@ -6,5 +6,6 @@ package com.changhong.system.domain;
  * Time: 下午1:43
  */
 public enum RoleType {
-    ROLE_ADMIN
+    ROLE_ADMIN,
+    ROLE_PROJECT,
 }

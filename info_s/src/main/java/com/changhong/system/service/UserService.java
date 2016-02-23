@@ -1,5 +1,6 @@
 package com.changhong.system.service;
 
+import com.changhong.system.domain.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 
@@ -9,4 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * Time: 上午9:20
  */
 public interface UserService extends UserDetailsService {
+
+    User obtainUserById(int userId);
+
+    void saveUser(User user);
 }

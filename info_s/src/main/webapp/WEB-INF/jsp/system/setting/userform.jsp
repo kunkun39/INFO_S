@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="spring-form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,10 +34,10 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
-								<a href="index.html">Home</a>
+								<a href="${pageContext.request.contextPath}/system/dashboard.html">首页</a>
 								<i class="icon-angle-right"></i>
 							</li>
-							<li><a href="userform.jsp#">Managed Tables</a></li>
+							<li><a href="javascript:;">用户编辑</a></li>
 						</ul>
 					</div>
 				</div>
@@ -49,18 +51,12 @@
 						<!-- BEGIN VALIDATION STATES-->
 						<div class="portlet box green">
 							<div class="portlet-title">
-								<div class="caption"><i class="icon-reorder"></i>Advance Validation</div>
-								<div class="tools">
-									<a href="javascript:;" class="collapse"></a>
-									<a href="userform.jsp#portlet-config" data-toggle="modal" class="config"></a>
-									<a href="javascript:;" class="reload"></a>
-									<a href="javascript:;" class="remove"></a>
-								</div>
+								<div class="caption"><i class="icon-reorder"></i>用户信息</div>
 							</div>
 
 							<div class="portlet-body form">
 								<!-- BEGIN FORM-->
-								<form action="userform.jsp#" id="form_sample_2" class="form-horizontal">
+								<spring-form:form commandName="user" id="form_sample_2" class="form-horizontal">
 									<div class="alert alert-error hide">
 										<button class="close" data-dismiss="alert"></button>
 										You have some form errors. Please check below.
@@ -72,102 +68,50 @@
 									</div>
 
 									<div class="control-group">
-										<label class="control-label">Name<span class="required">*</span></label>
+										<label class="control-label">姓名<span class="required">*</span></label>
 										<div class="controls">
-											<input type="text" name="name" data-required="1" class="span6 m-wrap"/>
+                                            <spring-form:input path="name" maxlength="30" cssClass="span6 m-wrap"/>&nbsp;
+                                            <span class="help-inline">
+                                                <spring-form:errors path="name"/>
+                                            </span>
 										</div>
 									</div>
 
-									<div class="control-group">
-										<label class="control-label">Email<span class="required">*</span></label>
+                                    <div class="control-group">
+										<label class="control-label">员工编号<span class="required">*</span></label>
 										<div class="controls">
-											<input name="email" type="text" class="span6 m-wrap"/>
+                                            <spring-form:input path="username" maxlength="30" cssClass="span6 m-wrap"/>&nbsp;
+                                            <spring-form:errors path="username" cssClass="help-inline"/>
 										</div>
 									</div>
 
 									<div class="control-group">
-										<label class="control-label">Occupation&nbsp;&nbsp;</label>
+										<label class="control-label">联系方式<span class="required">*</span></label>
 										<div class="controls">
-											<input name="occupation" type="text" class="span6 m-wrap"/>
+											<spring-form:input path="contactWay" maxlength="30" cssClass="span6 m-wrap"/>&nbsp;
+                                            <spring-form:errors path="contactWay" cssClass="help-inline"/>
 										</div>
 									</div>
 
 									<div class="control-group">
-										<label class="control-label">Category<span class="required">*</span></label>
-										<div class="controls">
-											<select class="span6 m-wrap" name="category">
-												<option value="">Select...</option>
-												<option value="Category 1">Category 1</option>
-												<option value="Category 2">Category 2</option>
-												<option value="Category 3">Category 5</option>
-												<option value="Category 4">Category 4</option>
-											</select>
-										</div>
-									</div>
-
-									<div class="control-group">
-										<label class="control-label">Chosen Dropdown<span class="required">*</span></label>
-										<div class="controls chzn-controls">
-											<select id="form_2_chosen" class="span6 chosen" data-with-diselect="1" name="options1" data-placeholder="Choose an Option" tabindex="1">
-												<option value=""></option>
-												<option value="Option 1">Option 1</option>
-												<option value="Option 2">Option 2</option>
-												<option value="Option 3">Option 3</option>
-												<option value="Option 4">Option 4</option>
-											</select>
-										</div>
-									</div>
-
-									<div class="control-group">
-										<label class="control-label">Select2 Dropdown<span class="required">*</span></label>
-										<div class="controls select2-wrapper">
-											<select id="form_2_select2" class="span6" name="options2">
-												<option value=""></option>
-												<option value="Option 1">Option 1</option>
-												<option value="Option 2">Option 2</option>
-												<option value="Option 3">Option 3</option>
-												<option value="Option 4">Option 4</option>
-											</select>
-										</div>
-									</div>
-
-									<div class="control-group">
-										<label class="control-label">Membership<span class="required">*</span></label>
+										<label class="control-label">系统角色<span class="required">*</span></label>
 										<div class="controls">
 											<label class="radio line">
 											<input type="radio" name="membership" value="1" />
-											Fee
+											系统管理员
 											</label>
 											<label class="radio line">
 											<input type="radio" name="membership" value="2" />
-											Professional
+											项目管理员
 											</label>
-											<div id="form_2_membership_error"></div>
-										</div>
-									</div>
-
-									<div class="control-group">
-										<label class="control-label">Services<span class="required">*</span></label>
-										<div class="controls">
-											<label class="checkbox line">
-											<input type="checkbox" value="1" name="service"/> Service 1
-											</label>
-											<label class="checkbox line">
-											<input type="checkbox" value="2" name="service"/> Service 2
-											</label>
-											<label class="checkbox line">
-											<input type="checkbox" value="3" name="service"/> Service 3
-											</label>
-											<span class="help-block">(select at least two)</span>
-											<div id="form_2_service_error"></div>
 										</div>
 									</div>
 
 									<div class="form-actions">
-										<button type="submit" class="btn green">Validate</button>
-										<button type="button" class="btn">Cancel</button>
+                                        <button type="button" class="btn yellow">返回</button>
+                                        <button type="submit" class="btn blue">保存</button>
 									</div>
-								</form>
+								</spring-form:form>
 								<!-- END FORM-->
 							</div>
 						</div>

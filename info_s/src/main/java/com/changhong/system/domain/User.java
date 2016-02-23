@@ -1,6 +1,7 @@
 package com.changhong.system.domain;
 
 import com.changhong.common.domain.EntityBase;
+import com.changhong.common.utils.CHStringUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -25,6 +26,8 @@ public class User extends EntityBase implements UserDetails {
     private List<Role> roles = new ArrayList<Role>();
 
     public User() {
+        this.enabled = true;
+        this.password = CHStringUtils.getRandomString(8);
     }
 
     public User(int id, String name, String contactWay, String username, String password, boolean enabled) {
