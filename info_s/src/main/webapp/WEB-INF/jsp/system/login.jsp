@@ -22,7 +22,7 @@
 	<div class="content">
 		<!-- BEGIN LOGIN FORM -->
 		<form class="form-vertical login-form" action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
-			<h3 class="form-title">请输入你的账户信息</h3>
+			<h3 class="form-title">账户信息</h3>
 
             <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
                 <div class="alert alert-error">

@@ -892,7 +892,7 @@ Page title
   color: #666;
   margin: 20px 0px 15px 0px;
   font-weight: 300;
-  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial;
+  font-family: "\5FAE\8F6F\96C5\9ED1", "\5B8B\4F53","HelveticaNeue", "Helvetica Neue", Helvetica, Arial;
 }
 
 .page-title small {
@@ -1699,7 +1699,7 @@ Custom icon buttons
 }
 
 .icon-btn div {
-  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial;
+  font-family: "\5FAE\8F6F\96C5\9ED1", "\5B8B\4F53", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial;
   margin-top: 5px;
   margin-bottom: 20px;  
   color: #000;
@@ -1709,7 +1709,7 @@ Custom icon buttons
 
 .icon-btn .badge {
   position: absolute;
-  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial;
+  font-family: "\5FAE\8F6F\96C5\9ED1", "\5B8B\4F53", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial;
   font-size: 11px !important;
   font-weight: 300;
   top: -5px;
@@ -5181,11 +5181,11 @@ Bootstrap Datetimepickers Restyle(in v1.2.4)
 
 .datetimepicker table td {
   font-weight: 300 !important;
-  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial !important;
+  font-family: "\5FAE\8F6F\96C5\9ED1", "\5B8B\4F53", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial !important;
 }
 
 .datetimepicker table th {
-  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial !important;
+  font-family: "\5FAE\8F6F\96C5\9ED1", "\5B8B\4F53", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial !important;
   font-weight: 400 !important;
 }
 
@@ -5204,11 +5204,11 @@ Bootstrap Datepickers Restyle(in v1.2.4)
 
 .datepicker table td {
   font-weight: 300 !important;
-  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial !important;
+  font-family: "\5FAE\8F6F\96C5\9ED1", "\5B8B\4F53", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial !important;
 }
 
 .datepicker table th {
-  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial !important;
+  font-family: "\5FAE\8F6F\96C5\9ED1", "\5B8B\4F53", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial !important;
   font-weight: 400 !important;
 }
 

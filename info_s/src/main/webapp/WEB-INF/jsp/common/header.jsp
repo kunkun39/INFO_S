@@ -41,7 +41,7 @@
 							<li><a href="#"><i class="icon-tasks"></i> My Tasks</a></li>
 							<li class="divider"></li>
 							<li><a href="extra_lock.html"><i class="icon-lock"></i> Lock Screen</a></li>
-							<li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
+							<li><a href="${pageContext.request.contextPath}/j_spring_security_logout"><i class="icon-key"></i> 退出</a></li>
 						</ul>
 					</li>
 					<!-- END USER LOGIN DROPDOWN -->
