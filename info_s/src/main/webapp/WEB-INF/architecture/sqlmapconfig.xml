@@ -9,4 +9,7 @@
     <!-- 使用spring之后，数据源的配置移植到了spring上，所以iBATIS本身的配置可以取消 -->
     <sqlMap resource="com/changhong/system/repository/User.xml"/>
     <sqlMap resource="com/changhong/system/repository/Config.xml"/>
+    <sqlMap resource="com/changhong/common/repository/Item.xml"/>
+    <sqlMap resource="com/changhong/common/repository/MetaData.xml"/>
+    <sqlMap resource="com/changhong/common/repository/Project.xml"/>
 </sqlMapConfig>

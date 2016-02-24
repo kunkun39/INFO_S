@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Project">
+    <insert id="insertProject" parameterClass="java.util.HashMap">
+        INSERT INTO infogater_project (
+            user_id,
+            project_random_key,
+            project_name
+        )
+        VALUES (#userId:INT#, #projectKey:VARCHAR#, #projectName:VARCHAR#)
+        <selectKey resultClass="int">
+            select LAST_INSERT_ID() as id
+        </selectKey>
+    </insert>
+
+    <select id="selectAllProject">
+        SELECT id , project_random_key AS projectKey, project_name AS projectName
+        FROM infogater_project
+    </select>
+
+    <select id="selectProjectByUserId" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+        SELECT id , project_random_key AS projectKey, project_name AS projectName
+        FROM infogater_project
+        WHERE user_id=#userId#
+    </select>
+
+    <update id="updateProjectName" parameterClass="java.util.HashMap">
+        UPDATE infogater_project SET project_name=#projectName# WHERE user_id=#userId#
+    </update>
+</sqlMap>

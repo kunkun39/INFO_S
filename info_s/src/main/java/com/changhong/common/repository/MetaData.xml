@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="MetaData">
+    <insert id="insertMetaData" parameterClass="java.util.HashMap">
+        INSERT INTO infogater_metadata (
+        data_name,
+        user_id,
+        project_id,
+        isused,
+        content
+        )
+        VALUES (#metadataName:VARCHAR#, #content:VARCHAR#, #userId:INT#, #projectId:INT#, #isUsed:INT#, #content:VARCHAR#)
+        <selectKey resultClass="int">
+            select LAST_INSERT_ID() as id
+        </selectKey>
+    </insert>
+
+    <select id="selectMetaDataById" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+        SELECT id, data_name AS metadataName, isused AS isUsed, content
+        FROM infogater_metadata
+        WHERE user_id=#userId# AND project_id=#projectId#
+    </select>
+
+    <update id="updateUsedInfo" parameterClass="java.util.HashMap">
+        UPDATE infogater_metadata SET isused=#isUsed# WHERE id=#id#
+    </update>
+
+    <update id="updateMetaDataContent" parameterClass="java.util.HashMap">
+        UPDATE infogater_metadata SET content=#content# WHERE id=#id#
+    </update>
+</sqlMap>
