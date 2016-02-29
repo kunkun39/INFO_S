@@ -56,7 +56,7 @@ public class CHStringUtils {
             value = "";
         }
         while (value.length() < length) {
-            value = "0" + value;
+            value = " " + value;
         }
         return value;
     }

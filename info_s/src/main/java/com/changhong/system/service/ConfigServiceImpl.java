@@ -1,5 +1,6 @@
 package com.changhong.system.service;
 
+import com.changhong.system.domain.SubDBConf;
 import com.changhong.system.domain.SystemConf;
 import com.changhong.system.repository.ConfigDao;
 import com.changhong.system.service.assember.ConfigWebAssember;
@@ -27,5 +28,19 @@ public class ConfigServiceImpl implements ConfigService {
 
     public void updateConfiguration(String confKey, String confValue) {
         configDao.updateConfiguration(confKey, confValue);
+    }
+
+    public List<SubDBConf> obtainAllSubDBConfs() {
+        List<Map<String, Object>> confs = configDao.loadAllSubDBConfs();
+        return ConfigWebAssember.toSubDBConfDomainList(confs);
+    }
+
+    public SubDBConf obtainSubDBConfById(int subDBConfId) {
+        Map<String, Object> conf = configDao.loadSubDBConfById(subDBConfId);
+        return ConfigWebAssember.toSubDBConfDomain(conf);
+    }
+
+    public void saveSubDBConf(SubDBConf subDBConf) {
+        configDao.updateSubDBConf(subDBConf);
     }
 }

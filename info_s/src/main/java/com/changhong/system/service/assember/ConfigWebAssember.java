@@ -1,5 +1,6 @@
 package com.changhong.system.service.assember;
 
+import com.changhong.system.domain.SubDBConf;
 import com.changhong.system.domain.SystemConf;
 
 import java.util.ArrayList;
@@ -27,6 +28,27 @@ public class ConfigWebAssember {
         if (models != null) {
             for (Map<String, Object> model : models) {
                 confs.add(toConfigDomain(model));
+            }
+        }
+
+        return confs;
+    }
+
+    public static SubDBConf toSubDBConfDomain(Map<String, Object> model) {
+        final int id = (Integer)model.get("id");
+        final String host = (String)model.get("sub_host");
+        final String port = (String)model.get("sub_port");
+        final String name = (String)model.get("sub_name");
+
+        return new SubDBConf(id, host, port, name);
+    }
+
+    public static List<SubDBConf> toSubDBConfDomainList(List<Map<String, Object>> models) {
+        List<SubDBConf> confs = new ArrayList<SubDBConf>();
+
+        if (models != null) {
+            for (Map<String, Object> model : models) {
+                confs.add(toSubDBConfDomain(model));
             }
         }
 

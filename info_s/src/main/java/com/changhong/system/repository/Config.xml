@@ -7,11 +7,32 @@
 <sqlMap namespace="Config">
 
     <select id="selectAllConfigurations" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
-        select * from system_conf
+        SELECT * FROM main_db_conf
     </select>
 
     <update id="updateConfiguration" parameterClass="java.util.HashMap">
-        update system_conf set conf_value = #confValue# where conf_key = #confKey#
+        UPDATE main_db_conf SET conf_value = #confValue# WHERE conf_key = #confKey#
+    </update>
+
+    <select id="selectAllSubDBConfs" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+        SELECT * FROM sub_db_conf
+    </select>
+
+    <select id="selectSubDBConfById" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+        SELECT * FROM sub_db_conf WHERE id = #subDBConfId#
+    </select>
+
+    <insert id="insertSubDBConf" parameterClass="java.util.HashMap">
+        INSERT INTO sub_db_conf (
+            sub_host,
+            sub_port,
+            sub_name
+        )
+        VALUES (#host:VARCHAR#, #port:VARCHAR#, #name:VARCHAR#)
+    </insert>
+
+    <update id="updateSubDBConf" parameterClass="java.util.HashMap">
+        UPDATE sub_db_conf SET sub_host = #host#, sub_port = #port#, sub_name = #name# WHERE id = #id#
     </update>
 
 </sqlMap>

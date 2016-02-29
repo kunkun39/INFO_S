@@ -2,6 +2,8 @@ package com.changhong.mongodb;
 
 import com.changhong.common.utils.CHJodaUtils;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
+import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
@@ -23,6 +25,20 @@ public class MongoDBManagerImpl implements MongoDBManager {
     private final static String HOUR_CLOUMN_KEY = "hour";
 
     private MongoDatabase db;
+
+    public static boolean isMongoDBServerConnect(String host, String port, String dbName) {
+        try {
+            ServerAddress serverAddress = new ServerAddress(host, Integer.valueOf(port));
+            MongoClient client = new MongoClient(serverAddress);
+            client.getConnectPoint();
+            client.close();
+            System.out.println("1");
+            return true;
+        } catch (Exception e) {
+            System.out.println("2");
+            return false;
+        }
+    }
 
     public void init(Map<String, Object> model) {
         DataStoreConfigure.init(model);
@@ -86,4 +102,8 @@ public class MongoDBManagerImpl implements MongoDBManager {
     }
 
     /*************************************************数据查询部分******************************************************/
+
+    public static void main(String[] args) {
+        isMongoDBServerConnect("127.0.0.1", "34343", "fefe");
+    }
 }

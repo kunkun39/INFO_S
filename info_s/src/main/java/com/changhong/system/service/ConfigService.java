@@ -1,5 +1,6 @@
 package com.changhong.system.service;
 
+import com.changhong.system.domain.SubDBConf;
 import com.changhong.system.domain.SystemConf;
 
 import java.util.List;
@@ -14,4 +15,10 @@ public interface ConfigService {
     List<SystemConf> obtainAllConfigurations();
 
     void updateConfiguration(String confKey, String confValue);
+
+    List<SubDBConf> obtainAllSubDBConfs();
+
+    SubDBConf obtainSubDBConfById(int subDBConfId);
+
+    void saveSubDBConf(SubDBConf subDBConf);
 }

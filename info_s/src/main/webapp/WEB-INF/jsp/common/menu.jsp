@@ -43,9 +43,10 @@
                     <a href="${pageContext.request.contextPath}/system/usermanagement.html">系统用户管理</a>
                 </li>
 
-                <li <c:if test="${SUB_MENU_KEY=='SETTING_CONF'}">class="active"</c:if>>
-                    <a href="${pageContext.request.contextPath}/system/settingmanagement.html">系统配置管理</a>
+                <li <c:if test="${SUB_MENU_KEY=='MAIN_DB_CONF'}">class="active"</c:if>>
+                    <a href="${pageContext.request.contextPath}/system/dbsetting.html">存储服务器管理</a>
                 </li>
+
             </ul>
         </li>
     </ul>
