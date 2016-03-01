@@ -6,6 +6,8 @@
 
 <sqlMap namespace="Config">
 
+    <!--main db-->
+
     <select id="selectAllConfigurations" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
         SELECT * FROM main_db_conf
     </select>
@@ -13,6 +15,8 @@
     <update id="updateConfiguration" parameterClass="java.util.HashMap">
         UPDATE main_db_conf SET conf_value = #confValue# WHERE conf_key = #confKey#
     </update>
+
+    <!--sub dbs-->
 
     <select id="selectAllSubDBConfs" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
         SELECT * FROM sub_db_conf
@@ -34,5 +38,22 @@
     <update id="updateSubDBConf" parameterClass="java.util.HashMap">
         UPDATE sub_db_conf SET sub_host = #host#, sub_port = #port#, sub_name = #name# WHERE id = #id#
     </update>
+
+    <!--bak up history-->
+
+    <select id="selectBakUpHistories" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+        SELECT * FROM db_back_history WHERE bak_subdb_id = #subDBConfId#
+    </select>
+
+    <insert id="insertBakUpHistory" parameterClass="java.util.HashMap">
+        INSERT INTO db_back_history (
+            bak_time,
+            bak_year,
+            bak_code,
+            bak_project_id,
+            bak_subdb_id
+        )
+        VALUES (#bakTime:VARCHAR#, #bakYear:VARCHAR#, #bakCode:VARCHAR#, #bakProjectId:INTEGER#, #bakSubdbId:INTEGER#)
+    </insert>
 
 </sqlMap>

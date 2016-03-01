@@ -1,9 +1,13 @@
 package com.changhong.system.repository;
 
+import com.changhong.common.utils.CHJodaUtils;
 import com.changhong.mysql.BasicIbatisDataManager;
+import com.changhong.system.domain.SubDBBakHistory;
 import com.changhong.system.domain.SubDBConf;
+import org.joda.time.DateTime;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,5 +57,25 @@ public class ConfigDaoImpl extends BasicIbatisDataManager implements ConfigDao {
         } else {
             getSqlMapClientTemplate().insert("Config.insertSubDBConf", parameters);
         }
+    }
+
+    public List<Map<String, Object>> loadBakUpHistories(int subDBConfId) {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+
+        parameters.put("subDBConfId", subDBConfId);
+
+        return getSqlMapClientTemplate().queryForList("Config.selectBakUpHistories", parameters);
+    }
+
+    public void saveBakUpHistory(SubDBBakHistory history) {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+
+        parameters.put("bakTime", CHJodaUtils.toStringDMYHMS(new DateTime()));
+        parameters.put("bakYear", history.getYear());
+        parameters.put("bakCode", history.getProjectCode());
+        parameters.put("bakProjectId", history.getProjectId());
+        parameters.put("bakSubdbId", history.getSubDBConfId());
+
+        getSqlMapClientTemplate().insert("Config.insertBakUpHistory", parameters);
     }
 }

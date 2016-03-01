@@ -1,5 +1,6 @@
 package com.changhong.system.service.assember;
 
+import com.changhong.system.domain.SubDBBakHistory;
 import com.changhong.system.domain.SubDBConf;
 import com.changhong.system.domain.SystemConf;
 
@@ -49,6 +50,29 @@ public class ConfigWebAssember {
         if (models != null) {
             for (Map<String, Object> model : models) {
                 confs.add(toSubDBConfDomain(model));
+            }
+        }
+
+        return confs;
+    }
+
+    public static SubDBBakHistory toSubDBBakHistoryDomain(Map<String, Object> model) {
+        final int id = (Integer)model.get("id");
+        final String time = (String)model.get("bak_time");
+        final String year = (String)model.get("bak_year");
+        final String code = (String)model.get("bak_code");
+        final int projectId = (Integer)model.get("bak_project_id");
+        final int subDBId = (Integer) model.get("bak_subdb_id");
+
+        return new SubDBBakHistory(id, time, year, code, projectId, subDBId);
+    }
+
+    public static List<SubDBBakHistory> toSubDBBakHistoryDomainList(List<Map<String, Object>> models) {
+        List<SubDBBakHistory> confs = new ArrayList<SubDBBakHistory>();
+
+        if (models != null) {
+            for (Map<String, Object> model : models) {
+                confs.add(toSubDBBakHistoryDomain(model));
             }
         }
 

@@ -1,5 +1,6 @@
 package com.changhong.system.repository;
 
+import com.changhong.system.domain.SubDBBakHistory;
 import com.changhong.system.domain.SubDBConf;
 
 import java.util.List;
@@ -21,4 +22,8 @@ public interface ConfigDao {
     Map<String, Object> loadSubDBConfById(int subDBConfId);
 
     void updateSubDBConf(SubDBConf subDBConf);
+
+    List<Map<String, Object>> loadBakUpHistories(int subDBConfId);
+
+    void saveBakUpHistory(SubDBBakHistory history);
 }

@@ -41,7 +41,9 @@ CREATE TABLE `sub_db_conf` (
 DROP TABLE IF EXISTS `db_back_history`;
 CREATE TABLE `db_back_history` (
   `id` int(11) NOT NULL auto_increment,
+  `bak_time` datetime default NULL,
   `bak_year` varchar(4) default NULL,
+  `bak_code` varchar(4) default NULL,
   `bak_project_id` int(11) default NULL,
   `bak_subdb_id` int(11) default NULL,
   PRIMARY KEY  (`id`),

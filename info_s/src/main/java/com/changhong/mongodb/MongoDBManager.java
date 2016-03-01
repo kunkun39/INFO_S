@@ -1,5 +1,6 @@
 package com.changhong.mongodb;
 
+import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 import java.util.List;
@@ -13,6 +14,8 @@ import java.util.Map;
 public interface MongoDBManager {
 
     void init(Map<String, Object> mode);
+
+    boolean backup(String collection, String year, String toHost, String toPort, String toDBName);
 
     /*************************************************数据插入部分******************************************************/
 

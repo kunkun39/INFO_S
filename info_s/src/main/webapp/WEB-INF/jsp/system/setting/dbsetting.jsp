@@ -58,8 +58,8 @@
 										<tr>
 											<th style="width: 5%">序号</th>
 											<th style="width: 35%">配置说明</th>
-											<th style="width: 45%">当前值</th>
-											<th style="width: 15%">操作</th>
+											<th style="width: 40%">当前值</th>
+											<th style="width: 20%">操作</th>
 										</tr>
 									</thead>
 
@@ -69,7 +69,9 @@
                                                 <td>${counter.count}</td>
                                                 <td>${conf.confKey.description}</td>
                                                 <td><input id="${conf.confKey.name}" value="${conf.confValue}"/></td>
-                                                <td><span class="label label-success" onclick="confirmChangeSystemConf('${conf.confKey.name}')">修改</span></td>
+                                                <td>
+                                                    <a href="javascript:;" class="btn mini purple" onclick="confirmChangeSystemConf('${conf.confKey.name}')"><i class="icon-edit"></i> 修改</a>
+                                                </td>
 										    </tr>
                                         </c:forEach>
 									</tbody>
@@ -99,8 +101,8 @@
 											<th style="width: 5%">序号</th>
 											<th style="width: 25%">服务器地址</th>
 											<th style="width: 25%">数据库端口</th>
-											<th style="width: 30%">数据库名称</th>
-											<th style="width: 15%">操作</th>
+											<th style="width: 25%">数据库名称</th>
+											<th style="width: 20%">操作</th>
 										</tr>
 									</thead>
 
@@ -111,7 +113,10 @@
                                                 <td>${subDB.host}</td>
                                                 <td>${subDB.port}</td>
                                                 <td>${subDB.dbName}</td>
-                                                <td><a href="${pageContext.request.contextPath}/system/subdbform.html?subDBConfId=${subDB.id}"><span class="label label-success">修改</span></a></td>
+                                                <td>
+                                                    <a href="${pageContext.request.contextPath}/system/subdbform.html?subDBConfId=${subDB.id}" class="btn mini purple"><i class="icon-edit"></i> 修改</a>
+                                                    <a href="${pageContext.request.contextPath}/system/bakuphistoryoverview.html?subDBConfId=${subDB.id}" class="btn mini yellow"><i class="icon-paper-clip"></i> 备份历史</a>
+                                                </td>
 										    </tr>
                                         </c:forEach>
 									</tbody>

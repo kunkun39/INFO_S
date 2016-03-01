@@ -2,8 +2,11 @@ package com.changhong.system.repository;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.changhong.common.utils.CHJodaUtils;
 import com.changhong.common.utils.CHStringUtils;
+import com.changhong.system.domain.SubDBBakHistory;
 import junit.framework.TestCase;
+import org.joda.time.DateTime;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +20,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * User: Jack Wang
@@ -41,7 +46,19 @@ public class ConfigDaoImpTest extends TestCase {
 
     @Test
     public void testSingle() {
-        configDao.updateConfiguration("MO_DB_HOST", "192.168.01.135");
+        configDao.updateConfiguration("MO_DB_HOST", "192.168.1.135");
+    }
+
+    @Test
+    public void testInsertBackUpHistory() {
+        SubDBBakHistory history = new SubDBBakHistory();
+        history.setActionTime(new DateTime());
+        history.setProjectCode("code");
+        history.setYear("2015");
+        history.setProjectId(1);
+        history.setSubDBConfId(1);
+
+        configDao.saveBakUpHistory(history);
     }
 
     @Test
@@ -159,6 +176,73 @@ public class ConfigDaoImpTest extends TestCase {
         }
 
         System.out.println(all.toString());
+    }
+
+    @Test
+    public void testConvertToDomain() {
+        //解析数据
+        String deviceFile = "D:\\ChangHong\\Projects\\Info_collector\\application\\src\\test\\com\\changhong\\system\\repository\\movice.json";
+        StringBuilder builder = new StringBuilder();
+
+        File file = new File(deviceFile);
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
+            BufferedReader br = new BufferedReader(isr);
+
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                builder.append(line);
+            }
+            br.close();
+            isr.close();
+            fis.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String json = builder.toString().replace(" ", "");
+
+        //组装数据
+        JSONObject o = JSONObject.parseObject(json);
+
+        //hand category
+        List<Category> categories = new ArrayList<Category>();
+        JSONArray categoryArraies = o.getJSONArray("category");
+        for (Object loop : categoryArraies) {
+
+            JSONObject categoryObject = (JSONObject)loop;
+            int categoryId = categoryObject.getIntValue("id");
+            String name = categoryObject.getString("name");
+            String description = categoryObject.getString("description");
+            Category category = new Category(categoryId, name, description);
+            categories.add(category);
+
+            //hand sub category
+            JSONArray subCategoryArraies = categoryObject.getJSONArray("subCategory");
+            for (Object loop1 : subCategoryArraies) {
+                JSONObject subCategoryObject = (JSONObject)loop1;
+                int subCategoryId = subCategoryObject.getIntValue("id");
+                String subName = subCategoryObject.getString("name");
+                String subDescription = subCategoryObject.getString("description");
+                SubCategory subCategory = new SubCategory(subCategoryId, subName, subDescription);
+                category.addSubCategory(subCategory);
+
+                //handle movice
+                JSONArray movieArraies = subCategoryObject.getJSONArray("movies");
+                for (Object loop2 : movieArraies) {
+                    JSONObject MovieObject = (JSONObject)loop2;
+                    String movieLogo = MovieObject.getString("logo");
+                    String movieSource = MovieObject.getString("source");
+                    String movieName = MovieObject.getString("name");
+                    String movieDesc = MovieObject.getString("description");
+                    Movie movie = new Movie(movieLogo, movieSource, movieName, movieDesc);
+                    subCategory.addMovie(movie);
+                }
+            }
+        }
+
+        System.out.println(categories.size());
     }
 
 }

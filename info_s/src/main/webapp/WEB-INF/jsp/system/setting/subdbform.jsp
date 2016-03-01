@@ -37,7 +37,13 @@
 								<a href="${pageContext.request.contextPath}/system/dashboard.html">首页</a>
 								<i class="icon-angle-right"></i>
 							</li>
-							<li><a href="javascript:;">从数据库服务器编辑</a></li>
+							<li>
+                                <a href="javascript:;">存储服务器管理</a>
+                                <i class="icon-angle-right"></i>
+                            </li>
+							<li>
+                                <a href="javascript:;">从数据库服务器编辑</a>
+                            </li>
 						</ul>
 					</div>
 				</div>
