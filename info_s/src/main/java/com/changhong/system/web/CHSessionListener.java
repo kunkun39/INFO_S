@@ -29,8 +29,8 @@ public class CHSessionListener implements HttpSessionListener, ServletContextLis
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ServletContext servletContext = servletContextEvent.getServletContext();
         ApplicationContext appCtx = WebApplicationContextUtils.getWebApplicationContext(servletContext);
-        InfoGaterManager infoGaterManager = new InfoGaterManager();
-        infoGaterManager.loadConfig();
+//        InfoGaterManager infoGaterManager = new InfoGaterManager();
+//        infoGaterManager.loadConfig();
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {

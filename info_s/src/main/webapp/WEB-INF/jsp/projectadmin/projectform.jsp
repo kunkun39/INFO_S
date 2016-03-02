@@ -109,20 +109,6 @@
                                                                         </td>
                                                                     </tr>
                                                                 </c:forEach>
-                                                                <tr class="odd gradeX">
-                                                                    <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                                                    <td>开机时间</td>
-                                                                    <td class="hidden-480">boottime</td>
-                                                                    <td class="hidden-480">2016/01/01 00:00</td>
-                                                                    <td>
-                                                                        <a class="btn mini purple" href="#">
-                                                                            <i class="icon-edit"></i> 编辑
-                                                                        </a>
-                                                                        <a class="btn mini black" href="#">
-                                                                            <i class="icon-trash"></i> 删除
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
                                                                 </tbody>
                                                             </table>
                                                             <a class="btn mini blue" href="#" onclick="addItemInfo();">
