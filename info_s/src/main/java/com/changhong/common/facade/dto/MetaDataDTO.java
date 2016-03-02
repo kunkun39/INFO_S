@@ -1,56 +1,41 @@
-package com.changhong.common.domain;
+package com.changhong.common.facade.dto;
 
+import java.util.List;
 /**
  * User: pengjie
- * Date: 2016/2/24
- * Time: 16:38
+ * Date: 2016/3/1
+ * Time: 20:22
  */
-public class MetaData {
-
+public class MetaDataDTO {
     /**
-     * å®šä¹‰çš„KEYå€¼ï¼Œç”¨äºibatisæ•°æ®åº“äº¤äº’æ—¶è¿›è¡Œç»Ÿä¸€
-     **/
-    public final static String ID = "id";
-
-    public final static String METADATA_NAME = "metadataName";
-
-    public final static String USER_ID = "userId";
-
-    public final static String PROJECT_ID = "projectId";
-
-    public final static String IS_USED = "isUsed";
-
-    public final static String METADATA_CONTENT = "content";
-
-    /**
-     * å…ƒæ•°æ®ID
+     * ÔªÊı¾İID
      **/
     private int id;
 
     /**
-     * è¯¥å…ƒæ•°æ®çš„åå­—
+     * ¸ÃÔªÊı¾İµÄÃû×Ö
      **/
     private String metadataName;
 
     /**
-     * è¯¥å…ƒæ•°æ®å¯¹åº”çš„ç”¨æˆ·ID
+     * ¸ÃÔªÊı¾İ¶ÔÓ¦µÄÓÃ»§ID
      **/
     private int userId;
 
     /**
-     * è¯¥å…ƒæ•°æ®å¯¹åº”çš„å·¥ç¨‹ID
+     * ¸ÃÔªÊı¾İ¶ÔÓ¦µÄ¹¤³ÌID
      **/
     private int projectId;
 
     /**
-     * è¯¥å…ƒæ•°æ®æ˜¯å¦æœ‰åœ¨ä½¿ç”¨
+     * ¸ÃÔªÊı¾İÊÇ·ñÓĞÔÚÊ¹ÓÃ
      **/
     private boolean isUsed;
 
     /**
-     * å…ƒæ•°æ®å†…å®¹
+     * ÔªÊı¾İÄÚÈİ
      **/
-    private String content;
+    private List<MetaDataSubItem> items;
 
     public int getId() {
         return id;
@@ -92,11 +77,11 @@ public class MetaData {
         this.isUsed = isUsed;
     }
 
-    public String getContent() {
-        return content;
+    public List<MetaDataSubItem> getItems() {
+        return items;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setItems(List<MetaDataSubItem> items) {
+        this.items = items;
     }
 }

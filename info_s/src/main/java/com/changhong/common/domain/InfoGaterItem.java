@@ -10,7 +10,7 @@ import com.changhong.common.utils.CHStringUtils;
 public class InfoGaterItem {
 
     /**
-     * ¶¨ÒåµÄKEYÖµ£¬ÓÃÓÚibatisÊı¾İ¿â½»»¥Ê±½øĞĞÍ³Ò»
+     * å®šä¹‰çš„KEYå€¼ï¼Œç”¨äºibatisæ•°æ®åº“äº¤äº’æ—¶è¿›è¡Œç»Ÿä¸€
      **/
     public final static String ID = "id";
 
@@ -20,50 +20,37 @@ public class InfoGaterItem {
 
     public final static String PROJECT_ID = "projectId";
 
-    public final static String ITEM_CONTENT = "itemContent";
+    public final static String METADATA_ID = "metaDataId";
 
     /**
-     * ÊÕ¼¯ÏîID
+     * æ”¶é›†é¡¹ID
      **/
     private int id;
 
     /**
-     * ÊÕ¼¯ÏîµÄËæ»úkey£¬¿Í»§¶ËÉÏ´«Êı¾İÊ±Ê¹ÓÃ¸ÃkeyÖµ
+     * æ”¶é›†é¡¹çš„éšæœºkeyï¼Œå®¢æˆ·ç«¯ä¸Šä¼ æ•°æ®æ—¶ä½¿ç”¨è¯¥keyå€¼
      **/
     private String itemKey;
 
     /**
-     * ÊÕ¼¯ÏîÃû×Ö
+     * æ”¶é›†é¡¹åå­—
      **/
     private String itemName;
 
     /**
-     * ¸ÃÊÕ¼¯Ïî¶ÔÓ¦µÄ¹¤³ÌID
+     * è¯¥æ”¶é›†é¡¹å¯¹åº”çš„å·¥ç¨‹ID
      **/
     private int projectId;
 
     /**
-     * ¸ÃÊÕ¼¯ÏîµÄËùÓĞ×ÓÏîµÄÏêÏ¸ĞÅÏ¢£¬Ê¹ÓÃjson¸ñÊ½·â×°
+     * å…ƒæ•°æ®ID
      **/
-    private String itemContent;
+    private int metaDataId;
 
     /**
-     * ¹¹Ôìº¯Êı(¶ÁÈ¡ÒÑÓĞµÄÊÕ¼¯ÏîÊ±Ê¹ÓÃ¸Ãº¯Êı)
+     * æ„é€ å‡½æ•°(è¯»å–å·²æœ‰çš„æ”¶é›†é¡¹æ—¶ä½¿ç”¨è¯¥å‡½æ•°)
      **/
     public InfoGaterItem() {
-    }
-
-    /**
-     * ¹¹Ôìº¯Êı(ĞÂ´´½¨Ò»¸öĞÂÊÕ¼¯ÏîÊ±Ê¹ÓÃ¸Ãº¯Êı)
-     * @param itemName
-     * @param projectId
-     * @param itemContent
-     */
-    public InfoGaterItem(String itemName, int projectId, String itemContent) {
-        this.itemName = itemName;
-        this.projectId = projectId;
-        this.itemContent = itemContent;
-        this.itemKey = CHStringUtils.getRandomString(4);
     }
 
     public int getId() {
@@ -98,11 +85,11 @@ public class InfoGaterItem {
         this.projectId = projectId;
     }
 
-    public String getItemContent() {
-        return itemContent;
+    public int getMetaDataId() {
+        return metaDataId;
     }
 
-    public void setItemContent(String itemContent) {
-        this.itemContent = itemContent;
+    public void setMetaDataId(int metaDataId) {
+        this.metaDataId = metaDataId;
     }
 }

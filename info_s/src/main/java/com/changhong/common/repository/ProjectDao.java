@@ -13,24 +13,30 @@ import java.util.Map;
 public interface ProjectDao {
 
     /**
-     * ÏòÊı¾İ¿â±í²åÈëÒ»¸öĞÂ¹¤³ÌĞÅÏ¢
+     * å‘æ•°æ®åº“è¡¨æ’å…¥ä¸€ä¸ªæ–°å·¥ç¨‹ä¿¡æ¯
      * @param project
      */
-    boolean insertInfoGaterProject(InfoGaterProject project);
+    int insertInfoGaterProject(InfoGaterProject project);
 
     /**
-     * ¶ÁÈ¡ËùÓĞ¹¤³ÌĞÅÏ¢
+     * è¯»å–æ‰€æœ‰å·¥ç¨‹ä¿¡æ¯
      */
     List<Map<String, Object>> loadInfoGaterProject();
 
     /**
-     * Í¨¹ıÓÃ»§id¶ÁÈ¡¹¤³ÌĞÅÏ¢
+     * é€šè¿‡ç”¨æˆ·idè¯»å–å·¥ç¨‹ä¿¡æ¯
      * @param userId
      */
     List<Map<String, Object>> loadInfoGaterProjectByUserId(int userId);
 
     /**
-     * ¸üĞÂÓÃ»§µÄ¹¤³ÌĞÅÏ¢
+     * é€šè¿‡é¡¹ç›®idè¯»å–å·¥ç¨‹ä¿¡æ¯
+     * @param projectId
+     */
+    List<Map<String, Object>> loadInfoGaterProjectByIds(int projectId, int userId);
+
+    /**
+     * æ›´æ–°ç”¨æˆ·çš„å·¥ç¨‹ä¿¡æ¯
      * @param project
      */
     int updateInfoGaterProject(InfoGaterProject project);

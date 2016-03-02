@@ -13,13 +13,19 @@
         isused,
         content
         )
-        VALUES (#metadataName:VARCHAR#, #content:VARCHAR#, #userId:INT#, #projectId:INT#, #isUsed:INT#, #content:VARCHAR#)
+        VALUES (#metadataName:VARCHAR#, #userId:INT#, #projectId:INT#, #isUsed:INT#, #content:VARCHAR#)
         <selectKey resultClass="int">
             select LAST_INSERT_ID() as id
         </selectKey>
     </insert>
 
-    <select id="selectMetaDataById" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+    <select id="selectMetaDataByUserId" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+        SELECT id, data_name AS metadataName, isused AS isUsed, content
+        FROM infogater_metadata
+        WHERE user_id=#userId#
+    </select>
+
+    <select id="selectMetaDataByIds" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
         SELECT id, data_name AS metadataName, isused AS isUsed, content
         FROM infogater_metadata
         WHERE user_id=#userId# AND project_id=#projectId#
@@ -29,7 +35,7 @@
         UPDATE infogater_metadata SET isused=#isUsed# WHERE id=#id#
     </update>
 
-    <update id="updateMetaDataContent" parameterClass="java.util.HashMap">
-        UPDATE infogater_metadata SET content=#content# WHERE id=#id#
+    <update id="updateMetaData" parameterClass="java.util.HashMap">
+        UPDATE infogater_metadata SET data_name=#metadataName#, content=#content# WHERE id=#id#
     </update>
 </sqlMap>

@@ -7,19 +7,19 @@
 <sqlMap namespace="Item">
     <insert id="insertItem" parameterClass="java.util.HashMap">
         INSERT INTO infogater_item (
-            item_random_key,
+            item_key,
             item_name,
             project_id,
-            item_content
+            metadata_id
         )
-        VALUES (#itemKey:VARCHAR#, #itemName:VARCHAR#, #projectId:INT#, #item_content:VARCHAR#)
+        VALUES (#itemKey:VARCHAR#, #itemName:VARCHAR#, #projectId:INT#, #metaDataId:INT#)
         <selectKey resultClass="int">
             select LAST_INSERT_ID() as id
         </selectKey>
     </insert>
 
     <select id="selectItemByProjectId" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
-        SELECT id , item_random_key AS itemKey, item_name AS itemName, item_content AS itemContent
+        SELECT id , item_key AS itemKey, item_name AS itemName, metadata_id AS metaDataId
         FROM infogater_item
         WHERE project_id=#projectId#
     </select>
@@ -28,11 +28,11 @@
         UPDATE infogater_item SET item_name=#itemName# WHERE project_id=#projectId#
     </update>
 
-    <update id="updateItemContent" parameterClass="java.util.HashMap">
-        UPDATE infogater_item SET item_content=#itemContent# WHERE project_id=#projectId#
+    <update id="updateMetadataId" parameterClass="java.util.HashMap">
+        UPDATE infogater_item SET metadata_id=#metaDataId# WHERE project_id=#projectId#
     </update>
 
-    <update id="updateItemNameAndContent" parameterClass="java.util.HashMap">
-        UPDATE infogater_item SET item_name=#itemName#, item_content=#itemContent# WHERE project_id=#projectId#
+    <update id="updateItemNameAndMetadataId" parameterClass="java.util.HashMap">
+        UPDATE infogater_item SET item_name=#itemName#, metadata_id=#metaDataId# WHERE project_id=#projectId#
     </update>
 </sqlMap>

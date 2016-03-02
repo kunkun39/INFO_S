@@ -2,6 +2,7 @@ package com.changhong.common.repository;
 
 import com.changhong.common.domain.InfoGaterProject;
 import com.changhong.mysql.BasicIbatisDataManager;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,9 +13,10 @@ import java.util.Map;
  * Date: 2016/2/24
  * Time: 11:59
  */
+@Repository("projectDao")
 public class ProjectDaoImpl extends BasicIbatisDataManager implements ProjectDao {
     @Override
-    public boolean insertInfoGaterProject(InfoGaterProject project) {
+    public int insertInfoGaterProject(InfoGaterProject project) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 
         parameters.put(InfoGaterProject.USER_ID, project.getUserId());
@@ -23,9 +25,9 @@ public class ProjectDaoImpl extends BasicIbatisDataManager implements ProjectDao
 
         Integer id = (Integer) getSqlMapClientTemplate().insert("Project.insertProject", parameters);
         if (id != null) {
-            return true;
+            return id;
         }
-        return false;
+        return -1;
     }
 
     @Override
@@ -38,7 +40,18 @@ public class ProjectDaoImpl extends BasicIbatisDataManager implements ProjectDao
         Map<String, Object> parameters = new HashMap<String, Object>();
 
         parameters.put(InfoGaterProject.USER_ID, userId);
+
         return getSqlMapClientTemplate().queryForList("Project.selectProjectByUserId", parameters);
+    }
+
+    @Override
+    public List<Map<String, Object>> loadInfoGaterProjectByIds(int projectId, int userId) {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+
+        parameters.put(InfoGaterProject.ID, projectId);
+        parameters.put(InfoGaterProject.USER_ID, userId);
+
+        return getSqlMapClientTemplate().queryForList("Project.selectProjectByIds", parameters);
     }
 
     @Override

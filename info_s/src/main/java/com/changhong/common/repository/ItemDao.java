@@ -13,22 +13,22 @@ import java.util.Map;
 public interface ItemDao {
 
     /**
-     * ÏòÊı¾İ¿â±í²åÈëÒ»¸öĞÂÊÕ¼¯ÏîĞÅÏ¢
+     * å‘æ•°æ®åº“è¡¨æ’å…¥ä¸€ä¸ªæ–°æ”¶é›†é¡¹ä¿¡æ¯
      * @param item
      */
     boolean insertInfoGaterItem(InfoGaterItem item);
 
     /**
-     * Í¨¹ı¹¤³Ìid¶ÁÈ¡ÊÕ¼¯ÏîĞÅÏ¢
+     * é€šè¿‡å·¥ç¨‹idè¯»å–æ”¶é›†é¡¹ä¿¡æ¯
      * @param projectId
      */
     List<Map<String, Object>> loadInfoGaterItemByProjectId(int projectId);
 
     /**
-     * ¸üĞÂÊÕ¼¯ÏîĞÅÏ¢
+     * æ›´æ–°æ”¶é›†é¡¹ä¿¡æ¯
      * @param item
      * @param updateName
-     * @param updateContent
+     * @param updateMetaData
      */
-    int updateInfoGaterItem(InfoGaterItem item, boolean updateName, boolean updateContent);
+    int updateInfoGaterItem(InfoGaterItem item, boolean updateName, boolean updateMetaData);
 }

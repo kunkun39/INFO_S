@@ -10,7 +10,7 @@ import com.changhong.common.utils.CHStringUtils;
 public class InfoGaterProject {
 
     /**
-     * ¶¨ÒåµÄKEYÖµ£¬ÓÃÓÚibatisÊı¾İ¿â½»»¥Ê±½øĞĞÍ³Ò»
+     * å®šä¹‰çš„KEYå€¼ï¼Œç”¨äºibatisæ•°æ®åº“äº¤äº’æ—¶è¿›è¡Œç»Ÿä¸€
      **/
     public final static String ID = "id";
 
@@ -21,39 +21,46 @@ public class InfoGaterProject {
     public final static String PROJECT_NAME = "projectName";
 
     /**
-     * ¹¤³ÌID
+     * å·¥ç¨‹ID
      **/
     private int id;
 
     /**
-     * ¸Ã¹¤³Ì¶ÔÓ¦µÄÓÃ»§ID
+     * è¯¥å·¥ç¨‹å¯¹åº”çš„ç”¨æˆ·ID
      **/
     private int userId;
 
     /**
-     * ¹¤³ÌµÄËæ»úkey£¬¿Í»§¶ËÉÏ´«Êı¾İÊ±Ê¹ÓÃ¸ÃkeyÖµ
+     * å·¥ç¨‹çš„éšæœºkeyï¼Œå®¢æˆ·ç«¯ä¸Šä¼ æ•°æ®æ—¶ä½¿ç”¨è¯¥keyå€¼
      **/
     private String projectKey;
 
     /**
-     * ¹¤³ÌÃû×Ö
+     * å·¥ç¨‹åå­—
      **/
     private String projectName;
 
     /**
-     * ¹¹Ôìº¯Êı(¶ÁÈ¡ÒÑÓĞµÄ¹¤³ÌÊ±Ê¹ÓÃ¸Ãº¯Êı)
+     * æ„é€ å‡½æ•°(è¯»å–å·²æœ‰çš„å·¥ç¨‹æ—¶ä½¿ç”¨è¯¥å‡½æ•°)
      **/
     public InfoGaterProject() {
     }
 
     /**
-     * ¹¹Ôìº¯Êı(ĞÂ´´½¨Ò»¸öĞÂ¹¤³ÌÊ±Ê¹ÓÃ¸Ãº¯Êı)
+     * æ„é€ å‡½æ•°(æ–°åˆ›å»ºä¸€ä¸ªæ–°å·¥ç¨‹æ—¶ä½¿ç”¨è¯¥å‡½æ•°)
      * @param userId
      * @param projectName
      */
     public InfoGaterProject(int userId, String projectName) {
         this.userId = userId;
         this.projectName = projectName;
+        this.projectKey = CHStringUtils.getRandomString(4);
+    }
+
+    /**
+     * è®¾ç½®éšæœºKeyå€¼
+     */
+    public void setRandomKey() {
         this.projectKey = CHStringUtils.getRandomString(4);
     }
 

@@ -6,11 +6,11 @@ package com.changhong.client.domain;
  * Time: 9:43
  */
 public enum ResponseCode {
-    SUCCESS(1000), //Êý¾Ý²É¼¯³É¹¦
-    PROJECTNOTEXIST(1001), //ÏîÄ¿²»´æÔÚ
-    BASICDATAMISS(1002), //»ù´¡Êý¾Ý¶ªÊ§
-    FORMATERROR(1003), //Êý¾Ý¸ñÊ½´íÎó
-    ORTHERERROR(1004); //ÆäËû´íÎó
+    SUCCESS(1000), //æ•°æ®é‡‡é›†æˆåŠŸ
+    PROJECTNOTEXIST(1001), //é¡¹ç›®ä¸å­˜åœ¨
+    BASICDATAMISS(1002), //åŸºç¡€æ•°æ®ä¸¢å¤±
+    FORMATERROR(1003), //æ•°æ®æ ¼å¼é”™è¯¯
+    ORTHERERROR(1004); //å…¶ä»–é”™è¯¯
 
     private int code;
 
