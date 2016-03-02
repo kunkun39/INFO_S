@@ -14,4 +14,13 @@ public class SystemDWRHandler {
         configService.updateConfiguration(confKey, confValue);
     }
 
+
+    public int checkUserNameInfo (String username){
+        int usernamestate=1;
+        if (username==null || username.equals("")){
+            return  usernamestate=1;
+        }
+        //TODO ...
+        return  usernamestate;
+    }
 }
