@@ -1,7 +1,7 @@
 package com.changhong.system.repository;
 
-import com.changhong.system.domain.SubDBBakHistory;
-import com.changhong.system.domain.SubDBConf;
+import com.changhong.system.domain.DBConf;
+import com.changhong.system.domain.DBBakHistory;
 
 import java.util.List;
 import java.util.Map;
@@ -13,17 +13,13 @@ import java.util.Map;
  */
 public interface ConfigDao {
 
-    List<Map<String, Object>> loadAllConfigurations();
+    List<Map<String, Object>> loadAllDbConfs();
 
-    void updateConfiguration(String confKey, String confValue);
+    Map<String, Object> loadDbConfById(int dbConfId);
 
-    List<Map<String, Object>> loadAllSubDBConfs();
+    void updateDbConf(DBConf dbConf);
 
-    Map<String, Object> loadSubDBConfById(int subDBConfId);
+    List<Map<String, Object>> loadBakUpHistories(int dbConfId);
 
-    void updateSubDBConf(SubDBConf subDBConf);
-
-    List<Map<String, Object>> loadBakUpHistories(int subDBConfId);
-
-    void saveBakUpHistory(SubDBBakHistory history);
+    void saveBakUpHistory(DBBakHistory history);
 }

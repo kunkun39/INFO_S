@@ -9,7 +9,7 @@ import org.joda.time.DateTime;
  * Date: 16-3-1
  * Time: 上午9:28
  */
-public class SubDBBakHistory extends EntityBase {
+public class DBBakHistory extends EntityBase {
 
     private DateTime actionTime;
 
@@ -19,22 +19,22 @@ public class SubDBBakHistory extends EntityBase {
 
     private int projectId;
 
-    private int subDBConfId;
+    private int dbConfId;
 
-    public SubDBBakHistory() {
+    public DBBakHistory() {
     }
 
-    public SubDBBakHistory(int subDBConfId) {
-        this.subDBConfId = subDBConfId;
+    public DBBakHistory(int dbConfId) {
+        this.dbConfId = dbConfId;
     }
 
-    public SubDBBakHistory(int id, String actionTime, String year, String projectCode, int projectId, int subDBConfId) {
+    public DBBakHistory(int id, String actionTime, String year, String projectCode, int projectId, int dbConfId) {
         setId(id);
         this.actionTime = CHJodaUtils.parseDateTimedMyHM(actionTime);
         this.year = year;
         this.projectCode = projectCode;
         this.projectId = projectId;
-        this.subDBConfId = subDBConfId;
+        this.dbConfId = dbConfId;
     }
 
     public DateTime getActionTime() {
@@ -61,12 +61,12 @@ public class SubDBBakHistory extends EntityBase {
         this.projectCode = projectCode;
     }
 
-    public int getSubDBConfId() {
-        return subDBConfId;
+    public int getDbConfId() {
+        return dbConfId;
     }
 
-    public void setSubDBConfId(int subDBConfId) {
-        this.subDBConfId = subDBConfId;
+    public void setDbConfId(int dbConfId) {
+        this.dbConfId = dbConfId;
     }
 
     public String getYear() {

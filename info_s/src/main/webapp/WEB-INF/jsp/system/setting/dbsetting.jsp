@@ -35,7 +35,7 @@
 								<a href="${pageContext.request.contextPath}/system/dashboard.html">首页</a>
 								<i class="icon-angle-right"></i>
 							</li>
-							<li><a href="${pageContext.request.contextPath}/system/maindbsetting.jsp">存储服务器管理</a></li>
+							<li><a href="${pageContext.request.contextPath}/system/dbsetting.html">存储服务器管理</a></li>
 						</ul>
 					</div>
 				</div>
@@ -57,23 +57,23 @@
 									<thead>
 										<tr>
 											<th style="width: 5%">序号</th>
-											<th style="width: 35%">配置说明</th>
-											<th style="width: 40%">当前值</th>
+											<th style="width: 25%">服务器地址</th>
+											<th style="width: 25%">数据库端口</th>
+											<th style="width: 25%">数据库名称</th>
 											<th style="width: 20%">操作</th>
 										</tr>
 									</thead>
 
 									<tbody>
-                                        <c:forEach items="${confs}" var="conf" varStatus="counter">
-                                            <tr class="odd gradeX">
-                                                <td>${counter.count}</td>
-                                                <td>${conf.confKey.description}</td>
-                                                <td><input id="${conf.confKey.name}" value="${conf.confValue}"/></td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn mini purple" onclick="confirmChangeSystemConf('${conf.confKey.name}')"><i class="icon-edit"></i> 修改</a>
-                                                </td>
-										    </tr>
-                                        </c:forEach>
+                                        <tr class="odd gradeX">
+                                            <td>1</td>
+                                            <td>${mainDB.host}</td>
+                                            <td>${mainDB.port}</td>
+                                            <td>${mainDB.dbName}</td>
+                                            <td>
+                                                <a href="${pageContext.request.contextPath}/system/dbform.html?dbConfId=${mainDB.id}" class="btn mini green"><i class="icon-edit"></i> 修改</a>
+                                            </td>
+                                        </tr>
 									</tbody>
 								</table>
 							</div>
@@ -90,7 +90,7 @@
 							<div class="portlet-title">
 								<div class="caption"><i class="icon-user"></i>从存储服务器管理</div>
 								<div class="actions">
-									<a href="${pageContext.request.contextPath}/system/subdbform.html" class="btn blue"><i class="icon-pencil"></i> 新加</a>
+									<a href="${pageContext.request.contextPath}/system/dbform.html" class="btn blue"><i class="icon-pencil"></i> 新加</a>
 								</div>
 							</div>
 
@@ -107,15 +107,15 @@
 									</thead>
 
 									<tbody>
-                                        <c:forEach items="${subDBs}" var="subDB" varStatus="counter">
+                                        <c:forEach items="${dbs}" var="db" varStatus="counter">
                                             <tr class="odd gradeX">
                                                 <td>${counter.count}</td>
-                                                <td>${subDB.host}</td>
-                                                <td>${subDB.port}</td>
-                                                <td>${subDB.dbName}</td>
+                                                <td>${db.host}</td>
+                                                <td>${db.port}</td>
+                                                <td>${db.dbName}</td>
                                                 <td>
-                                                    <a href="${pageContext.request.contextPath}/system/subdbform.html?subDBConfId=${subDB.id}" class="btn mini purple"><i class="icon-edit"></i> 修改</a>
-                                                    <a href="${pageContext.request.contextPath}/system/bakuphistoryoverview.html?subDBConfId=${subDB.id}" class="btn mini yellow"><i class="icon-paper-clip"></i> 备份历史</a>
+                                                    <a href="${pageContext.request.contextPath}/system/dbform.html?dbConfId=${db.id}" class="btn mini green"><i class="icon-edit"></i> 修改</a>
+                                                    <a href="${pageContext.request.contextPath}/system/bakuphistoryoverview.html?dbConfId=${db.id}" class="btn mini yellow"><i class="icon-paper-clip"></i> 备份历史</a>
                                                 </td>
 										    </tr>
                                         </c:forEach>

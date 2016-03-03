@@ -2,12 +2,11 @@ package com.changhong.system.repository;
 
 import com.changhong.common.utils.CHJodaUtils;
 import com.changhong.mysql.BasicIbatisDataManager;
-import com.changhong.system.domain.SubDBBakHistory;
-import com.changhong.system.domain.SubDBConf;
+import com.changhong.system.domain.DBConf;
+import com.changhong.system.domain.DBBakHistory;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,61 +19,48 @@ import java.util.Map;
 @Repository("configDao")
 public class ConfigDaoImpl extends BasicIbatisDataManager implements ConfigDao {
 
-    public List<Map<String, Object>> loadAllConfigurations() {
-        return getSqlMapClientTemplate().queryForList("Config.selectAllConfigurations");
+    public List<Map<String, Object>> loadAllDbConfs() {
+        return getSqlMapClientTemplate().queryForList("Config.selectAllDbConfs");
     }
 
-    public void updateConfiguration(String confKey, String confValue) {
+    public Map<String, Object> loadDbConfById(int dbConfId) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 
-        parameters.put("confKey", confKey);
-        parameters.put("confValue", confValue);
+        parameters.put("dbConfId", dbConfId);
 
-        getSqlMapClientTemplate().update("Config.updateConfiguration", parameters);
+        return (Map<String, Object>) getSqlMapClientTemplate().queryForList("Config.selectDbConfById", parameters).get(0);
     }
 
-    public List<Map<String, Object>> loadAllSubDBConfs() {
-        return getSqlMapClientTemplate().queryForList("Config.selectAllSubDBConfs");
-    }
-
-    public Map<String, Object> loadSubDBConfById(int subDBConfId) {
+    public void updateDbConf(DBConf dbConf) {
         Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("host", dbConf.getHost());
+        parameters.put("port", dbConf.getPort());
+        parameters.put("name", dbConf.getDbName());
 
-        parameters.put("subDBConfId", subDBConfId);
-
-        return (Map<String, Object>) getSqlMapClientTemplate().queryForList("Config.selectSubDBConfById", parameters).get(0);
-    }
-
-    public void updateSubDBConf(SubDBConf subDBConf) {
-        Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("host", subDBConf.getHost());
-        parameters.put("port", subDBConf.getPort());
-        parameters.put("name", subDBConf.getDbName());
-
-        if (subDBConf.getId() > 0) {
-            parameters.put("id", subDBConf.getId());
-            getSqlMapClientTemplate().update("Config.updateSubDBConf", parameters);
+        if (dbConf.getId() > 0) {
+            parameters.put("id", dbConf.getId());
+            getSqlMapClientTemplate().update("Config.updateDbConf", parameters);
         } else {
-            getSqlMapClientTemplate().insert("Config.insertSubDBConf", parameters);
+            getSqlMapClientTemplate().insert("Config.insertDbConf", parameters);
         }
     }
 
-    public List<Map<String, Object>> loadBakUpHistories(int subDBConfId) {
+    public List<Map<String, Object>> loadBakUpHistories(int dbConfId) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 
-        parameters.put("subDBConfId", subDBConfId);
+        parameters.put("dbConfId", dbConfId);
 
         return getSqlMapClientTemplate().queryForList("Config.selectBakUpHistories", parameters);
     }
 
-    public void saveBakUpHistory(SubDBBakHistory history) {
+    public void saveBakUpHistory(DBBakHistory history) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 
         parameters.put("bakTime", CHJodaUtils.toStringDMYHMS(new DateTime()));
         parameters.put("bakYear", history.getYear());
         parameters.put("bakCode", history.getProjectCode());
         parameters.put("bakProjectId", history.getProjectId());
-        parameters.put("bakSubdbId", history.getSubDBConfId());
+        parameters.put("bakDbId", history.getDbConfId());
 
         getSqlMapClientTemplate().insert("Config.insertBakUpHistory", parameters);
     }

@@ -38,7 +38,7 @@
 								<i class="icon-angle-right"></i>
 							</li>
 							<li>
-                                <a href="javascript:;">存储服务器管理</a>
+                                <a href="${pageContext.request.contextPath}/system/dbsetting.html">存储服务器管理</a>
                                 <i class="icon-angle-right"></i>
                             </li>
 							<li>
@@ -62,7 +62,7 @@
 
 							<div class="portlet-body form">
 								<!-- BEGIN FORM-->
-								<spring-form:form commandName="subDBConf" id="form_sample_2" class="form-horizontal">
+								<spring-form:form commandName="dbConf" id="form_sample_2" class="form-horizontal">
 									<div class="alert alert-error hide">
 										<button class="close" data-dismiss="alert"></button>
 										You have some form errors. Please check below.
@@ -73,7 +73,7 @@
 										Your form validation is successful!
 									</div>
 
-                                    <input type="hidden" name="id" value="${subDBConf.id}"/>
+                                    <input type="hidden" name="id" value="${dbConf.id}"/>
 									<div class="control-group">
 										<label class="control-label">服务器地址<span class="required">*</span></label>
 										<div class="controls">

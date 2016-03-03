@@ -10,11 +10,6 @@ public class SystemDWRHandler {
     @Autowired
     private ConfigService configService;
 
-    public void updateSystemConfig(String confKey, String confValue) {
-        configService.updateConfiguration(confKey, confValue);
-    }
-
-
     public int checkUserNameInfo (String username){
         int usernamestate=1;
         if (username==null || username.equals("")){

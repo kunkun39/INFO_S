@@ -38,14 +38,14 @@
 								<i class="icon-angle-right"></i>
 							</li>
 							<li>
-                                <a href="${pageContext.request.contextPath}/system/dbsetting.jsp">存储服务器管理</a>
+                                <a href="${pageContext.request.contextPath}/system/dbsetting.html">存储服务器管理</a>
                                 <i class="icon-angle-right"></i>
                             </li>
 							<li>
-                                <a href="${pageContext.request.contextPath}/system/dbsetting.jsp">服务器备份历史</a>
+                                <a href="${pageContext.request.contextPath}/system/bakuphistoryoverview.html?dbConfId=${dbConfId}">服务器备份历史</a>
                                 <i class="icon-angle-right"></i>
                             </li>
-							<li><a href="${pageContext.request.contextPath}/system/dbsetting.jsp">服务器数据备份</a></li>
+							<li><a href="javascript:;">服务器数据备份</a></li>
 						</ul>
 					</div>
 				</div>
@@ -86,7 +86,7 @@
 										<label class="control-label">备份的年份<span class="required">*</span></label>
 										<div class="controls">
                                             <select class="span6 m-wrap" name="year">
-                                                <c:forEach begin="2015" end="${currentYear}" step="1" var="yearStop">
+                                                <c:forEach begin="2015" end="${currentYear-1}" step="1" var="yearStop">
                                                     <option value="${yearStop}">${yearStop}</option>
                                                 </c:forEach>
                                             </select>

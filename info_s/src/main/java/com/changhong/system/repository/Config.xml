@@ -6,43 +6,34 @@
 
 <sqlMap namespace="Config">
 
-    <!--main db-->
+    <!--dbs-->
 
-    <select id="selectAllConfigurations" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
-        SELECT * FROM main_db_conf
+    <select id="selectAllDbConfs" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+        SELECT * FROM db_conf
     </select>
 
-    <update id="updateConfiguration" parameterClass="java.util.HashMap">
-        UPDATE main_db_conf SET conf_value = #confValue# WHERE conf_key = #confKey#
-    </update>
-
-    <!--sub dbs-->
-
-    <select id="selectAllSubDBConfs" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
-        SELECT * FROM sub_db_conf
+    <select id="selectDbConfById" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+        SELECT * FROM db_conf WHERE id = #dbConfId#
     </select>
 
-    <select id="selectSubDBConfById" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
-        SELECT * FROM sub_db_conf WHERE id = #subDBConfId#
-    </select>
-
-    <insert id="insertSubDBConf" parameterClass="java.util.HashMap">
-        INSERT INTO sub_db_conf (
-            sub_host,
-            sub_port,
-            sub_name
+    <insert id="insertDbConf" parameterClass="java.util.HashMap">
+        INSERT INTO db_conf (
+            db_host,
+            db_port,
+            db_name,
+            db_type
         )
-        VALUES (#host:VARCHAR#, #port:VARCHAR#, #name:VARCHAR#)
+        VALUES (#host:VARCHAR#, #port:VARCHAR#, #name:VARCHAR#, 'SUB')
     </insert>
 
-    <update id="updateSubDBConf" parameterClass="java.util.HashMap">
-        UPDATE sub_db_conf SET sub_host = #host#, sub_port = #port#, sub_name = #name# WHERE id = #id#
+    <update id="updateDbConf" parameterClass="java.util.HashMap">
+        UPDATE db_conf SET sub_host = #host#, sub_port = #port#, sub_name = #name# WHERE id = #id#
     </update>
 
     <!--bak up history-->
 
     <select id="selectBakUpHistories" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
-        SELECT * FROM db_back_history WHERE bak_subdb_id = #subDBConfId#
+        SELECT * FROM db_back_history WHERE bak_db_id = #dbConfId#
     </select>
 
     <insert id="insertBakUpHistory" parameterClass="java.util.HashMap">
@@ -51,9 +42,9 @@
             bak_year,
             bak_code,
             bak_project_id,
-            bak_subdb_id
+            bak_db_id
         )
-        VALUES (#bakTime:VARCHAR#, #bakYear:VARCHAR#, #bakCode:VARCHAR#, #bakProjectId:INTEGER#, #bakSubdbId:INTEGER#)
+        VALUES (#bakTime:VARCHAR#, #bakYear:VARCHAR#, #bakCode:VARCHAR#, #bakProjectId:INTEGER#, #bakDbId:INTEGER#)
     </insert>
 
 </sqlMap>

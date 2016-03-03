@@ -7,7 +7,7 @@ import com.changhong.common.domain.EntityBase;
  * Date: 16-2-25
  * Time: 下午5:16
  */
-public class SubDBConf extends EntityBase {
+public class DBConf extends EntityBase {
 
     private String host;
 
@@ -15,15 +15,18 @@ public class SubDBConf extends EntityBase {
 
     private String dbName;
 
-    public SubDBConf() {
+    private String dbType;
+
+    public DBConf() {
         setId(-1);
     }
 
-    public SubDBConf(int id, String host, String port, String dbName) {
+    public DBConf(int id, String host, String port, String dbName, String dbType) {
         setId(id);
         this.host = host;
         this.port = port;
         this.dbName = dbName;
+        this.dbType = dbType;
     }
 
     public String getHost() {
@@ -48,5 +51,13 @@ public class SubDBConf extends EntityBase {
 
     public void setDbName(String dbName) {
         this.dbName = dbName;
+    }
+
+    public String getDbType() {
+        return dbType;
+    }
+
+    public void setDbType(String dbType) {
+        this.dbType = dbType;
     }
 }

@@ -2,9 +2,8 @@ package com.changhong.system.repository;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.changhong.common.utils.CHJodaUtils;
 import com.changhong.common.utils.CHStringUtils;
-import com.changhong.system.domain.SubDBBakHistory;
+import com.changhong.system.domain.DBBakHistory;
 import junit.framework.TestCase;
 import org.joda.time.DateTime;
 import org.junit.After;
@@ -20,9 +19,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * User: Jack Wang
@@ -44,19 +41,15 @@ public class ConfigDaoImpTest extends TestCase {
     public void tearDown() {
     }
 
-    @Test
-    public void testSingle() {
-        configDao.updateConfiguration("MO_DB_HOST", "192.168.1.135");
-    }
 
     @Test
     public void testInsertBackUpHistory() {
-        SubDBBakHistory history = new SubDBBakHistory();
+        DBBakHistory history = new DBBakHistory();
         history.setActionTime(new DateTime());
         history.setProjectCode("code");
         history.setYear("2015");
         history.setProjectId(1);
-        history.setSubDBConfId(1);
+        history.setDbConfId(1);
 
         configDao.saveBakUpHistory(history);
     }

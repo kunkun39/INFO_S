@@ -36,10 +36,10 @@
 								<i class="icon-angle-right"></i>
 							</li>
 							<li>
-                                <a href="${pageContext.request.contextPath}/system/dbsetting.jsp">存储服务器管理</a>
+                                <a href="${pageContext.request.contextPath}/system/dbsetting.html">存储服务器管理</a>
                                 <i class="icon-angle-right"></i>
                             </li>
-							<li><a href="${pageContext.request.contextPath}/system/dbsetting.jsp">服务器备份历史</a></li>
+							<li><a href="javascript:;">服务器备份历史</a></li>
 						</ul>
 					</div>
 				</div>
@@ -51,9 +51,9 @@
 						<!-- BEGIN EXAMPLE TABLE PORTLET-->
 						<div class="portlet box grey">
 							<div class="portlet-title">
-								<div class="caption"><i class="icon-user"></i>服务器地址${subDBConf.host}, 服务器端口${subDBConf.port}</div>
+								<div class="caption"><i class="icon-user"></i>服务器地址${dbConf.host}, 服务器端口${dbConf.port}</div>
 								<div class="actions">
-									<a href="${pageContext.request.contextPath}/system/bakuphistoryform.html?subDBConfId=${subDBConf.id}" class="btn blue"><i class="icon-pencil"></i> 新加备份</a>
+									<a href="${pageContext.request.contextPath}/system/bakuphistoryform.html?dbConfId=${dbConf.id}" class="btn blue"><i class="icon-pencil"></i> 备份数据</a>
 								</div>
 							</div>
 
@@ -123,29 +123,11 @@
 	<script src="${pageContext.request.contextPath}/media/js/app.js"></script>
     <script src="${pageContext.request.contextPath}/media/js/ui-general.js"></script>
 	<script src="${pageContext.request.contextPath}/media/js/table-managed.js"></script>
-    <script src="${pageContext.request.contextPath}/dwr/engine.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/dwr/util.js" type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>
 
     <script>
 		jQuery(document).ready(function() {
 		    App.init(); // initlayout and core plugins
 		});
-
-        function confirmChangeSystemConf(confKey) {
-            $("#div_conf_key").val(confKey);
-
-            $("#setting_dialog_info").modal("show");
-        }
-
-        function changeSystemConf() {
-            var confKey = $("#div_conf_key").val();
-            var confValue = $("#" + confKey).val();
-            SystemDWRHandler.updateSystemConfig(confKey, confValue, function(result) {
-                $("#setting_dialog_info").modal("hide");
-            });
-        }
-
 	</script>
 </body>
 

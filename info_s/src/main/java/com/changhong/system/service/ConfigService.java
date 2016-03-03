@@ -1,11 +1,9 @@
 package com.changhong.system.service;
 
-import com.changhong.system.domain.SubDBBakHistory;
-import com.changhong.system.domain.SubDBConf;
-import com.changhong.system.domain.SystemConf;
+import com.changhong.system.domain.DBConf;
+import com.changhong.system.domain.DBBakHistory;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * User: Jack Wang
@@ -14,23 +12,17 @@ import java.util.Map;
  */
 public interface ConfigService {
 
-//    Main DB
+//   DB
 
-    List<SystemConf> obtainAllConfigurations();
+    List<DBConf> obtainAllDbConfs();
 
-    void updateConfiguration(String confKey, String confValue);
+    DBConf obtainDbConfById(int dbConfId);
 
-//    Sub DB
-
-    List<SubDBConf> obtainAllSubDBConfs();
-
-    SubDBConf obtainSubDBConfById(int subDBConfId);
-
-    void saveSubDBConf(SubDBConf subDBConf);
+    void saveDbConf(DBConf dbConf);
 
 //    Bak Up History
 
-    List<SubDBBakHistory> obtainBakUpHistories(int subDBConfId);
+    List<DBBakHistory> obtainBakUpHistories(int dbConfId);
 
-    void saveBakUpDBHistory(SubDBBakHistory history);
+    void saveBakUpDbHistory(DBBakHistory history);
 }
