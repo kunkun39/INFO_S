@@ -40,26 +40,23 @@ public class ItemDaoImpl extends BasicIbatisDataManager implements ItemDao {
     }
 
     @Override
-    public int updateInfoGaterItem(InfoGaterItem item, boolean updateName, boolean updateMetaData) {
-        int effectId = -1;
+    public int updateInfoGaterItemById(InfoGaterItem item) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 
-        parameters.put(InfoGaterItem.PROJECT_ID, item.getProjectId());
-        if (updateName && updateMetaData) {
-            parameters.put(InfoGaterItem.ITEM_NAME, item.getItemName());
-            parameters.put(InfoGaterItem.METADATA_ID, item.getMetaDataId());
+        parameters.put(InfoGaterItem.ID, item.getId());
+        parameters.put(InfoGaterItem.ITEM_NAME, item.getItemName());
+        parameters.put(InfoGaterItem.ITEM_KEY, item.getItemKey());
+        parameters.put(InfoGaterItem.METADATA_ID, item.getMetaDataId());
 
-            effectId = getSqlMapClientTemplate().update("Item.updateItemNameAndContent", parameters);
-        } else if (updateName) {
-            parameters.put(InfoGaterItem.ITEM_NAME, item.getItemName());
+        return getSqlMapClientTemplate().update("Item.updateItemById", parameters);
+    }
 
-            effectId = getSqlMapClientTemplate().update("Item.updateItemName", parameters);
-        } else if (updateMetaData) {
-            parameters.put(InfoGaterItem.METADATA_ID, item.getMetaDataId());
+    @Override
+    public int deleteInfoGaterItemById(int id) {
+        Map<String, Object> parameters = new HashMap<String, Object>();
 
-            effectId = getSqlMapClientTemplate().update("Item.updateItemContent", parameters);
-        }
+        parameters.put(InfoGaterItem.ID, id);
 
-        return effectId;
+        return getSqlMapClientTemplate().delete("Item.deleteItemById", parameters);
     }
 }

@@ -62,13 +62,14 @@ public class ProjectAdminController {
         return "projectadmin/projectoverview";
     }
 
-    @RequestMapping("/project/itemform.html")
-    public String sendToMetaDataForm(HttpServletRequest request, ModelMap model) {
+    @RequestMapping("/project/itemeditform.html")
+    public String sendToItemEditForm(HttpServletRequest request, ModelMap model) {
         int projectId = ServletRequestUtils.getIntParameter(request, "projectId", -1);
         String itemName = ServletRequestUtils.getStringParameter(request, "name", "");
         String itemKey = ServletRequestUtils.getStringParameter(request, "key", "");
         int itemId = ServletRequestUtils.getIntParameter(request, "itemId", -1);
         boolean useMetadata = ServletRequestUtils.getBooleanParameter(request, "usemetadata", false);
+        int metadataId = ServletRequestUtils.getIntParameter(request, "metadataId", -1);
 
         if (useMetadata) {
             DefaultMultipartHttpServletRequest multipartRequest = (DefaultMultipartHttpServletRequest) request;
@@ -78,21 +79,34 @@ public class ProjectAdminController {
                 if (dto != null) {
                     dto.setProjectId(projectId);
                     dto.setUserId(SecurityUtils.currectAuthenticationId());
-                    dto.setId(itemId);
                     dto.setIsUsed(true);
-                    metaDataService.insertMetaData(dto);
+                    if (metadataId != -1) {
+                        dto.setId(metadataId);
+                        metaDataService.updateMetaData(dto);
+                    } else {
+                        metadataId = metaDataService.insertMetaData(dto);
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else {
+            if (metadataId != -1) {
+                metaDataService.updateDetaDataStatus(metadataId, false);
+            }
+            metadataId = -1;
         }
-
         InfoGaterItem item = new InfoGaterItem();
-        item.setProjectId(projectId);
         item.setItemName(itemName);
         item.setItemKey(itemKey);
-
-        itemService.insertInfoGaterItem(item);
+        item.setMetaDataId(metadataId);
+        if (itemId != -1) {
+            item.setId(itemId);
+            itemService.updateInfoGaterItem(item);
+        } else {
+            item.setProjectId(projectId);
+            itemService.insertInfoGaterItem(item);
+        }
 
 //        setMenuKey(request, INFO_GATER, PROJECT_MANAGE);
 //        InfoGaterProject project = new InfoGaterProject();
@@ -100,6 +114,17 @@ public class ProjectAdminController {
 //        return "projectadmin/projectform";
         return "redirect:projectform.html?projectId=" + projectId;
 
+    }
+
+    @RequestMapping("/project/itemdeleteform.html")
+    public String sendToItemDeleteForm(HttpServletRequest request, ModelMap model) {
+        int projectId = ServletRequestUtils.getIntParameter(request, "projectId", -1);
+        int itemId = ServletRequestUtils.getIntParameter(request, "itemId", -1);
+        int metadataId = ServletRequestUtils.getIntParameter(request, "metadataId", -1);
+
+        itemService.deleteInfoGaterItem(itemId, metadataId);
+
+        return "redirect:projectform.html?projectId=" + projectId;
     }
 
     private void setMenuKey(HttpServletRequest request , String menuKey, String subMenuKey) {

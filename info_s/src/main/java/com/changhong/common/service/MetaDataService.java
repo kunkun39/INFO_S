@@ -9,6 +9,22 @@ import com.changhong.common.facade.dto.MetaDataDTO;
  */
 public interface MetaDataService {
 
-    boolean insertMetaData(MetaDataDTO dto);
+    /**
+     * 插入metadata信息
+     * @param dto
+     */
+    int insertMetaData(MetaDataDTO dto);
+
+    /**
+     * 更新metadata信息
+     * @param dto
+     */
+    int updateMetaData(MetaDataDTO dto);
+
+    /**
+     * 更新metadata状态信息
+     * @param isUsed
+     */
+    int updateDetaDataStatus(int id, boolean isUsed);
 
 }

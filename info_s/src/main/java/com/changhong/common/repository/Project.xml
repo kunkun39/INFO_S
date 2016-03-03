@@ -35,6 +35,6 @@
     </select>
 
     <update id="updateProjectName" parameterClass="java.util.HashMap">
-        UPDATE infogater_project SET project_name=#projectName# WHERE user_id=#userId#
+        UPDATE infogater_project SET project_name=#projectName# WHERE id=#id#
     </update>
 </sqlMap>

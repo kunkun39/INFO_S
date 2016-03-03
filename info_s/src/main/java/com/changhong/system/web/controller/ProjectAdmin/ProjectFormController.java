@@ -2,6 +2,7 @@ package com.changhong.system.web.controller.ProjectAdmin;
 
 import com.changhong.common.domain.InfoGaterItem;
 import com.changhong.common.domain.InfoGaterProject;
+import com.changhong.common.facade.dto.InfoGaterItemDTO;
 import com.changhong.common.service.ItemService;
 import com.changhong.common.service.ProjectService;
 import com.changhong.common.utils.SecurityUtils;
@@ -45,7 +46,7 @@ public class ProjectFormController {
             project = new InfoGaterProject();
             model.put("showItem",false);
         } else {
-            List<InfoGaterItem> items = itemService.obtainInfoGaterItemsByProjectId(projectId);
+            List<InfoGaterItemDTO> items = itemService.obtainInfoGaterItemsByProjectId(projectId);
             model.put("items", items);
             model.put("showItem",true);
         }
@@ -57,9 +58,17 @@ public class ProjectFormController {
     @RequestMapping(method= RequestMethod.POST)
     public String saveUserProject(HttpServletRequest request, @ModelAttribute("project") InfoGaterProject project, BindingResult errors, ModelMap model) {
         int userId = SecurityUtils.currectAuthenticationId();
-        project.setUserId(userId);
-        project.setRandomKey();
-        int projectId = projectService.insertInfoGaterProject(project);
-        return "redirect:projectform.html?projectId=" + projectId;
+        int projectId = project.getId();
+        if (projectId != -1) {
+            projectService.updateInfoGaterProject(project);
+            return "redirect:projectoverview.html";
+        } else {
+            project.setRandomKey();
+            project.setUserId(userId);
+            projectId = projectService.insertInfoGaterProject(project);
+            return "redirect:projectform.html?projectId=" + projectId;
+        }
+
+
     }
 }

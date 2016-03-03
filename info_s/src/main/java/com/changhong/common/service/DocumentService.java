@@ -12,7 +12,7 @@ import java.io.InputStream;
 public interface DocumentService {
 
     /**
-     * ½âÎöXMLÊäÈëÁ÷
+     * è§£æXMLè¾“å…¥æµ
      * @param in
      */
     MetaDataDTO parseXML(InputStream in);

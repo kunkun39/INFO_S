@@ -1,6 +1,7 @@
 package com.changhong.common.service;
 
 import com.changhong.common.domain.InfoGaterItem;
+import com.changhong.common.facade.dto.InfoGaterItemDTO;
 
 import java.util.List;
 
@@ -12,14 +13,27 @@ import java.util.List;
 public interface ItemService {
 
     /**
-     * ²åÈëitemĞÅÏ¢
+     * æ’å…¥itemä¿¡æ¯
      * @param item
      */
     boolean insertInfoGaterItem(InfoGaterItem item);
 
     /**
-     * Í¨¹ıprojectId¶ÁÈ¡¹¤³ÌĞÅÏ¢
+     * é€šè¿‡projectIdè¯»å–å·¥ç¨‹ä¿¡æ¯
      * @param projectId
      */
-    List<InfoGaterItem> obtainInfoGaterItemsByProjectId(int projectId);
+    List<InfoGaterItemDTO> obtainInfoGaterItemsByProjectId(int projectId);
+
+    /**
+     * æ›´æ–°itemä¿¡æ¯
+     * @param item
+     */
+    boolean updateInfoGaterItem(InfoGaterItem item);
+
+    /**
+     * åˆ é™¤æ”¶é›†é¡¹
+     * @param itemId
+     * @param metadataId
+     */
+    boolean deleteInfoGaterItem(int itemId, int metadataId);
 }

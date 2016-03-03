@@ -54,6 +54,7 @@
                             <div class="portlet-body form">
                                 <!-- BEGIN FORM-->
                                 <spring-form:form commandName="project" id="form_sample_2" class="form-horizontal" method="post">
+                                    <spring-form:input path="id" type="hidden"/>
                                     <div class="alert alert-error hide">
                                         <button class="close" data-dismiss="alert"></button>
                                         You have some form errors. Please check below.
@@ -88,7 +89,7 @@
                                                                     <th style="width:8px;"></th>
                                                                     <th>收集项名字</th>
                                                                     <th class="hidden-480">键值</th>
-                                                                    <th class="hidden-480">格式</th>
+                                                                    <th class="hidden-480">元数据</th>
                                                                     <th class="hidden-480">操作</th>
                                                                 </tr>
                                                                 </thead>
@@ -98,12 +99,17 @@
                                                                         <td><input type="checkbox" class="checkboxes" value="1" /></td>
                                                                         <td>${item.itemName}</td>
                                                                         <td class="hidden-480">${item.itemKey}</td>
-                                                                        <td class="hidden-480">2016/01/01 00:00</td>
+                                                                        <td class="hidden-480">
+                                                                            <c:choose>
+                                                                                <c:when test="${not empty item.metadataName}">${item.metadataName}</c:when>
+                                                                                <c:otherwise><font color="grey">none</font></c:otherwise>
+                                                                            </c:choose>
+                                                                        </td>
                                                                         <td>
-                                                                            <a class="btn mini purple" onclick="itemInfo.itemId=${item.id};itemInfo.itemName='${item.itemName}';itemInfo.itemKey='${item.itemKey}';itemInfo.metadataId=${item.metaDataId};showItemInfo();">
+                                                                            <a class="btn mini purple" onclick="itemInfo.itemId=${item.id};itemInfo.itemName='${item.itemName}';itemInfo.itemKey='${item.itemKey}';itemInfo.metadataId=${item.metaDataId};itemInfo.metadataName='${item.metadataName}';showItemInfo();">
                                                                                 <i class="icon-edit"></i> 编辑
                                                                             </a>
-                                                                            <a class="btn mini black" href="#">
+                                                                            <a class="btn mini black" onclick="itemInfo.itemId=${item.id};itemInfo.itemName='${item.itemName}';itemInfo.metadataId=${item.metaDataId};deleteItem();">
                                                                                 <i class="icon-trash"></i> 删除
                                                                             </a>
                                                                         </td>
@@ -131,7 +137,6 @@
                             </div>
                         </div>
                         <!-- END VALIDATION STATES-->
-
                     </div>
                 </div>
                 <!-- END PAGE CONTENT-->
@@ -160,9 +165,10 @@
 
                         <div class="portlet-body form">
                             <!-- BEGIN FORM-->
-                            <form id="itemForm" class="form-horizontal" action="${pageContext.request.contextPath}/project/itemform.html" method="post" enctype="multipart/form-data">
+                            <form id="itemEditForm" class="form-horizontal" action="${pageContext.request.contextPath}/project/itemeditform.html" method="post" enctype="multipart/form-data">
                                 <input name="projectId" type="hidden" value="${project.id}"/>
-                                <input name="itemId" type="hidden" value=""/>
+                                <input id="itemId" name="itemId" type="hidden" value=""/>
+                                <input id="metadataId" name="metadataId" type="hidden" value=""/>
                                 <div class="control-group">
                                     <div class="control-group">
                                         <label class="control-label">收集项名字<span class="required">*</span></label>
@@ -179,7 +185,7 @@
                                     <div class="control-group">
                                         <label class="control-label">使用元数据<span class="required">*</span></label>
                                         <div class="controls">
-                                            <select name="usemetadata" class="medium m-wrap" tabindex="1">
+                                            <select name="usemetadata" class="medium m-wrap" tabindex="1" onchange="selectChangeProcess(this.value);">
                                                 <option id="selectFalse" value="false">否</option>
                                                 <option id="selectTrue" value="true">是</option>
                                             </select>
@@ -191,10 +197,14 @@
                                             <%--</label>--%>
                                         <%--</div>--%>
                                     </div>
-                                    <div id="uploadfile" class="control-group">
+                                    <div id="uploadfile" class="control-group" style="display: none;">
                                         <label class="control-label">元数据文件<span class="required">*</span></label>
                                         <div class="controls">
-                                            <input class="default" name="metadataUploadFile" type="file">
+                                            <div id="showMetaData"><span id="metaDataName"></span></div>
+                                            <input id="changeMetaData" class="default" name="metadataUploadFile" type="file">
+                                            <div>
+                                                <a id="changeFileButton" class="btn mini" onclick="changeFile();">更改</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -203,13 +213,33 @@
                         </div>
                     </div>
                     <!-- END VALIDATION STATES-->
-
                 </div>
             </div>
         </div>
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">返回</button>
-            <button class="btn yellow" onclick="itemFormSubmit();">提交</button>
+            <button class="btn yellow" onclick="itemEditFormSubmit();">提交</button>
+        </div>
+    </div>
+
+    <div id="itemDeletePopup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
+        <form id="itemDeleteForm" class="form-horizontal" action="${pageContext.request.contextPath}/project/itemdeleteform.html" method="post">
+            <input name="projectId" type="hidden" value="${project.id}"/>
+            <input id="deleteItemId" name="itemId" type="hidden" value=""/>
+            <input id="deleteMetadataId" name="metadataId" type="hidden" value=""/>
+        </form>
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h3 id="myModalLabel3">系统确认对话框</h3>
+        </div>
+
+        <div class="modal-body">
+            <p id="confMessage">请确认时候要修改系统配置？</p>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn blue" data-dismiss="modal">取消</button>
+            <button class="btn blue" onclick="itemDeleteConf();">确认</button>
         </div>
     </div>
     <!-- END CONTAINER -->
@@ -223,12 +253,13 @@
         jQuery(document).ready(function() {
             App.init();
         });
-
+        var showMetaData = true;
         var itemInfo = {
             itemId : -1 ,
             itemName : '',
             itemKey : '',
-            metadataId : -1
+            metadataId : -1,
+            metadataName : ''
         };
 
         function projectInfoSubmit(form) {
@@ -239,10 +270,17 @@
             jQuery("#itemName").val(itemInfo.itemName);
             jQuery("#itemKey").val(itemInfo.itemKey);
             jQuery("#itemId").val(itemInfo.itemId);
+            jQuery("#metadataId").val(itemInfo.metadataId);
             if (itemInfo.metadataId != -1) {
                 jQuery("#selectTrue").attr("selected","selected");
+                jQuery("#metaDataName").html(itemInfo.metadataName);
+                jQuery("#changeMetaData").css("display", "none");
+                selectChangeProcess("true");
+                jQuery("#changeFileButton").css("display", "inline");
             } else {
-                jQuery("#selectTrue").removeAttr("selected");;
+                jQuery("#selectTrue").removeAttr("selected");
+                jQuery("#changeFileButton").css("display", "none");
+                selectChangeProcess("false");
             }
             jQuery("#itemInfoPopup").modal();
         }
@@ -253,10 +291,50 @@
             jQuery("#itemId").val(-1);
             jQuery("#selectTrue").removeAttr("selected");
             jQuery("#itemInfoPopup").modal();
+            jQuery("#metadataId").val(-1);
+            showMetaData = true;
+            changeFile();
+            jQuery("#changeFileButton").css("display", "none");
+            selectChangeProcess(false);
         }
 
-        function itemFormSubmit() {
-            jQuery("#itemForm").submit();
+        function selectChangeProcess(val) {
+            if (val == "true") {
+                jQuery("#uploadfile").css("display", "block");
+            } else {
+                jQuery("#uploadfile").css("display", "none");
+            }
+        }
+
+        function changeFile() {
+            if (showMetaData) {
+                jQuery("#showMetaData").css("display", "none");
+                jQuery("#changeMetaData").css("display", "block");
+                jQuery("#changeFileButton").html("返回");
+                var obj = document.getElementById('changeMetaData') ;
+                obj.outerHTML=obj.outerHTML;
+                showMetaData = false;
+            } else {
+                jQuery("#showMetaData").css("display", "block");
+                jQuery("#changeMetaData").css("display", "none");
+                jQuery("#changeFileButton").html("更改");
+                showMetaData = true;
+            }
+        }
+
+        function itemEditFormSubmit() {
+            jQuery("#itemEditForm").submit();
+        }
+
+        function deleteItem() {
+            jQuery("#confMessage").html("请确认要删除收集项：" + itemInfo.itemName + " ?");
+            jQuery("#itemDeletePopup").modal();
+        }
+
+        function itemDeleteConf() {
+            jQuery("#deleteItemId").val(itemInfo.itemId);
+            jQuery("#deleteMetadataId").val(itemInfo.itemId);
+            jQuery("#itemDeleteForm").submit();
         }
     </script>
 </body>

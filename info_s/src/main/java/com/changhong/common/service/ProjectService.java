@@ -12,21 +12,27 @@ import java.util.List;
 public interface ProjectService {
 
     /**
-     * ²åÈëprojectĞÅÏ¢
+     * æ’å…¥projectä¿¡æ¯
      * @param project
      */
     int insertInfoGaterProject(InfoGaterProject project);
 
     /**
-     * Í¨¹ıÏîÄ¿id¶ÁÈ¡¹¤³ÌĞÅÏ¢
+     * é€šè¿‡é¡¹ç›®idè¯»å–å·¥ç¨‹ä¿¡æ¯
      * @param projectId
      * @param userId
      */
     InfoGaterProject obtainInfoGaterProjectByIds(int projectId, int userId);
 
     /**
-     * Í¨¹ıuserId¶ÁÈ¡¹¤³ÌĞÅÏ¢
+     * é€šè¿‡userIdè¯»å–å·¥ç¨‹ä¿¡æ¯
      * @param userId
      */
     List<InfoGaterProject> obtainInfoGaterProjectsByUserId(int userId);
+
+    /**
+     * æ›´æ–°ç”¨æˆ·çš„å·¥ç¨‹ä¿¡æ¯
+     * @param project
+     */
+    boolean updateInfoGaterProject(InfoGaterProject project);
 }

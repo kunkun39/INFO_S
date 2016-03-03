@@ -19,12 +19,21 @@ public class MetaDataServiceImpl implements MetaDataService {
     private MetaDataDao metaDataDao;
 
     @Override
-    public boolean insertMetaData(MetaDataDTO dto) {
+    public int insertMetaData(MetaDataDTO dto) {
         MetaData metaData = MetaDataWebAssember.toAdminUserDomain(dto);
 
-        if (metaDataDao.insertMetaData(metaData) != -1) {
-            return true;
-        }
-        return false;
+        return metaDataDao.insertMetaData(metaData);
+    }
+
+    @Override
+    public int updateMetaData(MetaDataDTO dto) {
+        MetaData metaData = MetaDataWebAssember.toAdminUserDomain(dto);
+
+        return metaDataDao.updateMetaData(metaData);
+    }
+
+    @Override
+    public int updateDetaDataStatus(int id, boolean isUsed) {
+        return metaDataDao.updateMetaDataStatus(id, isUsed);
     }
 }

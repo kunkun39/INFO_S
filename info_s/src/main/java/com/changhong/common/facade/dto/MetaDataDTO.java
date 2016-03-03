@@ -8,32 +8,32 @@ import java.util.List;
  */
 public class MetaDataDTO {
     /**
-     * ÔªÊı¾İID
+     * å…ƒæ•°æ®ID
      **/
     private int id;
 
     /**
-     * ¸ÃÔªÊı¾İµÄÃû×Ö
+     * è¯¥å…ƒæ•°æ®çš„åå­—
      **/
     private String metadataName;
 
     /**
-     * ¸ÃÔªÊı¾İ¶ÔÓ¦µÄÓÃ»§ID
+     * è¯¥å…ƒæ•°æ®å¯¹åº”çš„ç”¨æˆ·ID
      **/
     private int userId;
 
     /**
-     * ¸ÃÔªÊı¾İ¶ÔÓ¦µÄ¹¤³ÌID
+     * è¯¥å…ƒæ•°æ®å¯¹åº”çš„å·¥ç¨‹ID
      **/
     private int projectId;
 
     /**
-     * ¸ÃÔªÊı¾İÊÇ·ñÓĞÔÚÊ¹ÓÃ
+     * è¯¥å…ƒæ•°æ®æ˜¯å¦æœ‰åœ¨ä½¿ç”¨
      **/
     private boolean isUsed;
 
     /**
-     * ÔªÊı¾İÄÚÈİ
+     * å…ƒæ•°æ®å†…å®¹
      **/
     private List<MetaDataSubItem> items;
 

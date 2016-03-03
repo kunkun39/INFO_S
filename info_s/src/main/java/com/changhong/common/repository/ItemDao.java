@@ -27,8 +27,12 @@ public interface ItemDao {
     /**
      * 更新收集项信息
      * @param item
-     * @param updateName
-     * @param updateMetaData
      */
-    int updateInfoGaterItem(InfoGaterItem item, boolean updateName, boolean updateMetaData);
+    int updateInfoGaterItemById(InfoGaterItem item);
+
+    /**
+     * 删除收集项
+     * @param id
+     */
+    int deleteInfoGaterItemById(int id);
 }

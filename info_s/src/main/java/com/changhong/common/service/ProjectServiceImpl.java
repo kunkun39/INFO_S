@@ -42,4 +42,12 @@ public class ProjectServiceImpl implements ProjectService {
     public List<InfoGaterProject> obtainInfoGaterProjectsByUserId(int userId) {
         return ProjectWebAssember.toConfigDomainList(projectDao.loadInfoGaterProjectByUserId(userId));
     }
+
+    @Override
+    public boolean updateInfoGaterProject(InfoGaterProject project) {
+        if (projectDao.updateInfoGaterProject(project) > 0) {
+            return true;
+        }
+        return false;
+    }
 }

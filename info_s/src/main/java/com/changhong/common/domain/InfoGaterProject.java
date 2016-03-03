@@ -44,6 +44,7 @@ public class InfoGaterProject {
      * 构造函数(读取已有的工程时使用该函数)
      **/
     public InfoGaterProject() {
+        this.id = -1;
     }
 
     /**

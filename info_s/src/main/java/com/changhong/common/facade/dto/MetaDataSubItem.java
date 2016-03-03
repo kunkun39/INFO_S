@@ -12,12 +12,12 @@ public class MetaDataSubItem {
     public static final String VALUE = "value";
 
     /**
-     * ×ÓÔªËØµÄindex
+     * å­å…ƒç´ çš„index
      **/
     private String index;
 
     /**
-     * ×ÓÔªËØµÄÖµ
+     * å­å…ƒç´ çš„å€¼
      **/
     private String value;
 
