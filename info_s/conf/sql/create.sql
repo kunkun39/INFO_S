@@ -31,8 +31,8 @@ CREATE TABLE `db_conf` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-DROP TABLE IF EXISTS `db_back_history`;
-CREATE TABLE `db_back_history` (
+DROP TABLE IF EXISTS `db_bak_history`;
+CREATE TABLE `db_bck_history` (
   `id` int(11) NOT NULL auto_increment,
   `bak_time` datetime default NULL,
   `bak_year` varchar(4) default NULL,

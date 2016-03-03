@@ -33,11 +33,11 @@
     <!--bak up history-->
 
     <select id="selectBakUpHistories" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
-        SELECT * FROM db_back_history WHERE bak_db_id = #dbConfId#
+        SELECT * FROM db_bak_history WHERE bak_db_id = #dbConfId#
     </select>
 
     <insert id="insertBakUpHistory" parameterClass="java.util.HashMap">
-        INSERT INTO db_back_history (
+        INSERT INTO db_bak_history (
             bak_time,
             bak_year,
             bak_code,
