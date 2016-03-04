@@ -1,4 +1,4 @@
-package com.changhong.system.web.controller.ProjectManager;
+package com.changhong.system.web.controller.projectmanager;
 
 import com.changhong.common.domain.InfoGaterItem;
 import com.changhong.common.domain.InfoGaterProject;
