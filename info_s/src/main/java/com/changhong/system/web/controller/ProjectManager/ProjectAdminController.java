@@ -1,8 +1,7 @@
-package com.changhong.system.web.controller.ProjectAdmin;
+package com.changhong.system.web.controller.ProjectManager;
 
 import com.changhong.common.domain.InfoGaterItem;
 import com.changhong.common.domain.InfoGaterProject;
-import com.changhong.common.facade.assember.MetaDataWebAssember;
 import com.changhong.common.facade.dto.MetaDataDTO;
 import com.changhong.common.service.DocumentService;
 import com.changhong.common.service.ItemService;
@@ -59,7 +58,7 @@ public class ProjectAdminController {
         model.put("projects", projects);
 
         setMenuKey(request, INFO_GATER, PROJECT_MANAGE);
-        return "projectadmin/projectoverview";
+        return "projectmanager/projectoverview";
     }
     @RequestMapping("/project/projectdeleteform.html")
     public String sendToProjectDeleteForm(HttpServletRequest request, ModelMap model) {

@@ -1,6 +1,5 @@
-package com.changhong.system.web.controller.ProjectAdmin;
+package com.changhong.system.web.controller.ProjectManager;
 
-import com.changhong.common.domain.InfoGaterItem;
 import com.changhong.common.domain.InfoGaterProject;
 import com.changhong.common.facade.dto.InfoGaterItemDTO;
 import com.changhong.common.service.ItemService;
@@ -53,7 +52,7 @@ public class ProjectFormController {
 
         model.put("project", project);
 
-        return "projectadmin/projectform";
+        return "projectmanager/projectform";
     }
     @RequestMapping(method= RequestMethod.POST)
     public String saveUserProject(HttpServletRequest request, @ModelAttribute("project") InfoGaterProject project, BindingResult errors, ModelMap model) {
