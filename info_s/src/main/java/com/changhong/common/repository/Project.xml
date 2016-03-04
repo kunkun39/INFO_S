@@ -37,4 +37,8 @@
     <update id="updateProjectName" parameterClass="java.util.HashMap">
         UPDATE infogater_project SET project_name=#projectName# WHERE id=#id#
     </update>
+
+    <delete id="deleteProjectByIds" parameterClass="java.util.HashMap">
+        DELETE FROM infogater_project WHERE id=#id# AND user_id=#userId#
+    </delete>
 </sqlMap>

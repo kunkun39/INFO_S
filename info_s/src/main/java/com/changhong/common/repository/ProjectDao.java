@@ -40,4 +40,11 @@ public interface ProjectDao {
      * @param project
      */
     int updateInfoGaterProject(InfoGaterProject project);
+
+    /**
+     * 根据工程ID和用户ID删除工程信息
+     * @param projectId
+     * @param userId
+     */
+    int deleteInfoGaterProjectByIds(int projectId, int userId);
 }

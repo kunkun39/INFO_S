@@ -234,7 +234,7 @@
         </div>
 
         <div class="modal-body">
-            <p id="confMessage">请确认时候要修改系统配置？</p>
+            <p id="confMessage"></p>
         </div>
 
         <div class="modal-footer">

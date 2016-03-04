@@ -81,7 +81,7 @@
                                                     <a class="btn mini purple" onclick="window.location.href = '${pageContext.request.contextPath}/project/projectform.html?projectId=${project.id}'">
                                                         <i class="icon-edit"></i> 编辑
                                                     </a>
-                                                    <a class="btn mini black" href="#">
+                                                    <a class="btn mini black" onclick="deleteProject(${project.id}, '${project.projectName}');">
                                                         <i class="icon-trash"></i> 删除
                                                     </a>
                                                 </td>
@@ -100,6 +100,25 @@
         </div>
         <!-- END PAGE -->
     </div>
+
+    <div id="projectDeletePopup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
+        <form id="itemDeleteForm" class="form-horizontal" action="${pageContext.request.contextPath}/project/projectdeleteform.html" method="post">
+            <input id="projectId" name="projectId" type="hidden" value=""/>
+        </form>
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h3 id="myModalLabel3">系统确认对话框</h3>
+        </div>
+
+        <div class="modal-body">
+            <p id="confMessage"></p>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn blue" data-dismiss="modal">取消</button>
+            <button class="btn blue" onclick="peojectDeleteConf();">确认</button>
+        </div>
+    </div>
     <!-- END CONTAINER -->
     <c:import url="../common/jspart.jsp"/>
     <!-- BEGIN PAGE LEVEL PLUGINS -->
@@ -114,6 +133,16 @@
         jQuery(document).ready(function() {
             App.init();
         });
+
+        function deleteProject(projectId, projectName) {
+            jQuery("#projectId").val(projectId);
+            jQuery("#confMessage").html("请确认要删除项目：" + projectName + " ?");
+            jQuery("#projectDeletePopup").modal();
+        }
+
+        function peojectDeleteConf() {
+            jQuery("#itemDeleteForm").submit();
+        }
 
     </script>
 </body>

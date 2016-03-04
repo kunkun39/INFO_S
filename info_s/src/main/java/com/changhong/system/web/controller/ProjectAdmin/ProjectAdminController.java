@@ -61,6 +61,14 @@ public class ProjectAdminController {
         setMenuKey(request, INFO_GATER, PROJECT_MANAGE);
         return "projectadmin/projectoverview";
     }
+    @RequestMapping("/project/projectdeleteform.html")
+    public String sendToProjectDeleteForm(HttpServletRequest request, ModelMap model) {
+        int projectId = ServletRequestUtils.getIntParameter(request, "projectId", -1);
+
+        projectService.deleteInfoGaterProject(projectId, SecurityUtils.currectAuthenticationId());
+
+        return "redirect:projectoverview.html";
+    }
 
     @RequestMapping("/project/itemeditform.html")
     public String sendToItemEditForm(HttpServletRequest request, ModelMap model) {

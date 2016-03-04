@@ -60,6 +60,17 @@ public class ProjectDaoImpl extends BasicIbatisDataManager implements ProjectDao
 
         parameters.put(InfoGaterProject.ID, project.getId());
         parameters.put(InfoGaterProject.PROJECT_NAME, project.getProjectName());
+
         return getSqlMapClientTemplate().update("Project.updateProjectName", parameters);
+    }
+
+    @Override
+    public int deleteInfoGaterProjectByIds(int projectId, int userId) {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+
+        parameters.put(InfoGaterProject.ID, projectId);
+        parameters.put(InfoGaterProject.USER_ID, userId);
+
+        return getSqlMapClientTemplate().delete("Project.deleteProjectByIds", parameters);
     }
 }

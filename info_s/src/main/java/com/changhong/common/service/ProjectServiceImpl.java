@@ -1,6 +1,7 @@
 package com.changhong.common.service;
 
 import com.changhong.common.domain.InfoGaterProject;
+import com.changhong.common.repository.ItemDao;
 import com.changhong.common.repository.ProjectDao;
 import com.changhong.common.service.assember.ProjectWebAssember;
 import com.changhong.common.utils.CHListUtils;
@@ -20,6 +21,9 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Autowired
     private ProjectDao projectDao;
+
+    @Autowired
+    private ItemDao itemDao;
 
     @Override
     public int insertInfoGaterProject(InfoGaterProject project) {
@@ -45,7 +49,17 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public boolean updateInfoGaterProject(InfoGaterProject project) {
-        if (projectDao.updateInfoGaterProject(project) > 0) {
+        if (projectDao.updateInfoGaterProject(project) >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteInfoGaterProject(int projectId, int userId) {
+        int test = projectDao.deleteInfoGaterProjectByIds(projectId, userId);
+        if (test > 0) {
+            itemDao.deleteInfoGaterItemByProjectId(projectId);
             return true;
         }
         return false;

@@ -31,8 +31,14 @@ public interface ItemDao {
     int updateInfoGaterItemById(InfoGaterItem item);
 
     /**
-     * 删除收集项
+     * 根据收集项ID删除收集项
      * @param id
      */
     int deleteInfoGaterItemById(int id);
+
+    /**
+     * 根据工程ID删除收集项
+     * @param projecctId
+     */
+    int deleteInfoGaterItemByProjectId(int projecctId);
 }

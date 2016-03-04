@@ -32,4 +32,8 @@
     <delete id="deleteItemById" parameterClass="java.util.HashMap">
         DELETE FROM infogater_item WHERE id=#id#
     </delete>
+
+    <delete id="deleteItemByProjectId" parameterClass="java.util.HashMap">
+        DELETE FROM infogater_item WHERE project_id=#projectId#
+    </delete>
 </sqlMap>

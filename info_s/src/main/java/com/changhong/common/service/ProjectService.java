@@ -35,4 +35,11 @@ public interface ProjectService {
      * @param project
      */
     boolean updateInfoGaterProject(InfoGaterProject project);
+
+    /**
+     * 删除工程信息
+     * @param projectId
+     * @param userId
+     */
+    boolean deleteInfoGaterProject(int projectId, int userId);
 }

@@ -59,4 +59,13 @@ public class ItemDaoImpl extends BasicIbatisDataManager implements ItemDao {
 
         return getSqlMapClientTemplate().delete("Item.deleteItemById", parameters);
     }
+
+    @Override
+    public int deleteInfoGaterItemByProjectId(int projecctId) {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+
+        parameters.put(InfoGaterItem.PROJECT_ID, projecctId);
+
+        return getSqlMapClientTemplate().delete("Item.deleteItemByProjectId", parameters);
+    }
 }
