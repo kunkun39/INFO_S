@@ -14,7 +14,7 @@ import java.util.Map;
  * Time: 11:31
  */
 public class ItemWebAssember {
-    public static InfoGaterItemDTO toConfigDTO(Map<String, Object> model) {
+    public static InfoGaterItemDTO toItemDomain(Map<String, Object> model) {
         InfoGaterItemDTO dto = null;
 
         if (model != null) {
@@ -48,12 +48,12 @@ public class ItemWebAssember {
         return dto;
     }
 
-    public static List<InfoGaterItemDTO> toConfigDomainList(List<Map<String, Object>> models) {
+    public static List<InfoGaterItemDTO> toItemDomainList(List<Map<String, Object>> models) {
         List<InfoGaterItemDTO> items = new ArrayList<InfoGaterItemDTO>();
 
         if (models != null) {
             for (Map<String, Object> model : models) {
-                items.add(toConfigDTO(model));
+                items.add(toItemDomain(model));
             }
         }
 

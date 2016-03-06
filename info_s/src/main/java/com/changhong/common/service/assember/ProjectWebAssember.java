@@ -12,7 +12,7 @@ import java.util.Map;
  * Time: 10:19
  */
 public class ProjectWebAssember {
-    public static InfoGaterProject toConfigDomain(Map<String, Object> model) {
+    public static InfoGaterProject toProjectDomain(Map<String, Object> model) {
         InfoGaterProject project = null;
 
         if (model != null) {
@@ -37,12 +37,12 @@ public class ProjectWebAssember {
         return project;
     }
 
-    public static List<InfoGaterProject> toConfigDomainList(List<Map<String, Object>> models) {
+    public static List<InfoGaterProject> toProjectDomainList(List<Map<String, Object>> models) {
         List<InfoGaterProject> projects = new ArrayList<InfoGaterProject>();
 
         if (models != null) {
             for (Map<String, Object> model : models) {
-                projects.add(toConfigDomain(model));
+                projects.add(toProjectDomain(model));
             }
         }
 

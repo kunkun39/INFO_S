@@ -19,16 +19,28 @@
         </selectKey>
     </insert>
 
+    <select id="selectMetaDataBySelfId" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+        SELECT a.id, a.data_name AS metadataName, a.isused AS isUsed, a.content AS content, b.item_name AS itemName, c.project_name AS projectName
+        FROM infogater_metadata a
+        LEFT JOIN infogater_item b ON a.id=b.metadata_id
+        LEFT JOIN infogater_project c ON a.project_id=c.id
+        WHERE a.id=#id# AND a.user_id=#userId#
+    </select>
+
     <select id="selectMetaDataByUserId" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
-        SELECT id, data_name AS metadataName, isused AS isUsed, content
-        FROM infogater_metadata
-        WHERE user_id=#userId#
+        SELECT a.id, a.data_name AS metadataName, a.isused AS isUsed, b.item_name AS itemName, c.project_name AS projectName
+        FROM infogater_metadata a
+        LEFT JOIN infogater_item b ON a.id=b.metadata_id
+        LEFT JOIN infogater_project c ON a.project_id=c.id
+        WHERE a.user_id=#userId#
     </select>
 
     <select id="selectMetaDataByIds" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
-        SELECT id, data_name AS metadataName, isused AS isUsed, content
-        FROM infogater_metadata
-        WHERE user_id=#userId# AND project_id=#projectId#
+        SELECT a.id, a.data_name AS metadataName, a.isused AS isUsed, b.item_name AS itemName, c.project_name AS projectName
+        FROM infogater_metadata a
+        LEFT JOIN infogater_item b ON a.id=b.metadata_id
+        LEFT JOIN infogater_project c ON a.project_id=c.id
+        WHERE a.user_id=#userId# AND a.project_id=#projectId#
     </select>
 
     <update id="updateUsedInfo" parameterClass="java.util.HashMap">
@@ -38,4 +50,8 @@
     <update id="updateMetaData" parameterClass="java.util.HashMap">
         UPDATE infogater_metadata SET data_name=#metadataName#, content=#content# WHERE id=#id#
     </update>
+
+    <delete id="deleteMetaDataBySelfId" parameterClass="java.util.HashMap">
+        DELETE FROM infogater_metadata WHERE id=#id# AND user_id=#userId#
+    </delete>
 </sqlMap>

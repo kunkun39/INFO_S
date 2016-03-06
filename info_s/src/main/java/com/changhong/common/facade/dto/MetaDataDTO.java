@@ -30,7 +30,17 @@ public class MetaDataDTO {
     /**
      * 该元数据是否有在使用
      **/
-    private boolean isUsed;
+    private boolean used;
+
+    /**
+     * 该元数据对应的收集项名字
+     **/
+    private String itemName;
+
+    /**
+     * 该元数据对应的工程名
+     **/
+    private String projectName;
 
     /**
      * 元数据内容
@@ -70,11 +80,27 @@ public class MetaDataDTO {
     }
 
     public boolean isUsed() {
-        return isUsed;
+        return used;
     }
 
-    public void setIsUsed(boolean isUsed) {
-        this.isUsed = isUsed;
+    public void setUsed(boolean used) {
+        this.used = used;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
     public List<MetaDataSubItem> getItems() {

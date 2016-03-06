@@ -54,6 +54,16 @@ public class MetaDataDaoImpl extends BasicIbatisDataManager implements MetaDataD
     }
 
     @Override
+    public List<Map<String, Object>> loadMetaDataBySelfId(int metadataId, int userId) {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+
+        parameters.put(MetaData.ID, metadataId);
+        parameters.put(MetaData.USER_ID, userId);
+
+        return getSqlMapClientTemplate().queryForList("MetaData.selectMetaDataBySelfId", parameters);
+    }
+
+    @Override
     public List<Map<String, Object>> loadMetaDataByUserId(int userId) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 
@@ -70,5 +80,15 @@ public class MetaDataDaoImpl extends BasicIbatisDataManager implements MetaDataD
         parameters.put(MetaData.PROJECT_ID, projectId);
 
         return getSqlMapClientTemplate().queryForList("MetaData.selectMetaDataByIds", parameters);
+    }
+
+    @Override
+    public int deletaMetadataBySelfId(int metadataId, int userId) {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+
+        parameters.put(MetaData.ID, metadataId);
+        parameters.put(MetaData.USER_ID, userId);
+
+        return getSqlMapClientTemplate().delete("MetaData.deleteMetaDataBySelfId", parameters);
     }
 }

@@ -37,14 +37,14 @@ public class ProjectServiceImpl implements ProjectService {
     public InfoGaterProject obtainInfoGaterProjectByIds(int projectId, int userId) {
         List<Map<String, Object>> list =  projectDao.loadInfoGaterProjectByIds(projectId, userId);
         if (CHListUtils.hasElement(list)) {
-            return ProjectWebAssember.toConfigDomain(list.get(0));
-        }
-        return null;
+            return ProjectWebAssember.toProjectDomain(list.get(0));
     }
+    return null;
+}
 
     @Override
     public List<InfoGaterProject> obtainInfoGaterProjectsByUserId(int userId) {
-        return ProjectWebAssember.toConfigDomainList(projectDao.loadInfoGaterProjectByUserId(userId));
+        return ProjectWebAssember.toProjectDomainList(projectDao.loadInfoGaterProjectByUserId(userId));
     }
 
     @Override

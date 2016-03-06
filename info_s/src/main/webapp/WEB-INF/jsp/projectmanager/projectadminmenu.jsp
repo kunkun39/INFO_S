@@ -41,7 +41,7 @@
                 </li>
 
                 <li <c:if test="${SUB_MENU_KEY=='SETTING_CONF'}">class="active"</c:if>>
-                  <a href="${pageContext.request.contextPath}/system/settingmanagement.html">元数据管理</a>
+                  <a href="${pageContext.request.contextPath}/project/metadataoverview.html">元数据管理</a>
                 </li>
             </ul>
         </li>

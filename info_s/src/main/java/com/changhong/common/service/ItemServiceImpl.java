@@ -34,7 +34,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<InfoGaterItemDTO> obtainInfoGaterItemsByProjectId(int projectId) {
-        return ItemWebAssember.toConfigDomainList(itemDao.loadInfoGaterItemByProjectId(projectId));
+        return ItemWebAssember.toItemDomainList(itemDao.loadInfoGaterItemByProjectId(projectId));
     }
 
     @Override
