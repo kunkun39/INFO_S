@@ -4,6 +4,7 @@ import com.changhong.common.facade.dto.MetaDataDTO;
 import com.changhong.common.service.DocumentService;
 import com.changhong.common.service.MetaDataService;
 import com.changhong.common.utils.SecurityUtils;
+import com.changhong.system.property.MenuKeyProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -38,6 +39,8 @@ public class MetaDataManageController {
         List<MetaDataDTO> metaDataDTOList =  metaDataService.obtainMetaDataByIds(userId, projectId);
 
         model.put("metaDatas", metaDataDTOList);
+
+        MenuKeyProperties.setMenuKey(request, MenuKeyProperties.INFO_GATER, MenuKeyProperties.METADATA_MANAGE);
 
         return "projectmanager/metadataoverview";
     }

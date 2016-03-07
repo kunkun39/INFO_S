@@ -1,4 +1,4 @@
-package com.changhong.common.service.assember;
+package com.changhong.common.facade.assember;
 
 import com.changhong.common.domain.InfoGaterProject;
 

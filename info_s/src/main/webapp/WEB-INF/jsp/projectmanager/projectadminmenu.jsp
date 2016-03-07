@@ -28,7 +28,7 @@
             </a>
         </li>
 
-        <li <c:if test="${MENU_KEY=='SYS_SETTING'}">class="active"</c:if>>
+        <li <c:if test="${MENU_KEY=='INFO_GATER'}">class="active"</c:if>>
             <a href="javascript:;">
                 <i class="icon-cogs"></i>
                 <span class="title">信息收集</span>
@@ -36,11 +36,11 @@
             </a>
 
             <ul class="sub-menu">
-                <li <c:if test="${SUB_MENU_KEY=='SETTING_USER'}">class="active"</c:if>>
+                <li <c:if test="${SUB_MENU_KEY=='PROJECT_MANAGE'}">class="active"</c:if>>
                   <a href="${pageContext.request.contextPath}/project/projectoverview.html">项目管理</a>
                 </li>
 
-                <li <c:if test="${SUB_MENU_KEY=='SETTING_CONF'}">class="active"</c:if>>
+                <li <c:if test="${SUB_MENU_KEY=='METADATA_MANAGE'}">class="active"</c:if>>
                   <a href="${pageContext.request.contextPath}/project/metadataoverview.html">元数据管理</a>
                 </li>
             </ul>

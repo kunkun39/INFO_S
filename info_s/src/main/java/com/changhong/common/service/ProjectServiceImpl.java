@@ -3,7 +3,7 @@ package com.changhong.common.service;
 import com.changhong.common.domain.InfoGaterProject;
 import com.changhong.common.repository.ItemDao;
 import com.changhong.common.repository.ProjectDao;
-import com.changhong.common.service.assember.ProjectWebAssember;
+import com.changhong.common.facade.assember.ProjectWebAssember;
 import com.changhong.common.utils.CHListUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

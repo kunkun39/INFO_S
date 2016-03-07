@@ -5,6 +5,7 @@ import com.changhong.common.facade.dto.InfoGaterItemDTO;
 import com.changhong.common.service.ItemService;
 import com.changhong.common.service.ProjectService;
 import com.changhong.common.utils.SecurityUtils;
+import com.changhong.system.property.MenuKeyProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -51,6 +52,8 @@ public class ProjectFormController {
         }
 
         model.put("project", project);
+
+        MenuKeyProperties.setMenuKey(request, MenuKeyProperties.INFO_GATER, MenuKeyProperties.PROJECT_MANAGE);
 
         return "projectmanager/projectform";
     }

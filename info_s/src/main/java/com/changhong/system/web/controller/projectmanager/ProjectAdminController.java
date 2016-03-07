@@ -8,6 +8,7 @@ import com.changhong.common.service.ItemService;
 import com.changhong.common.service.MetaDataService;
 import com.changhong.common.service.ProjectService;
 import com.changhong.common.utils.SecurityUtils;
+import com.changhong.system.property.MenuKeyProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,16 +29,6 @@ import java.util.List;
 @Controller
 public class ProjectAdminController {
 
-    private final static String MENU_KEY = "MENU_KEY";
-
-    private final static String SUB_MENU_KEY = "SUB_MENU_KEY";
-
-    private final static String INFO_GATER = "INFO_GATER";
-
-    private final static String PROJECT_MANAGE = "PROJECT_MANAGE";
-
-    private final static String METADATA_MANAGE = "METADATA_MANAGE";
-
     @Autowired
     private ProjectService projectService;
 
@@ -57,7 +48,7 @@ public class ProjectAdminController {
 
         model.put("projects", projects);
 
-        setMenuKey(request, INFO_GATER, PROJECT_MANAGE);
+        MenuKeyProperties.setMenuKey(request, MenuKeyProperties.INFO_GATER, MenuKeyProperties.PROJECT_MANAGE);
         return "projectmanager/projectoverview";
     }
     @RequestMapping("/project/projectdeleteform.html")
@@ -132,10 +123,5 @@ public class ProjectAdminController {
         itemService.deleteInfoGaterItem(itemId, metadataId);
 
         return "redirect:projectform.html?projectId=" + projectId;
-    }
-
-    private void setMenuKey(HttpServletRequest request , String menuKey, String subMenuKey) {
-        request.getSession().setAttribute(MENU_KEY, menuKey);
-        request.getSession().setAttribute(SUB_MENU_KEY, subMenuKey);
     }
 }
