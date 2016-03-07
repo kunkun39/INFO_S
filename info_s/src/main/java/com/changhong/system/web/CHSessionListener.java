@@ -1,6 +1,5 @@
 package com.changhong.system.web;
 
-import com.changhong.common.items.InfoGaterManager;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.quartz.Scheduler;
