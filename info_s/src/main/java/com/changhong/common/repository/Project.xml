@@ -34,6 +34,12 @@
         WHERE id=#id# AND user_id=#userId#
     </select>
 
+    <select id="selectProjectIdByRandomkey" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+        SELECT id , project_random_key AS projectKey, project_name AS projectName
+        FROM infogater_project
+        WHERE project_random_key=#projectKey#
+    </select>
+
     <update id="updateProjectName" parameterClass="java.util.HashMap">
         UPDATE infogater_project SET project_name=#projectName# WHERE id=#id#
     </update>

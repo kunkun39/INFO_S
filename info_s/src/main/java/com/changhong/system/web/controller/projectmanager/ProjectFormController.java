@@ -70,7 +70,5 @@ public class ProjectFormController {
             projectId = projectService.insertInfoGaterProject(project);
             return "redirect:projectform.html?projectId=" + projectId;
         }
-
-
     }
 }

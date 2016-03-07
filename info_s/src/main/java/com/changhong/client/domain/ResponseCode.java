@@ -10,7 +10,8 @@ public enum ResponseCode {
     PROJECTNOTEXIST(1001), //项目不存在
     BASICDATAMISS(1002), //基础数据丢失
     FORMATERROR(1003), //数据格式错误
-    ORTHERERROR(1004); //其他错误
+    PARAMERROR(1004),  //参数错误
+    ORTHERERROR(1005); //其他错误
 
     private int code;
 

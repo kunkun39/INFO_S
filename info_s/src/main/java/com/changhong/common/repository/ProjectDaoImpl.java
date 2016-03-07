@@ -55,6 +55,15 @@ public class ProjectDaoImpl extends BasicIbatisDataManager implements ProjectDao
     }
 
     @Override
+    public List<Map<String, Object>> loadInfoGaterProjectByRandomKey(String randomKey) {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+
+        parameters.put(InfoGaterProject.PROJECT_KEY, randomKey);
+
+        return getSqlMapClientTemplate().queryForList("Project.selectProjectIdByRandomkey", parameters);
+    }
+
+    @Override
     public int updateInfoGaterProject(InfoGaterProject project) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 

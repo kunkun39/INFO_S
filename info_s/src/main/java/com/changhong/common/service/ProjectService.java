@@ -31,6 +31,12 @@ public interface ProjectService {
     List<InfoGaterProject> obtainInfoGaterProjectsByUserId(int userId);
 
     /**
+     * 通过项目的随机码取得该项目的ID号
+     * @param randomKey
+     */
+    int obtainProjectIdByRandomKey(String randomKey);
+
+    /**
      * 更新用户的工程信息
      * @param project
      */

@@ -48,6 +48,15 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public int obtainProjectIdByRandomKey(String randomKey) {
+        List<Map<String, Object>> list = projectDao.loadInfoGaterProjectByRandomKey(randomKey);
+        if (CHListUtils.hasElement(list)) {
+            return ProjectWebAssember.toProjectDomain(list.get(0)).getId();
+        }
+        return -1;
+    }
+
+    @Override
     public boolean updateInfoGaterProject(InfoGaterProject project) {
         if (projectDao.updateInfoGaterProject(project) >= 0) {
             return true;

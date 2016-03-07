@@ -32,8 +32,15 @@ public interface ProjectDao {
     /**
      * 通过项目id读取工程信息
      * @param projectId
+     * @param userId
      */
     List<Map<String, Object>> loadInfoGaterProjectByIds(int projectId, int userId);
+
+    /**
+     * 通过项目随机key读取工程信息
+     * @param randomKey
+     */
+    List<Map<String, Object>> loadInfoGaterProjectByRandomKey(String randomKey);
 
     /**
      * 更新用户的工程信息
