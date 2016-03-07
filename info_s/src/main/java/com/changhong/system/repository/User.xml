@@ -14,4 +14,14 @@
         select role_type from system_role where user_id = #userId#
     </select>
 
+    <insert id="insertUser" parameterClass="java.util.HashMap">
+        INSERT INTO
+        system_user (name,contact_way,username,password,enabled )
+        VALUES (#name:VARCHAR#, #contact_way:VARCHAR#, #username:VARCHAR#, #password:VARCHAR#,#enabled#)
+    </insert>
+    <insert id="insertRole" parameterClass="java.util.HashMap">
+        INSERT INTO
+        system_user (role_type,user_id)
+        VALUES (#role_type:VARCHAR#, #user_id:INTEGER#)
+    </insert>
 </sqlMap>

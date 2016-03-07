@@ -1,6 +1,8 @@
 package com.changhong.system.repository;
 
 import com.changhong.mysql.BasicIbatisDataManager;
+import com.changhong.system.domain.User;
+import com.changhong.system.service.assember.UserWebAssember;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -31,5 +33,21 @@ public class UserDaoImpl extends BasicIbatisDataManager implements UserDao {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("userId", userId);
         return getSqlMapClientTemplate().queryForList("User.selectUserRoleByUserId", parameters);
+    }
+
+    @Override
+    public void saveUser(User user) {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+
+        parameters.put("name",user.getName());
+        parameters.put("contact_way", user.getContactWay());
+        parameters.put("username", user.getUsername());
+        parameters.put("password", user.getPassword());
+        parameters.put("enabled", user.isEnabled());
+
+        getSqlMapClientTemplate().insert("User.insertUser", parameters);
+
+        User savedUser= UserWebAssember.toUserDomain(loadUserByUsername(user.getUsername()));
+
     }
 }

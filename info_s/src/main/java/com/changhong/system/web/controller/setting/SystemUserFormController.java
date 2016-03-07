@@ -2,6 +2,7 @@ package com.changhong.system.web.controller.setting;
 
 import com.changhong.system.domain.User;
 import com.changhong.system.service.UserService;
+import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * User: Jack Wang
+ * 用户添加Controller
+ * User: wangxiufeng
  * Date: 16-2-23
  * Time: 下午3:39
  */
@@ -44,22 +46,15 @@ public class SystemUserFormController {
 
     @RequestMapping(method= RequestMethod.POST)
     public String saveUserFrom(HttpServletRequest request, @ModelAttribute("user") User user, BindingResult errors, ModelMap model) {
-        validate(user, errors);
 
         if (errors.hasErrors()) {
             model.putAll(errors.getModel());
             return "system/setting/userform";
         }
-
         userService.saveUser(user);
         return "redirect:usermanagement.html";
     }
 
-    private void validate(User user, BindingResult errors) {
-        if (!StringUtils.hasText(user.getName())) {
-            errors.rejectValue("name", "user.name.empty");
-        }
-    }
 
     private void setMenuKey(HttpServletRequest request) {
         request.getSession().setAttribute("MENU_KEY", SystemUserController.MENU_KEY);

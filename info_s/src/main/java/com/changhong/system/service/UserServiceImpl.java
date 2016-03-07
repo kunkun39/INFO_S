@@ -36,10 +36,11 @@ public class UserServiceImpl implements UserService {
     }
 
     public User obtainUserById(int userId) {
+
         return null;
     }
 
     public void saveUser(User user) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        userDao.saveUser(user);
     }
 }
