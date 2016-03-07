@@ -85,7 +85,7 @@
                                                 </c:choose>
                                             </td>
                                             <td>
-                                                <a class="btn mini purple" onclick="window.location.href = '${pageContext.request.contextPath}/project/metadatadetails.html?metadataId=${metadata.id}'">
+                                                <a class="btn mini purple" onclick="metadataDetails(${metadata.id})">
                                                     <i class="icon-cog"></i> 查看
                                                 </a>
                                                 <a class="btn mini yellow" onclick="window.location.href = '${pageContext.request.contextPath}/project/metadataexport.html?metadataId=${metadata.id}'">
@@ -112,41 +112,7 @@
         </div>
         <!-- END PAGE -->
     </div>
-    <div id="showMetadataopup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-            <h3>系统确认对话框</h3>
-        </div>
-        <div class="modal-body">
-            <div class="span6">
-                <div class="portlet">
-                    <div class="portlet-title line">
-                        <div class="caption" style="border: 1px solid red"><i class="icon-comments"></i>Chats</div>
-                    </div>
-                    <div class="portlet-body" style="border: 1px solid red" id="chats">
-                        <div class="scroller" style="width: 200px; "data-height="100px" data-always-visible="1" data-rail-visible1="1">
-                            <div style="border: 1px solid red;width: 100px">测试</div>
-                            <div style="border: 1px solid red;width: 100px">测试</div>
-                            <div style="border: 1px solid red;width: 100px">测试</div>
-                            <div style="border: 1px solid red;width: 100px">测试</div>
-                            <div style="border: 1px solid red;width: 100px">测试</div>
-                            <div style="border: 1px solid red;width: 100px">测试</div>
-                            <div style="border: 1px solid red;width: 100px">测试</div>
-                            <div style="border: 1px solid red;width: 100px">测试</div>
-                            <div style="border: 1px solid red;width: 100px">测试</div>
-                            <div style="border: 1px solid red;width: 100px">测试</div>
-                            <div style="border: 1px solid red;width: 100px">测试</div>
-                            <div style="border: 1px solid red;width: 100px">测试</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn blue" data-dismiss="modal">取消</button>
-            <button class="btn blue" onclick="metadataDeleteConf();">确认</button>
-        </div>
-    </div>
+
     <div id="metadataDeletePopup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
         <form id="metadataDeleteForm" class="form-horizontal" action="${pageContext.request.contextPath}/project/metadatadeleteform.html" method="post">
             <input id="metadataId" name="metadataId" type="hidden" value=""/>
@@ -175,6 +141,8 @@
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="${pageContext.request.contextPath}/media/js/app.js"></script>
     <script src="${pageContext.request.contextPath}/media/js/table-managed.js"></script>
+
+    <script src="${pageContext.request.contextPath}/media/js/popup/modal.popup.js" type="text/javascript"></script>
     <script type="text/javascript">
         jQuery(document).ready(function() {
             App.init();
@@ -190,8 +158,37 @@
             jQuery("#metadataDeleteForm").submit();
         }
 
-        function showMetadata(metadataId) {
-            jQuery("#showMetadataopup").modal();
+        jQuery(function() {
+            settings = {
+                align : 'center',									//Valid values, left, right, center
+                top : 50, 											//Use an integer (in pixels)
+                width : 600, 										//Use an integer (in pixels)
+                height : 500, 										//Use an integer (in pixels)
+                padding : 10,										//Use an integer (in pixels)
+                backgroundColor : 'white', 						    //Use any hex code
+                source : '', 				    					//Refer to any page on your server, external pages are not valid e.g. http://www.google.co.uk
+                borderColor : '#333333', 							//Use any hex code
+                borderWeight : 4,									//Use an integer (in pixels)
+                borderRadius : 5, 									//Use an integer (in pixels)
+                fadeOutTime : 300, 									//Use any integer, 0 : no fade
+                disableColor : '#666666', 							//Use any hex code
+                disableOpacity : 40, 								//Valid range 0-100
+                loadingImage : '${pageContext.request.contextPath}/media/js/popup/loading.gif'
+            };
+            jQuery(document).keyup(function(event) {
+                if (event.keyCode == 27) {
+                    closePopup(settings.fadeOutTime);
+                }
+            });
+        });
+
+        function metadataDetails(id) {
+            settings.source = '${pageContext.request.contextPath}/project/metadatadetails.html?metadataId=' + id;
+            openModalPopup(settings);
+        }
+
+        function openModalPopup(obj) {
+            modalPopup(obj.align, obj.top, obj.width, obj.padding, obj.disableColor, obj.disableOpacity, obj.backgroundColor, obj.borderColor, obj.borderWeight, obj.borderRadius, obj.fadeOutTime, obj.source, obj.loadingImage);
         }
     </script>
 </body>
