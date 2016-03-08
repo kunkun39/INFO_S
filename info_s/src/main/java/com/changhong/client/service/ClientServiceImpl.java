@@ -6,8 +6,9 @@ import com.changhong.common.service.ItemService;
 import com.changhong.common.service.ProjectService;
 import com.changhong.common.utils.CHListUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
  * Date: 2016/3/7
  * Time: 17:46
  */
-@Repository("clientService")
+@Service("clientService")
 public class ClientServiceImpl implements ClientService {
 
     @Autowired
@@ -25,19 +26,38 @@ public class ClientServiceImpl implements ClientService {
     private ItemService itemService;
 
     @Override
-    public JSONObject obtainProjectFormat(String randomKey) {
+    public int obtainProjectId(String randomKey) {
+        return projectService.obtainProjectIdByRandomKey(randomKey);
+    }
+
+    @Override
+    public String obtainProjectFormat(int projectId) {
         JSONObject object = null;
-        int projectId = projectService.obtainProjectIdByRandomKey(randomKey);
         if (projectId != -1) {
             List<InfoGaterItemDTO> dtoList = itemService.obtainInfoGaterItemsByProjectId(projectId);
             if (CHListUtils.hasElement(dtoList)) {
                 object = new JSONObject();
-                object.put("ProjectName", randomKey);
+                object.put("ProjectName", projectId);
                 for (InfoGaterItemDTO dto : dtoList) {
                     object.put(dto.getItemKey(), "value");
                 }
             }
         }
-        return object;
+        return object.toString();
+    }
+
+    @Override
+    public List<String> obtainInfogaterItemParam(int projectId) {
+        List<String> list = null;
+        if (projectId != -1) {
+            List<InfoGaterItemDTO> dtoList = itemService.obtainInfoGaterItemsByProjectId(projectId);
+            if (CHListUtils.hasElement(dtoList)) {
+                list = new ArrayList<String>();
+                for (InfoGaterItemDTO dto : dtoList) {
+                    list.add(dto.getItemKey());
+                }
+            }
+        }
+        return list;
     }
 }
