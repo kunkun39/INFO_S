@@ -5,6 +5,9 @@
         "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="User">
+    <select id="selectAllUsers" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+        select * from system_user
+    </select>
 
     <select id="selectUserByUsername" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
         select * from system_user where username = #username# limit 1
@@ -19,9 +22,11 @@
         system_user (name,contact_way,username,password,enabled )
         VALUES (#name:VARCHAR#, #contact_way:VARCHAR#, #username:VARCHAR#, #password:VARCHAR#,#enabled#)
     </insert>
-    <insert id="insertRole" parameterClass="java.util.HashMap">
-        INSERT INTO
-        system_user (role_type,user_id)
-        VALUES (#role_type:VARCHAR#, #user_id:INTEGER#)
+
+    <insert id="insertRole" parameterClass="java.util.List">
+        insert into system_role(role_type,user_id)values
+        <iterate conjunction=",">
+            (#roles[].roleType:VARCHAR#,#roles[].userId:INTEGER#)
+        </iterate>
     </insert>
 </sqlMap>

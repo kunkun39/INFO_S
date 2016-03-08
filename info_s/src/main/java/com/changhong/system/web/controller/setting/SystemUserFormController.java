@@ -1,5 +1,6 @@
 package com.changhong.system.web.controller.setting;
 
+import com.changhong.system.domain.RoleType;
 import com.changhong.system.domain.User;
 import com.changhong.system.service.UserService;
 import org.apache.commons.logging.Log;
@@ -28,7 +29,7 @@ public class SystemUserFormController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(method= RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String setUpForm(HttpServletRequest request, ModelMap model) {
         setMenuKey(request);
 
@@ -44,13 +45,27 @@ public class SystemUserFormController {
         return "system/setting/userform";
     }
 
-    @RequestMapping(method= RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public String saveUserFrom(HttpServletRequest request, @ModelAttribute("user") User user, BindingResult errors, ModelMap model) {
 
         if (errors.hasErrors()) {
             model.putAll(errors.getModel());
             return "system/setting/userform";
         }
+        int[] roles = ServletRequestUtils.getIntParameters(request, "membership");
+        if (roles != null && roles.length > 0) {
+            for (int i = 0; i < roles.length; i++) {
+//                System.out.println("---m---"+roles[i]);
+                if (roles[i]==1){
+                    //系统管理员
+                    user.grantRole(RoleType.ROLE_ADMIN.toString());
+                }else if (roles[i]==2){
+                    //系统管理员
+                    user.grantRole(RoleType.ROLE_PROJECT.toString());
+                }
+            }
+        }
+//        System.out.println("---rolesize---"+user.getRoles().size());
         userService.saveUser(user);
         return "redirect:usermanagement.html";
     }

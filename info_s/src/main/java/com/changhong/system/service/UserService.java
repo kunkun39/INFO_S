@@ -3,6 +3,8 @@ package com.changhong.system.service;
 import com.changhong.system.domain.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.util.List;
+
 
 /**
  * User: Jack Wang
@@ -14,4 +16,6 @@ public interface UserService extends UserDetailsService {
     User obtainUserById(int userId);
 
     void saveUser(User user);
+
+    List<User> loadAllUsers();
 }

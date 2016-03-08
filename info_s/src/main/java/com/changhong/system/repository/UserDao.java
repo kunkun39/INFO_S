@@ -19,7 +19,10 @@ public interface UserDao {
     /**
      * save new user
      * @param user
+     * @return isSuccess
      */
-    void saveUser(User user);
+    boolean saveUser(User user);
+
+    List<Map<String, Object>> loadAllUsers();
 
 }

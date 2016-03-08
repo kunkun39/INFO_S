@@ -9,6 +9,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * User: Jack Wang
@@ -25,9 +26,10 @@ public class SystemUserController {
     private UserService userService;
 
     @RequestMapping("/system/usermanagement.html")
-    public String sendToUserManagement(HttpServletRequest request) {
+    public String sendToUserManagement(HttpServletRequest request, ModelMap model) {
         setMenuKey(request);
-
+        List<User> users = userService.loadAllUsers();
+        model.put("users",users);
         return "system/setting/usermanagement";
     }
 

@@ -43,4 +43,11 @@ public class UserServiceImpl implements UserService {
     public void saveUser(User user) {
         userDao.saveUser(user);
     }
+
+    @Override
+    public List<User> loadAllUsers() {
+        List<Map<String, Object>> users=userDao.loadAllUsers();
+
+        return UserWebAssember.toUserListDomain(users);
+    }
 }
