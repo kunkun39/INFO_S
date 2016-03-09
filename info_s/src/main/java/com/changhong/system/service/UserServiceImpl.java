@@ -50,4 +50,9 @@ public class UserServiceImpl implements UserService {
 
         return UserWebAssember.toUserListDomain(users);
     }
+
+    @Override
+    public void updateUserState(int userid,boolean enable) {
+         userDao.updateUserState(userid,enable);
+    }
 }

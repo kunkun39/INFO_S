@@ -29,4 +29,9 @@
             (#roles[].roleType:VARCHAR#,#roles[].userId:INTEGER#)
         </iterate>
     </insert>
+
+    <update id="updateUserState" parameterClass="java.util.HashMap">
+        UPDATE system_user SET enabled = #enabled# WHERE id = #userId#
+    </update>
+
 </sqlMap>

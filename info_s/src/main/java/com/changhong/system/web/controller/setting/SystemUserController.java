@@ -5,6 +5,7 @@ import com.changhong.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,8 +30,25 @@ public class SystemUserController {
     public String sendToUserManagement(HttpServletRequest request, ModelMap model) {
         setMenuKey(request);
         List<User> users = userService.loadAllUsers();
-        model.put("users",users);
+        model.put("users", users);
         return "system/setting/usermanagement";
+    }
+
+    @RequestMapping("/system/userdisable.html")
+    public String saveUserFrom(HttpServletRequest request, ModelMap model) {
+
+        try {
+            boolean nowenabled = ServletRequestUtils.getBooleanParameter(request, "nowenabled");//true 執行禁用操作,false 執行解除禁用操作
+            int userid = ServletRequestUtils.getIntParameter(request, "userid", 0);
+            if (userid > 0){
+                userService.updateUserState(userid,!nowenabled);
+            }
+
+        } catch (ServletRequestBindingException e) {
+            e.printStackTrace();
+        }
+
+        return sendToUserManagement(request,model);
     }
 
     private void setMenuKey(HttpServletRequest request) {

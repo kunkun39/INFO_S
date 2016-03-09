@@ -72,4 +72,14 @@ public class UserDaoImpl extends BasicIbatisDataManager implements UserDao {
 
         return getSqlMapClientTemplate().queryForList("User.selectAllUsers");
     }
+
+    @Override
+    public void updateUserState(int userid, boolean enable) {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+
+        parameters.put("userId", userid);
+        parameters.put("enabled", enable ? true : false);
+
+        getSqlMapClientTemplate().update("User.updateUserState", parameters);
+    }
 }

@@ -62,6 +62,7 @@
                                     <th class="hidden-480">账号</th>
                                     <th class="hidden-480">联系方式</th>
                                     <th class="hidden-480">状态</th>
+                                    <th class="hidden-480">操作</th>
                                 </tr>
                                 </thead>
 
@@ -75,9 +76,17 @@
                                         <c:choose>
                                             <c:when test="${user.enabled}">
                                                 <td><span class="label label-success">用户正常</span></td>
+                                                <td><a class="btn mini purple"
+                                                       onclick="window.location.href = '${pageContext.request.contextPath}/system/userdisable.html?nowenabled=${user.enabled}&userid=${user.id}'">
+                                                    <i class="icon-edit"></i> 禁用账户</a>
+                                                </td>
                                             </c:when>
                                             <c:otherwise>
                                                 <td><span class="label label-success">已被禁用</span></td>
+                                                <td><a class="btn mini black"
+                                                       onclick="window.location.href='${pageContext.request.contextPath}/system/userdisable.html?nowenabled=${user.enabled}&userid=${user.id}'">
+                                                    <i class="icon-trash"></i> 授权使用</a>
+                                                </td>
                                             </c:otherwise>
                                         </c:choose>
                                     </tr>

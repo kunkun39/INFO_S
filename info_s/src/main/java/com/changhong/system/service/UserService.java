@@ -18,4 +18,10 @@ public interface UserService extends UserDetailsService {
     void saveUser(User user);
 
     List<User> loadAllUsers();
+
+    /**
+     * 更改用戶状态
+     * @param enable true：改为正常状态； false： 改为禁用
+     */
+    void updateUserState(int userid,boolean enable);
 }
