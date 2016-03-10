@@ -36,16 +36,11 @@ public class ClientServiceImpl implements ClientService {
     private DataProcessService dataProcessService;
 
     @Override
-    public int obtainProjectId(String projectCode) {
-        return projectService.obtainProjectIdByRandomKey(projectCode);
-    }
-
-    @Override
     public String obtainProjectFormat(String projectCode) {
         JSONObject value = new JSONObject();
         JSONObject object = null;
         if (StringUtils.hasText(projectCode)) {
-            int projectId = obtainProjectId(projectCode);
+            int projectId = projectService.obtainProjectIdByRandomKey(projectCode);
             if (projectId != -1) {
                 List<InfoGaterItemDTO> dtoList = itemService.obtainInfoGaterItemsByProjectId(projectId);
                 if (CHListUtils.hasElement(dtoList)) {
@@ -132,7 +127,7 @@ public class ClientServiceImpl implements ClientService {
         Map<String,Object> data = new HashMap<String, Object>();
         /* project code处理 */
         if (obj.containsKey(BasicData.PROJECT_CODE)) {
-            projectId = obtainProjectId(obj.getString(BasicData.PROJECT_CODE));
+            projectId = projectService.obtainProjectIdByRandomKey(obj.getString(BasicData.PROJECT_CODE));
             resultMap.put(BasicData.PROJECT_CODE, obj.getString(BasicData.PROJECT_CODE));
             if (projectId != -1) {
                 data.put(BasicData.PROJECT_CODE, obj.getString(BasicData.PROJECT_CODE));

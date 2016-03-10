@@ -49,4 +49,11 @@ public interface ProjectService {
      */
     boolean deleteInfoGatherProject(int projectId, int userId);
 
+    /**
+     * 获取该收集项的上报格式
+     * @param projectId
+     * @param userId
+     * @return json字符串
+     */
+    String obtainProjectJsonFormat(int projectId, int userId);
 }

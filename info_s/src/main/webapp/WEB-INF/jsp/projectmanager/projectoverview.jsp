@@ -81,6 +81,9 @@
                                                     <a class="btn mini purple" onclick="window.location.href = '${pageContext.request.contextPath}/project/projectform.html?projectId=${project.id}'">
                                                         <i class="icon-edit"></i> 编辑
                                                     </a>
+                                                    <a class="btn mini yellow" onclick="showProjectFormat(${project.id});">
+                                                        <i class="icon-print"></i> 格式
+                                                    </a>
                                                     <a class="btn mini black" onclick="deleteProject(${project.id}, '${project.projectName}');">
                                                         <i class="icon-trash"></i> 删除
                                                     </a>
@@ -119,6 +122,17 @@
             <button class="btn blue" onclick="peojectDeleteConf();">确认</button>
         </div>
     </div>
+
+    <div id="projectFormatPopup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h3>系统确认对话框</h3>
+        </div>
+
+        <div class="modal-body">
+            <p id="projectFormat"></p>
+        </div>
+    </div>
     <!-- END CONTAINER -->
     <c:import url="../common/jspart.jsp"/>
     <!-- BEGIN PAGE LEVEL PLUGINS -->
@@ -129,6 +143,10 @@
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="${pageContext.request.contextPath}/media/js/app.js"></script>
     <script src="${pageContext.request.contextPath}/media/js/table-managed.js"></script>
+
+    <script src="${pageContext.request.contextPath}/dwr/engine.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/dwr/util.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>
     <script type="text/javascript">
         jQuery(document).ready(function() {
             App.init();
@@ -142,6 +160,15 @@
 
         function peojectDeleteConf() {
             jQuery("#itemDeleteForm").submit();
+        }
+
+        function showProjectFormat(projectId) {
+            SystemDWRHandler.obtainInfoDataFormat(projectId, function(result) {
+                if (result != null) {
+                    jQuery("#projectFormat").html("上报格式:" + result);
+                    jQuery("#projectFormatPopup").modal();
+                }
+            });
         }
 
     </script>

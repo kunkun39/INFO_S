@@ -1,6 +1,11 @@
 package com.changhong.common.service;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.changhong.common.domain.BasicData;
 import com.changhong.common.domain.InfoGatherProject;
+import com.changhong.common.facade.assember.ItemWebAssember;
+import com.changhong.common.facade.dto.InfoGaterItemDTO;
 import com.changhong.common.repository.ItemDao;
 import com.changhong.common.repository.ProjectDao;
 import com.changhong.common.facade.assember.ProjectWebAssember;
@@ -10,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * User: pengjie
@@ -72,5 +78,32 @@ public class ProjectServiceImpl implements ProjectService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String obtainProjectJsonFormat(int projectId, int userId) {
+        JSONObject value = null;
+        InfoGatherProject project = obtainInfoGatherProjectByIds(projectId, userId);
+        if (project != null) {
+            List<InfoGaterItemDTO> itemDTOList = ItemWebAssember.toItemDomainList(itemDao.loadInfoGatherItemByProjectId(projectId));
+            if (CHListUtils.hasElement(itemDTOList)) {
+                value = new JSONObject(true);
+                value.put(BasicData.PROJECT_CODE, project.getProjectKey());
+
+                for (String basicData : BasicData.getBasicDataList()) {
+                    value.put(basicData, "value");
+                }
+
+                for (InfoGaterItemDTO dto : itemDTOList) {
+                    value.put(dto.getItemKey(), "value");
+                }
+            }
+        }
+        if (value != null) {
+            Set<String> set = value.keySet();
+            value.DEFAULT_GENERATE_FEATURE = value.DEFAULT_GENERATE_FEATURE & (~SerializerFeature.SortField.getMask());
+            return value.toJSONString();
+        }
+        return null;
     }
 }

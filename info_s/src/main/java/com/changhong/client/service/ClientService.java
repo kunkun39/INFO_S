@@ -11,12 +11,6 @@ import java.util.List;
 public interface ClientService {
 
     /**
-     * 查找随机key对应的项目ID号
-     * @param randomKey
-     */
-    int obtainProjectId(String randomKey);
-
-    /**
      * 通过项目的projectCode获取该项目的上报格式
      * @param projectCode
      */

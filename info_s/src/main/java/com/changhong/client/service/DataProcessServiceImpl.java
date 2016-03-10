@@ -80,7 +80,6 @@ public class DataProcessServiceImpl implements  DataProcessService, Initializing
         }
 
         public boolean enQueue(Object obj) {
-            int i = 0;
             return queue.add(obj);
         }
 
