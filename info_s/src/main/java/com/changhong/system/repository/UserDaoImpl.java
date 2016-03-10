@@ -53,7 +53,7 @@ public class UserDaoImpl extends BasicIbatisDataManager implements UserDao {
         User savedUser = UserWebAssember.toUserDomain(loadUserByUsername(user.getUsername()));
         if (savedUser != null && savedUser.getId() > 0) {
 
-            List<RoleInsert> myroles = new ArrayList<>();
+            List<RoleInsert> myroles = new ArrayList<RoleInsert>();
             for (Role role : user.getRoles()) {
                 RoleInsert roleInsert = new RoleInsert();
                 roleInsert.userId = savedUser.getId();

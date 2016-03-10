@@ -7,7 +7,7 @@ import com.changhong.common.utils.CHStringUtils;
  * Date: 2016/2/24
  * Time: 11:27
  */
-public class InfoGaterProject {
+public class InfoGatherProject {
 
     /**
      * 定义的KEY值，用于ibatis数据库交互时进行统一
@@ -43,7 +43,7 @@ public class InfoGaterProject {
     /**
      * 构造函数(读取已有的工程时使用该函数)
      **/
-    public InfoGaterProject() {
+    public InfoGatherProject() {
         this.id = -1;
     }
 
@@ -52,7 +52,7 @@ public class InfoGaterProject {
      * @param userId
      * @param projectName
      */
-    public InfoGaterProject(int userId, String projectName) {
+    public InfoGatherProject(int userId, String projectName) {
         this.userId = userId;
         this.projectName = projectName;
         this.projectKey = CHStringUtils.getRandomString(4);

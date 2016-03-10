@@ -7,7 +7,7 @@ import com.changhong.common.utils.CHStringUtils;
  * Date: 2016/2/24
  * Time: 14:20
  */
-public class InfoGaterItem {
+public class InfoGatherItem {
 
     /**
      * 定义的KEY值，用于ibatis数据库交互时进行统一
@@ -50,7 +50,7 @@ public class InfoGaterItem {
     /**
      * 构造函数(读取已有的收集项时使用该函数)
      **/
-    public InfoGaterItem() {
+    public InfoGatherItem() {
     }
 
     public int getId() {

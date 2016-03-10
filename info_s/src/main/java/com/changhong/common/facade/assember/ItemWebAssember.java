@@ -1,6 +1,6 @@
 package com.changhong.common.facade.assember;
 
-import com.changhong.common.domain.InfoGaterItem;
+import com.changhong.common.domain.InfoGatherItem;
 import com.changhong.common.domain.MetaData;
 import com.changhong.common.facade.dto.InfoGaterItemDTO;
 
@@ -19,24 +19,24 @@ public class ItemWebAssember {
 
         if (model != null) {
             dto = new InfoGaterItemDTO();
-            if (model.containsKey(InfoGaterItem.ID)) {
-                dto.setId((Integer) model.get(InfoGaterItem.ID));
+            if (model.containsKey(InfoGatherItem.ID)) {
+                dto.setId((Integer) model.get(InfoGatherItem.ID));
             }
 
-            if (model.containsKey(InfoGaterItem.ITEM_KEY)) {
-                dto.setItemKey((String) model.get(InfoGaterItem.ITEM_KEY));
+            if (model.containsKey(InfoGatherItem.ITEM_KEY)) {
+                dto.setItemKey((String) model.get(InfoGatherItem.ITEM_KEY));
             }
 
-            if (model.containsKey(InfoGaterItem.ITEM_NAME)) {
-                dto.setItemName((String) model.get(InfoGaterItem.ITEM_NAME));
+            if (model.containsKey(InfoGatherItem.ITEM_NAME)) {
+                dto.setItemName((String) model.get(InfoGatherItem.ITEM_NAME));
             }
 
-            if (model.containsKey(InfoGaterItem.PROJECT_ID)) {
-                dto.setProjectId((Integer) model.get(InfoGaterItem.PROJECT_ID));
+            if (model.containsKey(InfoGatherItem.PROJECT_ID)) {
+                dto.setProjectId((Integer) model.get(InfoGatherItem.PROJECT_ID));
             }
 
-            if (model.containsKey(InfoGaterItem.METADATA_ID)) {
-                dto.setMetaDataId((Integer) model.get(InfoGaterItem.METADATA_ID));
+            if (model.containsKey(InfoGatherItem.METADATA_ID)) {
+                dto.setMetaDataId((Integer) model.get(InfoGatherItem.METADATA_ID));
             }
 
             if (model.containsKey(MetaData.METADATA_NAME)) {

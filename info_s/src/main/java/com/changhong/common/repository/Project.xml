@@ -6,7 +6,7 @@
 
 <sqlMap namespace="Project">
     <insert id="insertProject" parameterClass="java.util.HashMap">
-        INSERT INTO infogater_project (
+        INSERT INTO infogather_project (
             user_id,
             project_random_key,
             project_name
@@ -19,32 +19,32 @@
 
     <select id="selectAllProject">
         SELECT id , project_random_key AS projectKey, project_name AS projectName
-        FROM infogater_project
+        FROM infogather_project
     </select>
 
     <select id="selectProjectByUserId" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
         SELECT id , project_random_key AS projectKey, project_name AS projectName
-        FROM infogater_project
+        FROM infogather_project
         WHERE user_id=#userId#
     </select>
 
     <select id="selectProjectByIds" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
         SELECT id , project_random_key AS projectKey, project_name AS projectName
-        FROM infogater_project
+        FROM infogather_project
         WHERE id=#id# AND user_id=#userId#
     </select>
 
     <select id="selectProjectIdByRandomkey" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
         SELECT id , project_random_key AS projectKey, project_name AS projectName
-        FROM infogater_project
+        FROM infogather_project
         WHERE project_random_key=#projectKey#
     </select>
 
     <update id="updateProjectName" parameterClass="java.util.HashMap">
-        UPDATE infogater_project SET project_name=#projectName# WHERE id=#id#
+        UPDATE infogather_project SET project_name=#projectName# WHERE id=#id#
     </update>
 
     <delete id="deleteProjectByIds" parameterClass="java.util.HashMap">
-        DELETE FROM infogater_project WHERE id=#id# AND user_id=#userId#
+        DELETE FROM infogather_project WHERE id=#id# AND user_id=#userId#
     </delete>
 </sqlMap>

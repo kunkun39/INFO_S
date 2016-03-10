@@ -1,6 +1,6 @@
 package com.changhong.common.service;
 
-import com.changhong.common.domain.InfoGaterItem;
+import com.changhong.common.domain.InfoGatherItem;
 import com.changhong.common.facade.dto.InfoGaterItemDTO;
 import com.changhong.common.repository.ItemDao;
 import com.changhong.common.facade.assember.ItemWebAssember;
@@ -25,21 +25,21 @@ public class ItemServiceImpl implements ItemService {
     private MetaDataDao metaDataDao;
 
     @Override
-    public boolean insertInfoGaterItem(InfoGaterItem item) {
+    public boolean insertInfoGaterItem(InfoGatherItem item) {
         if (item != null) {
-            return itemDao.insertInfoGaterItem(item);
+            return itemDao.insertInfoGatherItem(item);
         }
         return false;
     }
 
     @Override
     public List<InfoGaterItemDTO> obtainInfoGaterItemsByProjectId(int projectId) {
-        return ItemWebAssember.toItemDomainList(itemDao.loadInfoGaterItemByProjectId(projectId));
+        return ItemWebAssember.toItemDomainList(itemDao.loadInfoGatherItemByProjectId(projectId));
     }
 
     @Override
-    public boolean updateInfoGaterItem(InfoGaterItem item) {
-        if (itemDao.updateInfoGaterItemById(item) > 0) {
+    public boolean updateInfoGaterItem(InfoGatherItem item) {
+        if (itemDao.updateInfoGatherItemById(item) > 0) {
             return true;
         }
         return false;
@@ -47,7 +47,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public boolean deleteInfoGaterItem(int itemId, int metadataId) {
-        if (itemDao.deleteInfoGaterItemById(itemId) > 0) {
+        if (itemDao.deleteInfoGatherItemById(itemId) > 0) {
             if (metadataId > 0) {
                 metaDataDao.updateMetaDataStatus(metadataId, false);
             }

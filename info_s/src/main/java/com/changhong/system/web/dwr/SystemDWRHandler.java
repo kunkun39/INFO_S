@@ -17,15 +17,20 @@ public class SystemDWRHandler {
     public int checkUserNameInfo(String username) {
         int usernamestate = 1;
         if (username == null || username.equals("")) {
-            usernamestate = 1;//ÕËºÅÎª¿Õ
+            usernamestate = 1;//è´¦å·ä¸ºç©º
         } else {
             User user = (User) userService.loadUserByUsername(username);
             if (user == null || user.getId() <= 0) {
-                usernamestate = 0;//¿ÉÒÔ×¢²á
+                usernamestate = 0;//å¯ä»¥æ³¨å†Œ
             } else {
-                usernamestate = 3;//ÕËºÅ´æÔÚ
+                usernamestate = 3;//è´¦å·å­˜åœ¨
             }
         }
         return usernamestate;
+    }
+
+    public String obtainInfoDataFormat(int projectId) {
+        
+        return null;
     }
 }

@@ -1,6 +1,6 @@
 package com.changhong.common.repository;
 
-import com.changhong.common.domain.InfoGaterProject;
+import com.changhong.common.domain.InfoGatherProject;
 import com.changhong.mysql.BasicIbatisDataManager;
 import org.springframework.stereotype.Repository;
 
@@ -16,12 +16,12 @@ import java.util.Map;
 @Repository("projectDao")
 public class ProjectDaoImpl extends BasicIbatisDataManager implements ProjectDao {
     @Override
-    public int insertInfoGaterProject(InfoGaterProject project) {
+    public int insertInfoGatherProject(InfoGatherProject project) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 
-        parameters.put(InfoGaterProject.USER_ID, project.getUserId());
-        parameters.put(InfoGaterProject.PROJECT_KEY, project.getProjectKey());
-        parameters.put(InfoGaterProject.PROJECT_NAME, project.getProjectName());
+        parameters.put(InfoGatherProject.USER_ID, project.getUserId());
+        parameters.put(InfoGatherProject.PROJECT_KEY, project.getProjectKey());
+        parameters.put(InfoGatherProject.PROJECT_NAME, project.getProjectName());
 
         Integer id = (Integer) getSqlMapClientTemplate().insert("Project.insertProject", parameters);
         if (id != null) {
@@ -31,54 +31,54 @@ public class ProjectDaoImpl extends BasicIbatisDataManager implements ProjectDao
     }
 
     @Override
-    public List<Map<String, Object>> loadInfoGaterProject() {
+    public List<Map<String, Object>> loadInfoGatherProject() {
         return getSqlMapClientTemplate().queryForList("Project.selectAllProject");
     }
 
     @Override
-    public List<Map<String, Object>> loadInfoGaterProjectByUserId(int userId) {
+    public List<Map<String, Object>> loadInfoGatherProjectByUserId(int userId) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 
-        parameters.put(InfoGaterProject.USER_ID, userId);
+        parameters.put(InfoGatherProject.USER_ID, userId);
 
         return getSqlMapClientTemplate().queryForList("Project.selectProjectByUserId", parameters);
     }
 
     @Override
-    public List<Map<String, Object>> loadInfoGaterProjectByIds(int projectId, int userId) {
+    public List<Map<String, Object>> loadInfoGatherProjectByIds(int projectId, int userId) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 
-        parameters.put(InfoGaterProject.ID, projectId);
-        parameters.put(InfoGaterProject.USER_ID, userId);
+        parameters.put(InfoGatherProject.ID, projectId);
+        parameters.put(InfoGatherProject.USER_ID, userId);
 
         return getSqlMapClientTemplate().queryForList("Project.selectProjectByIds", parameters);
     }
 
     @Override
-    public List<Map<String, Object>> loadInfoGaterProjectByRandomKey(String randomKey) {
+    public List<Map<String, Object>> loadInfoGatherProjectByRandomKey(String randomKey) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 
-        parameters.put(InfoGaterProject.PROJECT_KEY, randomKey);
+        parameters.put(InfoGatherProject.PROJECT_KEY, randomKey);
 
         return getSqlMapClientTemplate().queryForList("Project.selectProjectIdByRandomkey", parameters);
     }
 
     @Override
-    public int updateInfoGaterProject(InfoGaterProject project) {
+    public int updateInfoGatherProject(InfoGatherProject project) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 
-        parameters.put(InfoGaterProject.ID, project.getId());
-        parameters.put(InfoGaterProject.PROJECT_NAME, project.getProjectName());
+        parameters.put(InfoGatherProject.ID, project.getId());
+        parameters.put(InfoGatherProject.PROJECT_NAME, project.getProjectName());
 
         return getSqlMapClientTemplate().update("Project.updateProjectName", parameters);
     }
 
     @Override
-    public int deleteInfoGaterProjectByIds(int projectId, int userId) {
+    public int deleteInfoGatherProjectByIds(int projectId, int userId) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 
-        parameters.put(InfoGaterProject.ID, projectId);
-        parameters.put(InfoGaterProject.USER_ID, userId);
+        parameters.put(InfoGatherProject.ID, projectId);
+        parameters.put(InfoGatherProject.USER_ID, userId);
 
         return getSqlMapClientTemplate().delete("Project.deleteProjectByIds", parameters);
     }

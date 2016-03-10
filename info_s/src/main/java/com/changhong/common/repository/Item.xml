@@ -6,7 +6,7 @@
 
 <sqlMap namespace="Item">
     <insert id="insertItem" parameterClass="java.util.HashMap">
-        INSERT INTO infogater_item (
+        INSERT INTO infogather_item (
             item_key,
             item_name,
             project_id,
@@ -20,20 +20,20 @@
 
     <select id="selectItemByProjectId" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
         SELECT a.id , a.item_key AS itemKey, a.item_name AS itemName, a.metadata_id AS metaDataId, b.data_name AS metadataName
-        FROM infogater_item a LEFT JOIN infogater_metadata b
+        FROM infogather_item a LEFT JOIN infogather_metadata b
         ON a.metadata_id=b.id
         WHERE a.project_id=#projectId#
     </select>
 
     <update id="updateItemById" parameterClass="java.util.HashMap">
-        UPDATE infogater_item SET item_name=#itemName#, item_key=#itemKey#, metadata_id=#metaDataId# WHERE id=#id#
+        UPDATE infogather_item SET item_name=#itemName#, item_key=#itemKey#, metadata_id=#metaDataId# WHERE id=#id#
     </update>
 
     <delete id="deleteItemById" parameterClass="java.util.HashMap">
-        DELETE FROM infogater_item WHERE id=#id#
+        DELETE FROM infogather_item WHERE id=#id#
     </delete>
 
     <delete id="deleteItemByProjectId" parameterClass="java.util.HashMap">
-        DELETE FROM infogater_item WHERE project_id=#projectId#
+        DELETE FROM infogather_item WHERE project_id=#projectId#
     </delete>
 </sqlMap>

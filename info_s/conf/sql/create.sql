@@ -31,8 +31,8 @@ CREATE TABLE `db_conf` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-DROP TABLE IF EXISTS `infogater_project`;
-CREATE TABLE `infogater_project` (
+DROP TABLE IF EXISTS `infogather_project`;
+CREATE TABLE `infogather_project` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(5) NOT NULL,
@@ -41,8 +41,8 @@ CREATE TABLE `infogater_project` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-DROP TABLE IF EXISTS `infogater_item`;
-CREATE TABLE `infogater_item` (
+DROP TABLE IF EXISTS `infogather_item`;
+CREATE TABLE `infogather_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `item_key` varchar(20) COLLATE utf8_bin NOT NULL,
@@ -52,8 +52,8 @@ CREATE TABLE `infogater_item` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-DROP TABLE IF EXISTS `infogater_metadata`;
-CREATE TABLE `infogater_metadata` (
+DROP TABLE IF EXISTS `infogather_metadata`;
+CREATE TABLE `infogather_metadata` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `data_name` varchar(20) COLLATE utf8_bin DEFAULT NULL,
@@ -76,12 +76,6 @@ CREATE TABLE `db_bck_history` (
   PRIMARY KEY  (`id`),
   FOREIGN KEY (`bak_project_id`) REFERENCES infogater_project (`id`),
   FOREIGN KEY (`bak_db_id`) REFERENCES db_conf (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-DROP TABLE IF EXISTS `infogater_project`;
-CREATE TABLE `infogater_project` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 

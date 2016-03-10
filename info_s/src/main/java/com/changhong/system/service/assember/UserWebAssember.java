@@ -32,7 +32,7 @@ public class UserWebAssember {
     }
 
     public static List<User> toUserListDomain(List<Map<String, Object>> models) {
-        List<User> users = new ArrayList<>();
+        List<User> users = new ArrayList<User>();
         if (models == null || models.size() <= 0) {
             return users;
         }

@@ -1,6 +1,6 @@
 package com.changhong.common.repository;
 
-import com.changhong.common.domain.InfoGaterItem;
+import com.changhong.common.domain.InfoGatherItem;
 import com.changhong.mysql.BasicIbatisDataManager;
 import org.springframework.stereotype.Repository;
 
@@ -16,13 +16,13 @@ import java.util.Map;
 @Repository("itemDao")
 public class ItemDaoImpl extends BasicIbatisDataManager implements ItemDao {
     @Override
-    public boolean insertInfoGaterItem(InfoGaterItem item) {
+    public boolean insertInfoGatherItem(InfoGatherItem item) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 
-        parameters.put(InfoGaterItem.ITEM_KEY, item.getItemKey());
-        parameters.put(InfoGaterItem.ITEM_NAME, item.getItemName());
-        parameters.put(InfoGaterItem.PROJECT_ID, item.getProjectId());
-        parameters.put(InfoGaterItem.METADATA_ID, item.getMetaDataId());
+        parameters.put(InfoGatherItem.ITEM_KEY, item.getItemKey());
+        parameters.put(InfoGatherItem.ITEM_NAME, item.getItemName());
+        parameters.put(InfoGatherItem.PROJECT_ID, item.getProjectId());
+        parameters.put(InfoGatherItem.METADATA_ID, item.getMetaDataId());
 
         Integer id = (Integer) getSqlMapClientTemplate().insert("Item.insertItem", parameters);
         if (id != null) {
@@ -32,39 +32,39 @@ public class ItemDaoImpl extends BasicIbatisDataManager implements ItemDao {
     }
 
     @Override
-    public List<Map<String, Object>> loadInfoGaterItemByProjectId(int projectId) {
+    public List<Map<String, Object>> loadInfoGatherItemByProjectId(int projectId) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 
-        parameters.put(InfoGaterItem.PROJECT_ID, projectId);
+        parameters.put(InfoGatherItem.PROJECT_ID, projectId);
         return getSqlMapClientTemplate().queryForList("Item.selectItemByProjectId", parameters);
     }
 
     @Override
-    public int updateInfoGaterItemById(InfoGaterItem item) {
+    public int updateInfoGatherItemById(InfoGatherItem item) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 
-        parameters.put(InfoGaterItem.ID, item.getId());
-        parameters.put(InfoGaterItem.ITEM_NAME, item.getItemName());
-        parameters.put(InfoGaterItem.ITEM_KEY, item.getItemKey());
-        parameters.put(InfoGaterItem.METADATA_ID, item.getMetaDataId());
+        parameters.put(InfoGatherItem.ID, item.getId());
+        parameters.put(InfoGatherItem.ITEM_NAME, item.getItemName());
+        parameters.put(InfoGatherItem.ITEM_KEY, item.getItemKey());
+        parameters.put(InfoGatherItem.METADATA_ID, item.getMetaDataId());
 
         return getSqlMapClientTemplate().update("Item.updateItemById", parameters);
     }
 
     @Override
-    public int deleteInfoGaterItemById(int id) {
+    public int deleteInfoGatherItemById(int id) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 
-        parameters.put(InfoGaterItem.ID, id);
+        parameters.put(InfoGatherItem.ID, id);
 
         return getSqlMapClientTemplate().delete("Item.deleteItemById", parameters);
     }
 
     @Override
-    public int deleteInfoGaterItemByProjectId(int projecctId) {
+    public int deleteInfoGatherItemByProjectId(int projecctId) {
         Map<String, Object> parameters = new HashMap<String, Object>();
 
-        parameters.put(InfoGaterItem.PROJECT_ID, projecctId);
+        parameters.put(InfoGatherItem.PROJECT_ID, projecctId);
 
         return getSqlMapClientTemplate().delete("Item.deleteItemByProjectId", parameters);
     }

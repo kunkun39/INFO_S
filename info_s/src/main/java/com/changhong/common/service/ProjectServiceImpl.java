@@ -1,6 +1,6 @@
 package com.changhong.common.service;
 
-import com.changhong.common.domain.InfoGaterProject;
+import com.changhong.common.domain.InfoGatherProject;
 import com.changhong.common.repository.ItemDao;
 import com.changhong.common.repository.ProjectDao;
 import com.changhong.common.facade.assember.ProjectWebAssember;
@@ -26,16 +26,16 @@ public class ProjectServiceImpl implements ProjectService {
     private ItemDao itemDao;
 
     @Override
-    public int insertInfoGaterProject(InfoGaterProject project) {
+    public int insertInfoGatherProject(InfoGatherProject project) {
         if (project != null) {
-            return projectDao.insertInfoGaterProject(project);
+            return projectDao.insertInfoGatherProject(project);
         }
         return -1;
     }
 
     @Override
-    public InfoGaterProject obtainInfoGaterProjectByIds(int projectId, int userId) {
-        List<Map<String, Object>> list =  projectDao.loadInfoGaterProjectByIds(projectId, userId);
+    public InfoGatherProject obtainInfoGatherProjectByIds(int projectId, int userId) {
+        List<Map<String, Object>> list =  projectDao.loadInfoGatherProjectByIds(projectId, userId);
         if (CHListUtils.hasElement(list)) {
             return ProjectWebAssember.toProjectDomain(list.get(0));
     }
@@ -43,13 +43,13 @@ public class ProjectServiceImpl implements ProjectService {
 }
 
     @Override
-    public List<InfoGaterProject> obtainInfoGaterProjectsByUserId(int userId) {
-        return ProjectWebAssember.toProjectDomainList(projectDao.loadInfoGaterProjectByUserId(userId));
+    public List<InfoGatherProject> obtainInfoGatherProjectsByUserId(int userId) {
+        return ProjectWebAssember.toProjectDomainList(projectDao.loadInfoGatherProjectByUserId(userId));
     }
 
     @Override
     public int obtainProjectIdByRandomKey(String randomKey) {
-        List<Map<String, Object>> list = projectDao.loadInfoGaterProjectByRandomKey(randomKey);
+        List<Map<String, Object>> list = projectDao.loadInfoGatherProjectByRandomKey(randomKey);
         if (CHListUtils.hasElement(list)) {
             return ProjectWebAssember.toProjectDomain(list.get(0)).getId();
         }
@@ -57,18 +57,18 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public boolean updateInfoGaterProject(InfoGaterProject project) {
-        if (projectDao.updateInfoGaterProject(project) >= 0) {
+    public boolean updateInfoGaterProject(InfoGatherProject project) {
+        if (projectDao.updateInfoGatherProject(project) >= 0) {
             return true;
         }
         return false;
     }
 
     @Override
-    public boolean deleteInfoGaterProject(int projectId, int userId) {
-        int test = projectDao.deleteInfoGaterProjectByIds(projectId, userId);
+    public boolean deleteInfoGatherProject(int projectId, int userId) {
+        int test = projectDao.deleteInfoGatherProjectByIds(projectId, userId);
         if (test > 0) {
-            itemDao.deleteInfoGaterItemByProjectId(projectId);
+            itemDao.deleteInfoGatherItemByProjectId(projectId);
             return true;
         }
         return false;

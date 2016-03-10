@@ -1,6 +1,6 @@
 package com.changhong.common.service;
 
-import com.changhong.common.domain.InfoGaterProject;
+import com.changhong.common.domain.InfoGatherProject;
 
 import java.util.List;
 
@@ -15,20 +15,20 @@ public interface ProjectService {
      * 插入project信息
      * @param project
      */
-    int insertInfoGaterProject(InfoGaterProject project);
+    int insertInfoGatherProject(InfoGatherProject project);
 
     /**
      * 通过项目id读取工程信息
      * @param projectId
      * @param userId
      */
-    InfoGaterProject obtainInfoGaterProjectByIds(int projectId, int userId);
+    InfoGatherProject obtainInfoGatherProjectByIds(int projectId, int userId);
 
     /**
      * 通过userId读取工程信息
      * @param userId
      */
-    List<InfoGaterProject> obtainInfoGaterProjectsByUserId(int userId);
+    List<InfoGatherProject> obtainInfoGatherProjectsByUserId(int userId);
 
     /**
      * 通过项目的随机码取得该项目的ID号
@@ -40,12 +40,13 @@ public interface ProjectService {
      * 更新用户的工程信息
      * @param project
      */
-    boolean updateInfoGaterProject(InfoGaterProject project);
+    boolean updateInfoGaterProject(InfoGatherProject project);
 
     /**
      * 删除工程信息
      * @param projectId
      * @param userId
      */
-    boolean deleteInfoGaterProject(int projectId, int userId);
+    boolean deleteInfoGatherProject(int projectId, int userId);
+
 }

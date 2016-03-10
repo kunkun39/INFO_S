@@ -6,7 +6,7 @@
 
 <sqlMap namespace="MetaData">
     <insert id="insertMetaData" parameterClass="java.util.HashMap">
-        INSERT INTO infogater_metadata (
+        INSERT INTO infogather_metadata (
         data_name,
         user_id,
         project_id,
@@ -21,37 +21,37 @@
 
     <select id="selectMetaDataBySelfId" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
         SELECT a.id, a.data_name AS metadataName, a.isused AS isUsed, a.content AS content, b.item_name AS itemName, c.project_name AS projectName
-        FROM infogater_metadata a
-        LEFT JOIN infogater_item b ON a.id=b.metadata_id
-        LEFT JOIN infogater_project c ON a.project_id=c.id
+        FROM infogather_metadata a
+        LEFT JOIN infogather_item b ON a.id=b.metadata_id
+        LEFT JOIN infogather_project c ON a.project_id=c.id
         WHERE a.id=#id# AND a.user_id=#userId#
     </select>
 
     <select id="selectMetaDataByUserId" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
         SELECT a.id, a.data_name AS metadataName, a.isused AS isUsed, b.item_name AS itemName, c.project_name AS projectName
-        FROM infogater_metadata a
-        LEFT JOIN infogater_item b ON a.id=b.metadata_id
-        LEFT JOIN infogater_project c ON a.project_id=c.id
+        FROM infogather_metadata a
+        LEFT JOIN infogather_item b ON a.id=b.metadata_id
+        LEFT JOIN infogather_project c ON a.project_id=c.id
         WHERE a.user_id=#userId#
     </select>
 
     <select id="selectMetaDataByIds" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
         SELECT a.id, a.data_name AS metadataName, a.isused AS isUsed, b.item_name AS itemName, c.project_name AS projectName
-        FROM infogater_metadata a
-        LEFT JOIN infogater_item b ON a.id=b.metadata_id
-        LEFT JOIN infogater_project c ON a.project_id=c.id
+        FROM infogather_metadata a
+        LEFT JOIN infogather_item b ON a.id=b.metadata_id
+        LEFT JOIN infogather_project c ON a.project_id=c.id
         WHERE a.user_id=#userId# AND a.project_id=#projectId#
     </select>
 
     <update id="updateUsedInfo" parameterClass="java.util.HashMap">
-        UPDATE infogater_metadata SET isused=#isUsed# WHERE id=#id#
+        UPDATE infogather_metadata SET isused=#isUsed# WHERE id=#id#
     </update>
 
     <update id="updateMetaData" parameterClass="java.util.HashMap">
-        UPDATE infogater_metadata SET data_name=#metadataName#, content=#content# WHERE id=#id#
+        UPDATE infogather_metadata SET data_name=#metadataName#, content=#content# WHERE id=#id#
     </update>
 
     <delete id="deleteMetaDataBySelfId" parameterClass="java.util.HashMap">
-        DELETE FROM infogater_metadata WHERE id=#id# AND user_id=#userId#
+        DELETE FROM infogather_metadata WHERE id=#id# AND user_id=#userId#
     </delete>
 </sqlMap>

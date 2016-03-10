@@ -1,6 +1,6 @@
 package com.changhong.common.facade.assember;
 
-import com.changhong.common.domain.InfoGaterProject;
+import com.changhong.common.domain.InfoGatherProject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,33 +12,33 @@ import java.util.Map;
  * Time: 10:19
  */
 public class ProjectWebAssember {
-    public static InfoGaterProject toProjectDomain(Map<String, Object> model) {
-        InfoGaterProject project = null;
+    public static InfoGatherProject toProjectDomain(Map<String, Object> model) {
+        InfoGatherProject project = null;
 
         if (model != null) {
-            project = new InfoGaterProject();
-            if (model.containsKey(InfoGaterProject.ID)) {
-                project.setId((Integer) model.get(InfoGaterProject.ID));
+            project = new InfoGatherProject();
+            if (model.containsKey(InfoGatherProject.ID)) {
+                project.setId((Integer) model.get(InfoGatherProject.ID));
             }
 
-            if (model.containsKey(InfoGaterProject.USER_ID)) {
-                project.setUserId((Integer) model.get(InfoGaterProject.USER_ID));
+            if (model.containsKey(InfoGatherProject.USER_ID)) {
+                project.setUserId((Integer) model.get(InfoGatherProject.USER_ID));
             }
 
-            if (model.containsKey(InfoGaterProject.PROJECT_KEY)) {
-                project.setProjectKey((String) model.get(InfoGaterProject.PROJECT_KEY));
+            if (model.containsKey(InfoGatherProject.PROJECT_KEY)) {
+                project.setProjectKey((String) model.get(InfoGatherProject.PROJECT_KEY));
             }
 
-            if (model.containsKey(InfoGaterProject.PROJECT_NAME)) {
-                project.setProjectName((String) model.get(InfoGaterProject.PROJECT_NAME));
+            if (model.containsKey(InfoGatherProject.PROJECT_NAME)) {
+                project.setProjectName((String) model.get(InfoGatherProject.PROJECT_NAME));
             }
         }
 
         return project;
     }
 
-    public static List<InfoGaterProject> toProjectDomainList(List<Map<String, Object>> models) {
-        List<InfoGaterProject> projects = new ArrayList<InfoGaterProject>();
+    public static List<InfoGatherProject> toProjectDomainList(List<Map<String, Object>> models) {
+        List<InfoGatherProject> projects = new ArrayList<InfoGatherProject>();
 
         if (models != null) {
             for (Map<String, Object> model : models) {

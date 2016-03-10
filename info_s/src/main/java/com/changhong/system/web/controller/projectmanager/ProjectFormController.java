@@ -1,6 +1,6 @@
 package com.changhong.system.web.controller.projectmanager;
 
-import com.changhong.common.domain.InfoGaterProject;
+import com.changhong.common.domain.InfoGatherProject;
 import com.changhong.common.facade.dto.InfoGaterItemDTO;
 import com.changhong.common.service.ItemService;
 import com.changhong.common.service.ProjectService;
@@ -38,12 +38,12 @@ public class ProjectFormController {
         int projectId = ServletRequestUtils.getIntParameter(request, "projectId", -1);
         int userId = SecurityUtils.currectAuthenticationId();
 
-        InfoGaterProject project = null;
+        InfoGatherProject project = null;
         if (projectId > 0) {
-            project = projectService.obtainInfoGaterProjectByIds(projectId, userId);
+            project = projectService.obtainInfoGatherProjectByIds(projectId, userId);
         }
         if (project == null) {
-            project = new InfoGaterProject();
+            project = new InfoGatherProject();
             model.put("showItem",false);
         } else {
             List<InfoGaterItemDTO> items = itemService.obtainInfoGaterItemsByProjectId(projectId);
@@ -58,7 +58,7 @@ public class ProjectFormController {
         return "projectmanager/projectform";
     }
     @RequestMapping(method= RequestMethod.POST)
-    public String saveUserProject(HttpServletRequest request, @ModelAttribute("project") InfoGaterProject project, BindingResult errors, ModelMap model) {
+    public String saveUserProject(HttpServletRequest request, @ModelAttribute("project") InfoGatherProject project, BindingResult errors, ModelMap model) {
         int userId = SecurityUtils.currectAuthenticationId();
         int projectId = project.getId();
         if (projectId != -1) {
@@ -67,7 +67,7 @@ public class ProjectFormController {
         } else {
             project.setRandomKey();
             project.setUserId(userId);
-            projectId = projectService.insertInfoGaterProject(project);
+            projectId = projectService.insertInfoGatherProject(project);
             return "redirect:projectform.html?projectId=" + projectId;
         }
     }

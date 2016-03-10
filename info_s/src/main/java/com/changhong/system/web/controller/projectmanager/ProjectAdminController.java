@@ -1,7 +1,7 @@
 package com.changhong.system.web.controller.projectmanager;
 
-import com.changhong.common.domain.InfoGaterItem;
-import com.changhong.common.domain.InfoGaterProject;
+import com.changhong.common.domain.InfoGatherItem;
+import com.changhong.common.domain.InfoGatherProject;
 import com.changhong.common.facade.dto.MetaDataDTO;
 import com.changhong.common.service.DocumentService;
 import com.changhong.common.service.ItemService;
@@ -44,7 +44,7 @@ public class ProjectAdminController {
     @RequestMapping("/project/projectoverview.html")
     public String sendToProjectOverview(HttpServletRequest request, ModelMap model) {
         int userId = SecurityUtils.currectAuthenticationId();
-        List<InfoGaterProject> projects =  projectService.obtainInfoGaterProjectsByUserId(userId);
+        List<InfoGatherProject> projects =  projectService.obtainInfoGatherProjectsByUserId(userId);
 
         model.put("projects", projects);
 
@@ -55,7 +55,7 @@ public class ProjectAdminController {
     public String sendToProjectDeleteForm(HttpServletRequest request, ModelMap model) {
         int projectId = ServletRequestUtils.getIntParameter(request, "projectId", -1);
 
-        projectService.deleteInfoGaterProject(projectId, SecurityUtils.currectAuthenticationId());
+        projectService.deleteInfoGatherProject(projectId, SecurityUtils.currectAuthenticationId());
 
         return "redirect:projectoverview.html";
     }
@@ -94,7 +94,7 @@ public class ProjectAdminController {
             }
             metadataId = -1;
         }
-        InfoGaterItem item = new InfoGaterItem();
+        InfoGatherItem item = new InfoGatherItem();
         item.setItemName(itemName);
         item.setItemKey(itemKey);
         item.setMetaDataId(metadataId);
@@ -105,11 +105,6 @@ public class ProjectAdminController {
             item.setProjectId(projectId);
             itemService.insertInfoGaterItem(item);
         }
-
-//        setMenuKey(request, INFO_GATER, PROJECT_MANAGE);
-//        InfoGaterProject project = new InfoGaterProject();
-//        model.put("project", project);
-//        return "projectadmin/projectform";
         return "redirect:projectform.html?projectId=" + projectId;
 
     }

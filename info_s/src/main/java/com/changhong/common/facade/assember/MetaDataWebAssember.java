@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.changhong.common.domain.InfoGaterItem;
-import com.changhong.common.domain.InfoGaterProject;
+import com.changhong.common.domain.InfoGatherItem;
+import com.changhong.common.domain.InfoGatherProject;
 import com.changhong.common.domain.MetaData;
 import com.changhong.common.facade.dto.MetaDataDTO;
 import com.changhong.common.facade.dto.MetaDataSubItem;
@@ -60,12 +60,12 @@ public class MetaDataWebAssember {
                 dto.setItems(parseToList((String) model.get(MetaData.METADATA_CONTENT)));
             }
 
-            if (model.containsKey(InfoGaterItem.ITEM_NAME)) {
-                dto.setItemName((String) model.get(InfoGaterItem.ITEM_NAME));
+            if (model.containsKey(InfoGatherItem.ITEM_NAME)) {
+                dto.setItemName((String) model.get(InfoGatherItem.ITEM_NAME));
             }
 
-            if (model.containsKey(InfoGaterProject.PROJECT_NAME)) {
-                dto.setProjectName((String) model.get(InfoGaterProject.PROJECT_NAME));
+            if (model.containsKey(InfoGatherProject.PROJECT_NAME)) {
+                dto.setProjectName((String) model.get(InfoGatherProject.PROJECT_NAME));
             }
         }
         return dto;
