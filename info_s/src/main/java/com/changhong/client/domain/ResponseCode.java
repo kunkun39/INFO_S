@@ -8,8 +8,9 @@ package com.changhong.client.domain;
 public enum ResponseCode {
     SUCCESS(1000), //数据采集成功
     PROJECTNOTEXIST(1001), //项目不存在
-    BASICDATAMISS(1002), //基础数据丢失
-    FORMATERROR(1003), //数据格式错误
+    PROJECTCODEMISS(1002), //项目code丢失
+    BASICDATAMISS(1002), //基础数据缺失
+    FORMATERROR(1003), //项目数据格式错误
     PARAMERROR(1004),  //参数错误
     ORTHERERROR(1005); //其他错误
 

@@ -1,5 +1,6 @@
 package com.changhong.common.thread;
 
+import com.changhong.common.domain.BasicData;
 import com.changhong.mongodb.MongoDBManager;
 import org.bson.Document;
 import org.springframework.util.StringUtils;
@@ -61,19 +62,19 @@ public class DataProcessor extends Thread{
     }
 
     private void insert(MongoDBManager mongoDBManager, Map<String, Object> map) {
-        String projectName = (String) map.get("projectName");
+        String projectName = (String) map.get(BasicData.PROJECT_CODE);
         if (StringUtils.hasText(projectName)) {
-            map.remove("projectName");
+            map.remove(BasicData.PROJECT_CODE);
             mongoDBManager.insert(projectName, new Document(map), false, false, false);
         }
     }
 
     private void insert(MongoDBManager mongoDBManager, List<Map<String, Object>> list) {
-        String projectName = (String) list.get(0).get("projectName");
+        String projectName = (String) list.get(0).get(BasicData.PROJECT_CODE);
         if (StringUtils.hasText(projectName)) {
             List<Document> documents = new ArrayList<Document>();
             for (Map<String, Object> map : list) {
-                map.remove("projectName");
+                map.remove(BasicData.PROJECT_CODE);
                 documents.add(new Document(map));
             }
             mongoDBManager.insert(projectName, documents, false, false, false);

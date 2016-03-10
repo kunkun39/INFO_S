@@ -17,14 +17,20 @@ public interface ClientService {
     int obtainProjectId(String randomKey);
 
     /**
-     * 通过项目的ID获取该项目的上报格式
-     * @param projectId
+     * 通过项目的projectCode获取该项目的上报格式
+     * @param projectCode
      */
-    String obtainProjectFormat(int projectId);
+    String obtainProjectFormat(String projectCode);
 
     /**
      * 通过项目的ID获取该项目对应的收集项的key集合
      * @param projectId
      */
-    List<String> obtainInfogaterItemParam(int projectId);
+    List<String> obtainInfogatherItemList(int projectId);
+
+    /**
+     * 信息数据处理
+     * @param infoData
+     */
+    String processInfoData(String infoData);
 }
