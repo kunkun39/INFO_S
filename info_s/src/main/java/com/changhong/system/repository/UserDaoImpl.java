@@ -20,6 +20,19 @@ import java.util.Map;
 @Repository("userDao")
 public class UserDaoImpl extends BasicIbatisDataManager implements UserDao {
 
+    @Override
+    public Map<String, Object> loadUserById(int userid) {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("userid", userid);
+
+        List<HashMap> pages = getSqlMapClientTemplate().queryForList("User.selectUserByUserid", parameters);
+
+        if (pages == null || pages.isEmpty()) {
+            return null;
+        }
+        return pages.get(0);
+    }
+
     public Map<String, Object> loadUserByUsername(String username) {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("username", username);
@@ -81,5 +94,15 @@ public class UserDaoImpl extends BasicIbatisDataManager implements UserDao {
         parameters.put("enabled", enable ? true : false);
 
         getSqlMapClientTemplate().update("User.updateUserState", parameters);
+    }
+
+    @Override
+    public void updatePassword(int userid, String newPassword) {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+
+        parameters.put("userId", userid);
+        parameters.put("password", newPassword);
+
+        getSqlMapClientTemplate().update("User.updatePassword", parameters);
     }
 }

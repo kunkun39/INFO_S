@@ -9,6 +9,10 @@
         select * from system_user
     </select>
 
+    <select id="selectUserByUserid" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+        select * from system_user where id = #userid# limit 1
+    </select>
+
     <select id="selectUserByUsername" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
         select * from system_user where username = #username# limit 1
     </select>
@@ -34,4 +38,7 @@
         UPDATE system_user SET enabled = #enabled# WHERE id = #userId#
     </update>
 
+    <update id="updatePassword" parameterClass="java.util.HashMap">
+        UPDATE system_user SET password = #password# WHERE id = #userId#
+    </update>
 </sqlMap>

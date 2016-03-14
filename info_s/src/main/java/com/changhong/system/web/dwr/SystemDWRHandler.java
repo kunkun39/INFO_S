@@ -25,31 +25,57 @@ public class SystemDWRHandler {
     public int checkUserNameInfo(String username) {
         int usernamestate = 1;
         if (username == null || username.equals("")) {
-            usernamestate = 1;//è´¦å·ä¸ºç©º
+            usernamestate = 1;//ÕËºÅÎª¿Õ
         } else {
             User user = (User) userService.loadUserByUsername(username);
             if (user == null || user.getId() <= 0) {
-                usernamestate = 0;//å¯ä»¥æ³¨å†Œ
+                usernamestate = 0;//¿ÉÒÔ×¢²á
             } else {
-                usernamestate = 3;//è´¦å·å­˜åœ¨
+                usernamestate = 3;//ÕËºÅ´æÔÚ
             }
         }
         return usernamestate;
     }
 
     /**
-     * è·å–æ”¶é›†é¡¹çš„ä¸ŠæŠ¥æ ¼å¼
+     * »ñÈ¡ÊÕ¼¯ÏîµÄÉÏ±¨¸ñÊ½
+     *
      * @param projectId
-     * @return jsonå­—ç¬¦ä¸²
+     * @return json×Ö·û´®
      */
     public String obtainInfoDataFormat(int projectId) {
         int userId = SecurityUtils.currectAuthenticationId();
         if (userId >= 0 && projectId >= 0) {
-            String format =  projectService.obtainProjectJsonFormat(projectId, userId);
+            String format = projectService.obtainProjectJsonFormat(projectId, userId);
             if (format != null) {
                 return format.replace("value", "<font color=\"red\">value</font>");
             }
         }
         return null;
+    }
+
+    /**
+     * ¼ì²éÓÃ»§ÕÒ»ØÃÜÂëÊ±ºòÊäÈëµÄÔ­Ê¼ÃÜÂë
+     *
+     * @param password
+     * @return 0ÃÜÂëÊäÈëÕıÈ·  1£ºÃÜÂëÎª¿Õ £» 2£ºµÇÂ½ÓÃ»§ĞÅÏ¢»ñÈ¡Òì³£ 3£ºÃÜÂë²»ÕıÈ·
+     */
+    public int checkUserPassword(String password) {
+        int passwordState = 1;
+        if (password == null || password.equals("")) {
+            passwordState = 1;//ÃÜÂëÎª¿Õ
+        } else {
+            User user = userService.obtainUserById(SecurityUtils.currectAuthenticationId());
+            if (user == null) {
+                passwordState = 2;//ÓÃ»§Î´µÇÂ½»òµÇÂ½¹ıÆÚ
+            } else {
+                if (password.equals(user.getPassword())) {
+                    passwordState = 0;//¾ÉÃÜÂëÊäÈëÕıÈ·
+                } else {
+                    passwordState = 3;//ÃÜÂë²»ÕıÈ·
+                }
+            }
+        }
+        return passwordState;
     }
 }

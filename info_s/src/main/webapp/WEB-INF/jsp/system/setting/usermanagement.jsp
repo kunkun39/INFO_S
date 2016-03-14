@@ -9,6 +9,16 @@
     <!-- BEGIN PAGE LEVEL STYLES -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/media/css/select2_metro.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/media/css/DT_bootstrap.css"/>
+    <style type="text/css">
+        .enableuser{
+            padding: 5px;
+            color: red;
+        }
+        .disableuser{
+            padding: 5px;
+            color: blue;
+        }
+    </style>
 </head>
 
 <body class="page-header-fixed">
@@ -75,14 +85,14 @@
                                         <td class="hidden-480">${user.contactWay}</td>
                                         <c:choose>
                                             <c:when test="${user.enabled}">
-                                                <td><span class="label label-success">用户正常</span></td>
+                                                <td><span class="disableuser">用户正常</span></td>
                                                 <td><a class="btn mini purple"
                                                        onclick="window.location.href = '${pageContext.request.contextPath}/system/userdisable.html?nowenabled=${user.enabled}&userid=${user.id}'">
                                                     <i class="icon-edit"></i> 禁用账户</a>
                                                 </td>
                                             </c:when>
                                             <c:otherwise>
-                                                <td><span class="label label-success">已被禁用</span></td>
+                                                <td><span class="enableuser">已被禁用</span></td>
                                                 <td><a class="btn mini black"
                                                        onclick="window.location.href='${pageContext.request.contextPath}/system/userdisable.html?nowenabled=${user.enabled}&userid=${user.id}'">
                                                     <i class="icon-trash"></i> 授权使用</a>

@@ -36,8 +36,14 @@ public class UserServiceImpl implements UserService {
     }
 
     public User obtainUserById(int userId) {
-
-        return null;
+        Map<String, Object> userMap = userDao.loadUserById(userId);
+        if (userMap == null) {
+            return null;
+        }
+        User user = UserWebAssember.toUserDomain(userMap);
+        List<Map<String,Object>> roles = userDao.loadUserRoleByUserId(user.getId());
+        UserWebAssember.addUserRoleDomain(user, roles);
+        return user;
     }
 
     public void saveUser(User user) {
@@ -54,5 +60,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUserState(int userid,boolean enable) {
          userDao.updateUserState(userid,enable);
+    }
+
+    @Override
+    public void updatePassword(int userid, String newPassword) {
+        userDao.updatePassword(userid, newPassword);
     }
 }
