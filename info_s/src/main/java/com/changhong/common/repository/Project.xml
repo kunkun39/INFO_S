@@ -23,7 +23,7 @@
     </select>
 
     <select id="selectProjectByUserId" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
-        SELECT id , project_random_key AS projectKey, project_name AS projectName
+        SELECT id , timestamp, project_random_key AS projectKey, project_name AS projectName
         FROM infogather_project
         WHERE user_id=#userId#
     </select>

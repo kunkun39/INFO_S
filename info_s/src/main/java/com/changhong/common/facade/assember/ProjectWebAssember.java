@@ -2,7 +2,9 @@ package com.changhong.common.facade.assember;
 
 import com.changhong.common.domain.InfoGatherProject;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +21,15 @@ public class ProjectWebAssember {
             project = new InfoGatherProject();
             if (model.containsKey(InfoGatherProject.ID)) {
                 project.setId((Integer) model.get(InfoGatherProject.ID));
+            }
+
+            if (model.containsKey(InfoGatherProject.TIME_STAMP)) {
+                String timestamp = model.get(InfoGatherProject.TIME_STAMP).toString();
+                int endIndex = timestamp.indexOf(".");
+                if (endIndex > 0) {
+                    timestamp = timestamp.substring(0, endIndex);
+                }
+                project.setTimestamp(timestamp);
             }
 
             if (model.containsKey(InfoGatherProject.USER_ID)) {

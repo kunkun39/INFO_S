@@ -10,4 +10,66 @@
     <short-name>ch</short-name>
     <uri>http://www.chanhong.com</uri>
 
+    <tag>
+        <name>numberpaging</name>
+        <tag-class>com.changhong.system.web.tag.NumberPagingTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>paging</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>com.changhong.system.web.paging.Paging</type>
+        </attribute>
+        <attribute>
+            <name>urlMapping</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>maxPageNumber</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>previous</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>next</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>goToSpecificPage</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>currentPageNumberParameter</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>delimiter</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>showGoTo</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>showPageInformation</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>function</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
 </taglib>

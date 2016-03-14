@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="ch" uri="http://www.chanhong.com" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,19 +66,19 @@
                                 <table class="table table-striped table-bordered table-hover" id="sample_2">
                                     <thead>
                                         <tr>
-                                            <th style="width:8px;"></th>
-                                            <th>项目名</th>
-                                            <th class="hidden-480">创建时间</th>
-                                            <th class="hidden-480">操作</th>
+                                            <th style="width : 3%;"></th>
+                                            <th style="width : 15%;">项目名</th>
+                                            <th style="width : 35%;">创建时间</th>
+                                            <th style="width : 35%;">操作</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <c:forEach items="${projects}" var = "project">
                                             <tr class="odd gradeX">
-                                                <td><input type="checkbox" class="checkboxes" value="1" /></td>
-                                                <td>${project.projectName}</td>
-                                                <td class="hidden-480">2016.02.17</td>
-                                                <td>
+                                                <td ><input type="checkbox" class="checkboxes" value="1" /></td>
+                                                <td >${project.projectName}</td>
+                                                <td >${project.timestamp}</td>
+                                                <td >
                                                     <a class="btn mini purple" onclick="window.location.href = '${pageContext.request.contextPath}/project/projectform.html?projectId=${project.id}'">
                                                         <i class="icon-edit"></i> 编辑
                                                     </a>
@@ -98,6 +99,11 @@
                     </div>
                 </div>
                 <!-- END PAGE CONTENT-->
+                <div class="pagination" style="text-align: center;">
+                    <ul style="box-shadow: 0px 0px 0px;">
+                        <ch:numberpaging urlMapping="" paging="${paging}"/>
+                    </ul>
+                </div>
             </div>
             <!-- END PAGE CONTAINER-->
         </div>

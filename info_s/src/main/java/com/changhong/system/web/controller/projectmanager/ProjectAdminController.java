@@ -9,6 +9,7 @@ import com.changhong.common.service.MetaDataService;
 import com.changhong.common.service.ProjectService;
 import com.changhong.common.utils.SecurityUtils;
 import com.changhong.system.property.MenuKeyProperties;
+import com.changhong.system.web.paging.TestPaging;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -49,6 +50,11 @@ public class ProjectAdminController {
         model.put("projects", projects);
 
         MenuKeyProperties.setMenuKey(request, MenuKeyProperties.INFO_GATER, MenuKeyProperties.PROJECT_MANAGE);
+
+        TestPaging paging = new TestPaging();
+        paging.setCurrentPageNumber(2);
+        model.put("paging", paging);
+
         return "projectmanager/projectoverview";
     }
     @RequestMapping("/project/projectdeleteform.html")

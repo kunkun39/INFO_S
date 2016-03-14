@@ -2,6 +2,8 @@ package com.changhong.common.domain;
 
 import com.changhong.common.utils.CHStringUtils;
 
+import java.util.Date;
+
 /**
  * User: pengjie
  * Date: 2016/2/24
@@ -14,6 +16,8 @@ public class InfoGatherProject {
      **/
     public final static String ID = "id";
 
+    public final static String TIME_STAMP = "timestamp";
+
     public final static String USER_ID = "userId";
 
     public final static String PROJECT_KEY = "projectKey";
@@ -24,6 +28,11 @@ public class InfoGatherProject {
      * 工程ID
      **/
     private int id;
+
+    /**
+     * 时间
+     */
+    private String timestamp;
 
     /**
      * 该工程对应的用户ID
@@ -71,6 +80,14 @@ public class InfoGatherProject {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
     public int getUserId() {
