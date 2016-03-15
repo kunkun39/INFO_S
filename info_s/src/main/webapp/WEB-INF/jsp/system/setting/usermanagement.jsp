@@ -80,9 +80,10 @@
                                 </thead>
 
                                 <tbody>
-                                <c:forEach items="${users}" var="user">
+                                <c:forEach items="${users}" var="user" varStatus="status">
                                     <tr class="odd gradeX">
-                                        <td>${varStatus.index}</td>
+                                        <%--<td>${status.index + 1}</td>--%>
+                                        <td>${user.id}</td>
                                         <td>${user.name}</td>
                                         <td class="hidden-480">${user.username}</td>
                                         <td class="hidden-480">${user.contactWay}</td>
@@ -90,14 +91,14 @@
                                             <c:when test="${user.enabled}">
                                                 <td><span class="disableuser">用户正常</span></td>
                                                 <td><a class="btn mini purple"
-                                                       onclick="window.location.href = '${pageContext.request.contextPath}/system/userdisable.html?nowenabled=${user.enabled}&userid=${user.id}'">
+                                                       onclick="window.location.href = '${pageContext.request.contextPath}/system/userdisable.html?nowenabled=${user.enabled}&current=${paging.currentPageNumber}&userid=${user.id}'">
                                                     <i class="icon-edit"></i> 禁用账户</a>
                                                 </td>
                                             </c:when>
                                             <c:otherwise>
                                                 <td><span class="enableuser">已被禁用</span></td>
                                                 <td><a class="btn mini black"
-                                                       onclick="window.location.href='${pageContext.request.contextPath}/system/userdisable.html?nowenabled=${user.enabled}&userid=${user.id}'">
+                                                       onclick="window.location.href='${pageContext.request.contextPath}/system/userdisable.html?nowenabled=${user.enabled}&current=${paging.currentPageNumber}&userid=${user.id}'">
                                                     <i class="icon-trash"></i> 授权使用</a>
                                                 </td>
                                             </c:otherwise>
