@@ -58,6 +58,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> loadAnyUsers(int startPostion, int count) {
+        List<Map<String, Object>> users=userDao.loadAnyUsers(startPostion,count);
+
+        return UserWebAssember.toUserListDomain(users);
+    }
+
+    @Override
     public void updateUserState(int userid,boolean enable) {
          userDao.updateUserState(userid,enable);
     }

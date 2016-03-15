@@ -13,6 +13,8 @@ public abstract class AbstractPaging<T> implements Paging<T> {
 
     protected int totalItemSize = -1;
 
+    protected int pageSize=10;
+
     protected AbstractPaging() {
     }
 
@@ -21,7 +23,11 @@ public abstract class AbstractPaging<T> implements Paging<T> {
     }
 
     public int getPageSize() {
-        return 10;
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize){
+        this.pageSize=pageSize;
     }
 
     public abstract List<T> getItems();

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="ch" uri="http://www.chanhong.com" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,14 +11,16 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/media/css/select2_metro.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/media/css/DT_bootstrap.css"/>
     <style type="text/css">
-        .enableuser{
+        .enableuser {
             padding: 5px;
             color: red;
         }
-        .disableuser{
+
+        .disableuser {
             padding: 5px;
             color: blue;
         }
+
     </style>
 </head>
 
@@ -67,7 +70,7 @@
                             <table class="table table-striped table-bordered table-hover" id="sample_2">
                                 <thead>
                                 <tr>
-                                    <th style="width:8px;"><input type="checkbox" class="group-checkable" data-set="#sample_2 .checkboxes"/></th>
+                                    <th>序号</th>
                                     <th>用户名</th>
                                     <th class="hidden-480">账号</th>
                                     <th class="hidden-480">联系方式</th>
@@ -79,7 +82,7 @@
                                 <tbody>
                                 <c:forEach items="${users}" var="user">
                                     <tr class="odd gradeX">
-                                        <td><input type="checkbox" class="checkboxes" value="1"/></td>
+                                        <td>${varStatus.index}</td>
                                         <td>${user.name}</td>
                                         <td class="hidden-480">${user.username}</td>
                                         <td class="hidden-480">${user.contactWay}</td>
@@ -101,10 +104,13 @@
                                         </c:choose>
                                     </tr>
                                 </c:forEach>
-
                                 </tbody>
                             </table>
-
+                            <div class="pagination" style="text-align: center;">
+                                <ul style="box-shadow: 0px 0px 0px;">
+                                    <ch:numberpaging urlMapping="${pageContext.request.contextPath}/system/usermanagement.html" paging="${paging}" maxPageNumber="7"/>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 

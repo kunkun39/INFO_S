@@ -2,6 +2,7 @@ package com.changhong.system.web.controller.setting;
 
 import com.changhong.system.domain.User;
 import com.changhong.system.service.UserService;
+import com.changhong.system.web.paging.UserManagePaging;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,7 +30,15 @@ public class SystemUserController {
     @RequestMapping("/system/usermanagement.html")
     public String sendToUserManagement(HttpServletRequest request, ModelMap model) {
         setMenuKey(request);
-        List<User> users = userService.loadAllUsers();
+
+        int current = ServletRequestUtils.getIntParameter(request, "current", 1);
+
+        UserManagePaging paging = new UserManagePaging(userService);
+        constructPaging(paging, current);
+
+
+        List<User> users = paging.getItems();
+        model.put("paging", paging);
         model.put("users", users);
         return "system/setting/usermanagement";
     }
@@ -55,4 +64,11 @@ public class SystemUserController {
         request.getSession().setAttribute("MENU_KEY", MENU_KEY);
         request.getSession().setAttribute("SUB_MENU_KEY", SUB_MENU_KEY);
     }
+
+
+    private void constructPaging(UserManagePaging paging, int current) {
+        paging.setCurrentPageNumber(current);
+    }
+
+
 }

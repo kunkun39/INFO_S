@@ -28,6 +28,8 @@ public interface UserDao {
 
     List<Map<String, Object>> loadAllUsers();
 
+    List<Map<String, Object>> loadAnyUsers(int startPostion, int count);
+
     /**
      * 更改用戶状态
      *

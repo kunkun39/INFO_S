@@ -4,6 +4,7 @@ import com.changhong.system.domain.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -18,6 +19,8 @@ public interface UserService extends UserDetailsService {
     void saveUser(User user);
 
     List<User> loadAllUsers();
+
+    List<User> loadAnyUsers(int startPostion, int count);
 
     /**
      * 更改用戶状态
